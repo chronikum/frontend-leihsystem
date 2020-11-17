@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequestInterceptor } from './interceptors/HttpRequestInterceptor';
 
 @NgModule({
   declarations: [
@@ -36,8 +38,14 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
     MatFormFieldModule,
     MatSnackBarModule,
     MatInputModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    // Http Interceptor(s) -  adds with Client Credentials
+    [
+      { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }
+    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
