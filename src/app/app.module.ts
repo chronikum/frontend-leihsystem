@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +60,8 @@ import { TableButtonGroupComponent } from './components/table-button-group/table
     MatInputModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

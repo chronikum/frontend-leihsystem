@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,7 +15,7 @@ export class InventoryTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['itemId', 'name', 'description', 'available', 'reservationCount', 'ownership'];
+  displayedColumns: string[] = ['select', 'itemId', 'name', 'description', 'available', 'reservationCount', 'ownership'];
 
   /**
    * Datasource
@@ -25,6 +26,11 @@ export class InventoryTableComponent implements OnInit {
    * Flag to reference loading state
    */
   loadingCompleted = false;
+
+  /**
+   * Selection Model
+   */
+  selection = new SelectionModel<Item>(true, []);
 
   @ViewChild('searchInput') searchInput: ElementRef;
 
@@ -48,6 +54,31 @@ export class InventoryTableComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Item>([...items]);
       this.loadingCompleted = true;
     });
+  }
+
+
+  /**
+   * Selection Methods
+   */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Item): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.rowPosition + 1}`;
   }
 
 }

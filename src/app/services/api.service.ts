@@ -5,6 +5,7 @@ import { GeneralServerResponse } from '../models/GeneralServerResponse';
 import { tap } from 'rxjs/internal/operators/tap';
 import { Router } from '@angular/router';
 import { Item } from '../models/Item';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,12 @@ export class ApiService {
   /**
    * Refers to the authentication state
    */
-  isAuthenticated: boolean;
+  isAuthenticated: boolean = false;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private snackBar: MatSnackBar,
   ) { }
 
 
@@ -37,6 +39,7 @@ export class ApiService {
    * @param password 
    */
   login$(username: string, password: string): Observable<GeneralServerResponse> {
+    this.debugSnackBar("Logging in");
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'login', {
       username, password,
     });
@@ -48,6 +51,7 @@ export class ApiService {
    * - only works when user was logged in before
    */
   checkAuth$(): Observable<GeneralServerResponse> {
+    this.debugSnackBar("Validating auth");
     this.isAuthenticated = false;
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {}).pipe(
       tap(x => this.isAuthenticated = x.success),
@@ -58,7 +62,8 @@ export class ApiService {
    * Log the user out
    */
   logout$() {
-    console.log("Log user out")
+
+    this.debugSnackBar("Logging out");
     this.httpClient.post<any>(this.endpoint + 'logout', {}).subscribe(x => {
       this.router.navigate(['login']);
     });
@@ -69,6 +74,17 @@ export class ApiService {
    * @returns Item[] available
    */
   getInventory$(): Observable<Item[]> {
-    return this.httpClient.post<Item[]>(this.endpoint + 'getInventory', {});
+    this.debugSnackBar("Get inventory");
+    return this.httpClient.post<Item[]>(this.endpoint + 'getAvailableItems', {});
+  }
+
+  /**
+   * Debugging with snackbar
+   * @param message 
+   */
+  debugSnackBar(message: string) {
+    this.snackBar.open(message, 'DEBUG', {
+      duration: 3000
+    });
   }
 }
