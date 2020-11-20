@@ -23,6 +23,7 @@ const routes: Routes = [
   {
     path: 'inventory',
     component: InventoryPageComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full',

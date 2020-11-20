@@ -22,7 +22,7 @@ export class ApiService {
   /**
    * Refers to the authentication state
    */
-  isAuthenticated: boolean = false;
+  isAuthenticated: boolean;
 
   constructor(
     private httpClient: HttpClient,

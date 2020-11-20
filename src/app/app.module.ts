@@ -23,6 +23,7 @@ import { InventoryPageComponent } from './pages/inventory-page/inventory-page.co
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { InventoryTableComponent } from './components/inventory-table/inventory-table.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { InventoryTableComponent } from './components/inventory-table/inventory-
     InventoryTableComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

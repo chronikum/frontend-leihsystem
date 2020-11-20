@@ -1,6 +1,9 @@
 <div style="width: 100%">
     <mat-card >
         <button mat-raised-button>Ausleihe</button>    
+        <div style="display: inline" *ngFor="let element of menubarItems">
+            <button (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
+        </div>
         <button  style="float: right" (click)="logout()" *ngIf="isAuthenticated" mat-button>Log out</button>
         <p *ngIf="isAuthenticated" mat-button>Currently logged in</p>
     </mat-card>

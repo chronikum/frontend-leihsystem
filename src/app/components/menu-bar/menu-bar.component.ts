@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -14,9 +14,24 @@ export class MenuBarComponent implements OnInit {
    */
   isAuthenticated: boolean = false;
 
+  /**
+   * Items to show in the menu bar
+   */
+  menubarItems = [
+    {
+      title: 'Dashboard',
+      link: ['dashboard']
+    },
+    {
+      title: 'Inventory',
+      link: ['inventory']
+    },
+  ]
+
   constructor(
     private router: Router,
     private apiService: ApiService,
+    private changeDet: ChangeDetectorRef,
   ) { }
 
 
