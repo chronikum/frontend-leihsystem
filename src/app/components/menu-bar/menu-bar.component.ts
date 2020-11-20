@@ -28,6 +28,8 @@ export class MenuBarComponent implements OnInit {
     },
   ]
 
+  activeItem?: string;
+
   constructor(
     private router: Router,
     private apiService: ApiService,
@@ -38,6 +40,7 @@ export class MenuBarComponent implements OnInit {
   ngOnInit(): void {
     this.router.events.subscribe(_ => {
       this.isAuthenticated = this.apiService.isAuthenticated;
+      this.activeItem = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
     });
   }
 
