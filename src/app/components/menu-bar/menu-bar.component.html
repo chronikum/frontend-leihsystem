@@ -5,6 +5,7 @@
             <button [ngClass]="{'active': (activeItem === element.title.toLowerCase())}" (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
         </div>
         <button  style="float: right" (click)="logout()" *ngIf="isAuthenticated" mat-button>Log out</button>
+        <span style="position: absolute; top: 0; right: 0; background-color: red;">PRE ALPHA - UNSTABLE V 0.02</span>
         <p *ngIf="isAuthenticated" mat-button>Currently logged in</p>
     </mat-card>
 </div>
