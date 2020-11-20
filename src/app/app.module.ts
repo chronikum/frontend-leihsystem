@@ -25,6 +25,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { InventoryTableComponent } from './components/inventory-table/inventory-table.component';
 import { CommonModule } from '@angular/common';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,7 @@ import { CommonModule } from '@angular/common';
     InventoryTableComponent
   ],
   imports: [
+    FlexLayoutModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
