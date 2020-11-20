@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { GeneralServerResponse } from 'src/app/models/GeneralServerResponse';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -19,6 +20,7 @@ export class LoginPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private snackBar: MatSnackBar,
+    private router: Router,
   ) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.required],
@@ -27,7 +29,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   /**
-   * Collects form values and performs login, if successful, transmits authentication results to authenticationService
+   * Collects form values and performs login, if successful, navigate to dashboard
    */
   performLogin(): void {
     const username = this.loginForm.get('username')?.value;
@@ -37,6 +39,7 @@ export class LoginPageComponent implements OnInit {
       console.log(result);
       if (result.success) {
         this.snackBar.open('Login successful!');
+        this.router.navigate(['dashboard'])
       } else {
         this.snackBar.open('Login unsuccessful');
       }

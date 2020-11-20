@@ -17,13 +17,22 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './interceptors/HttpRequestInterceptor';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
+import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { InventoryTableComponent } from './components/inventory-table/inventory-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     DashboardPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    MenuBarComponent,
+    InventoryPageComponent,
+    InventoryTableComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +48,8 @@ import { HttpRequestInterceptor } from './interceptors/HttpRequestInterceptor';
     MatSnackBarModule,
     MatInputModule,
     HttpClientModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

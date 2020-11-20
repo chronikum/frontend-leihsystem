@@ -1,0 +1,7 @@
+<div style="width: 100%">
+    <mat-card >
+        <button mat-raised-button>Ausleihe</button>    
+        <button  style="float: right" (click)="logout()" *ngIf="isAuthenticated" mat-button>Log out</button>
+        <p *ngIf="isAuthenticated" mat-button>Currently logged in</p>
+    </mat-card>
+</div>

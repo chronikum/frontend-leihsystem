@@ -2,6 +2,9 @@ import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralServerResponse } from '../models/GeneralServerResponse';
+import { tap } from 'rxjs/internal/operators/tap';
+import { Router } from '@angular/router';
+import { Item } from '../models/Item';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +19,14 @@ export class ApiService {
    */
   endpoint = 'http://localhost:8080/';
 
+  /**
+   * Refers to the authentication state
+   */
+  isAuthenticated: boolean = false;
+
   constructor(
     private httpClient: HttpClient,
+    private router: Router,
   ) { }
 
 
@@ -39,16 +48,27 @@ export class ApiService {
    * - only works when user was logged in before
    */
   checkAuth$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {});
+    this.isAuthenticated = false;
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {}).pipe(
+      tap(x => this.isAuthenticated = x.success),
+    )
   }
 
   /**
-   * Returns authentication status
-   * @returns Promise<boolean>
+   * Log the user out
    */
-  async isAuthenticated(): Promise<any> {
-    let authenticationStatus = this.checkAuth$();
-    console.log(authenticationStatus)
-    return this.isAuthenticated();
+  logout$() {
+    console.log("Log user out")
+    this.httpClient.post<any>(this.endpoint + 'logout', {}).subscribe(x => {
+      this.router.navigate(['login']);
+    });
+  }
+
+  /**
+   * Get inventory list
+   * @returns Item[] available
+   */
+  getInventory$(): Observable<Item[]> {
+    return this.httpClient.post<Item[]>(this.endpoint + 'getInventory', {});
   }
 }
