@@ -26,6 +26,7 @@ import { InventoryTableComponent } from './components/inventory-table/inventory-
 import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TableButtonGroupComponent } from './components/table-button-group/table-button-group.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     NotFoundPageComponent,
     MenuBarComponent,
     InventoryPageComponent,
-    InventoryTableComponent
+    InventoryTableComponent,
+    TableButtonGroupComponent
   ],
   imports: [
     FlexLayoutModule,

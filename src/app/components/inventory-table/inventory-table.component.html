@@ -1,4 +1,4 @@
-<div>
+<div >
   <div class="mat-elevation-z8">
     <div class="table-holder">
       <table *ngIf="loadingCompleted" mat-table [dataSource]="dataSource">
@@ -44,7 +44,7 @@
 
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
 
 
       </table>
