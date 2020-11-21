@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -30,6 +31,7 @@ import { CommonModule } from '@angular/common';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableButtonGroupComponent } from './components/table-button-group/table-button-group.component';
+import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { TableButtonGroupComponent } from './components/table-button-group/table
     MenuBarComponent,
     InventoryPageComponent,
     InventoryTableComponent,
-    TableButtonGroupComponent
+    TableButtonGroupComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -61,7 +64,8 @@ import { TableButtonGroupComponent } from './components/table-button-group/table
     HttpClientModule,
     MatPaginatorModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule,
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

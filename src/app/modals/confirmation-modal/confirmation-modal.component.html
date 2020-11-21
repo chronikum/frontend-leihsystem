@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+    <h1 mat-dialog-title>CONFIRMATION REQUIRED</h1>
+    <ul>
+        {{dialogData.message}}
+    </ul>
+</div>
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="cancelAction()">Cancel</button>
+    <button class="mat-raised-button mat-primary"(click)="confirmAction()">Confirm</button>
+</mat-dialog-actions>

@@ -7,6 +7,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TableButtonGroupComponent implements OnInit {
 
+
+  /**
+   * If the delete button should be enabled
+   */
+  @Input() disableDeleteButton = true;
+
   /**
    * If the create button should be shown
    */
