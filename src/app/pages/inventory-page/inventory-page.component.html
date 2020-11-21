@@ -1,9 +1,9 @@
 <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
   <div fxFlex="1 1 auto">
-    <app-table-button-group [showCreateButton]="true" [showDeleteButton]="true">
+    <app-table-button-group [showCreateButton]="true" [showDeleteButton]="true" >
     </app-table-button-group>
   </div>
   <div fxFlex="2 1 auto">
-    <app-inventory-table></app-inventory-table>
+    <app-inventory-table (selectionChanged)="selectionChange($event)"></app-inventory-table>
   </div>
 </div>

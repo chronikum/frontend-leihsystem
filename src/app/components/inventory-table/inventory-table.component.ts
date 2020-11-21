@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Item } from 'src/app/models/Item';
@@ -36,6 +36,11 @@ export class InventoryTableComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
+  /**
+   * Gets called when table selection is being changed
+   */
+  @Output() selectionChanged = new EventEmitter<SelectionModel<Item>>();
+
   constructor(
     private apiService: ApiService,
   ) {
@@ -43,6 +48,9 @@ export class InventoryTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.selection.changed.subscribe(change => {
+      this.selectionChanged.next(this.selection);
+    })
   }
 
   /**
@@ -71,14 +79,6 @@ export class InventoryTableComponent implements OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: Item): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.rowPosition + 1}`;
   }
 
 }
