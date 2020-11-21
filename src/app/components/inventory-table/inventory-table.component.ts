@@ -41,6 +41,11 @@ export class InventoryTableComponent implements OnInit {
    */
   @Output() selectionChanged = new EventEmitter<SelectionModel<Item>>();
 
+  /**
+   * Refresh data trigger
+   */
+  @Input() refreshTrigger: EventEmitter<any>;
+
   constructor(
     private apiService: ApiService,
   ) {
@@ -48,9 +53,17 @@ export class InventoryTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /**
+     * Will be fired if events change to stream the output to the parent component
+     */
     this.selection.changed.subscribe(change => {
       this.selectionChanged.next(this.selection);
     })
+
+    /**
+     * Will be fired if a refresh event should be triggered
+     */
+    this.refreshTrigger.subscribe(trigger => this.loadData())
   }
 
   /**
@@ -58,7 +71,7 @@ export class InventoryTableComponent implements OnInit {
    */
   loadData(): void {
     this.apiService.getInventory$().subscribe(items => {
-      console.log(items)
+      this.loadingCompleted = false;
       this.dataSource = new MatTableDataSource<Item>([...items]);
       this.loadingCompleted = true;
     });

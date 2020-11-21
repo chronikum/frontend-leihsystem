@@ -1,10 +1,10 @@
 <div mat-dialog-content>
-    <h1 mat-dialog-title>CONFIRMATION REQUIRED</h1>
+    <h3 style="font-weight: bold" mat-dialog-title [ngClass]="{'critical': dialogData.critical}">CONFIRMATION REQUIRED</h3>
     <ul>
         {{dialogData.message}}
     </ul>
 </div>
-<mat-dialog-actions>
+<mat-dialog-actions style="float: right">
     <button class="mat-raised-button"(click)="cancelAction()">Cancel</button>
-    <button class="mat-raised-button mat-primary"(click)="confirmAction()">Confirm</button>
+    <button class="mat-raised-button" [ngClass]="{'critical': dialogData.critical}" (click)="confirmAction()">Confirm</button>
 </mat-dialog-actions>

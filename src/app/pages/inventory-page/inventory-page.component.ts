@@ -1,8 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { Item } from 'src/app/models/Item';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-inventory-page',
@@ -16,7 +17,20 @@ export class InventoryPageComponent implements OnInit {
    */
   selection = new SelectionModel<Item>();
 
-  constructor(public dialog: MatDialog) { }
+  /**
+   * Refresh action stream
+   */
+  refreshActionStream = new EventEmitter<any>();
+
+  /**
+   * Items which should 
+   */
+  displayItems?: string[];
+
+  constructor(
+    public dialog: MatDialog,
+    private apiService: ApiService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -46,11 +60,23 @@ export class InventoryPageComponent implements OnInit {
   deleteItems() {
     console.log("Open dialog")
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      width: '250px',
-      data: { message: "The selected items will be deleted. Please confirm this action", critical: true }
+      width: '650px',
+      data: { message: "The selected items will be deleted. Please confirm this action.", critical: true }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(async result => {
+      if (result) {
+        let itemsToDelete = Array.from(this.selection.selected || []) as Item[];
+        this.apiService.deleteItems$(itemsToDelete).subscribe(response => {
+          if (response.success) {
+            console.log("Deleted items");
+            this.apiService.debugSnackBar("ITEMS DELETED");
+            this.refreshActionStream.next(true)
+          } else {
+            // TODO: You do not have permission popup
+            console.log("Failed to delete items")
+          }
+        });
+      }
     });
   }
 }

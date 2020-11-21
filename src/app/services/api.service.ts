@@ -1,6 +1,6 @@
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { GeneralServerResponse } from '../models/GeneralServerResponse';
 import { tap } from 'rxjs/internal/operators/tap';
 import { Router } from '@angular/router';
@@ -76,6 +76,15 @@ export class ApiService {
   getInventory$(): Observable<Item[]> {
     this.debugSnackBar("Get inventory");
     return this.httpClient.post<Item[]>(this.endpoint + 'getAvailableItems', {});
+  }
+
+  /**
+   * Delete items
+   */
+  deleteItems$(items: Item[]): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteItems', {
+      items: items
+    });
   }
 
   /**
