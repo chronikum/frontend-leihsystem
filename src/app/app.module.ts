@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableButtonGroupComponent } from './components/table-button-group/table-button-group.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
+import { CreationModalComponent } from './modals/creation-modal/creation-modal.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ConfirmationModalComponent } from './modals/confirmation-modal/confirma
     InventoryPageComponent,
     InventoryTableComponent,
     TableButtonGroupComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    CreationModalComponent
   ],
   imports: [
     FlexLayoutModule,

@@ -1,0 +1,32 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>Create a new item</h3>
+    <ul style="float: left;">
+        <div [formGroup]="simpleCreationForm">
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'name'" matInput placeholder="Name">
+                <mat-error>
+                    Is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'internalName'" matInput placeholder="Internal name">
+                <mat-error>
+                    Is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'description'" matInput placeholder="description">
+                <mat-error>
+                    Is required
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ul>
+    <div >
+        <h4>Items created now may be incompatible with later versions.</h4>
+    </div>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-button"(click)="cancelAction()">Cancel</button>
+    <button class="mat-raised-button" (click)="createAction()">Create</button>
+</mat-dialog-actions>

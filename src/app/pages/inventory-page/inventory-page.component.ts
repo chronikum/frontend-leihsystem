@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { CreationModalComponent } from 'src/app/modals/creation-modal/creation-modal.component';
 import { Item } from 'src/app/models/Item';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -49,7 +50,14 @@ export class InventoryPageComponent implements OnInit {
    * - Button action
    */
   createNewItem() {
+    console.log("Open")
+    const dialogRef = this.dialog.open(CreationModalComponent, {
+      width: '650px',
+    });
 
+    dialogRef.afterClosed().subscribe(async result => {
+      console.log(result);
+    });
   }
 
   /**

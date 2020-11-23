@@ -88,6 +88,14 @@ export class ApiService {
   }
 
   /**
+   * Create a single item
+   * @param item to create
+   */
+  createItem$(item: Item): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createItem', item);
+  }
+
+  /**
    * Debugging with snackbar
    * @param message 
    */
