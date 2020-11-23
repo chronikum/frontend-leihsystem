@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Item } from 'src/app/models/Item';
+import { ItemOwnership } from 'src/app/models/ItemOwnership';
+import { UserRoles } from 'src/app/models/UserRoles';
 
 @Component({
   selector: 'app-creation-modal',
@@ -20,6 +22,28 @@ export class CreationModalComponent implements OnInit {
    */
   showAdvancedForm: boolean = false;
 
+  /**
+   * Available ownerships
+   */
+  ownerships: ItemOwnership[] = [
+    ItemOwnership.GROUP,
+    ItemOwnership.USER,
+    ItemOwnership.UNKNOWN
+  ];
+
+  /**
+   * Allowed to reserve
+   */
+  allowedToReserve: UserRoles[] = [
+    UserRoles.ADMIN,
+    UserRoles.USER
+  ];
+
+  /**
+   * Creates Creation Modal
+   * @param formBuilder
+   * @param dialogRef 
+   */
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<CreationModalComponent>
@@ -28,6 +52,7 @@ export class CreationModalComponent implements OnInit {
       name: ['', Validators.required],
       internalName: ['', Validators.required],
       description: [''],
+      allowedToReserve: ['', Validators.required],
     });
   }
 
@@ -44,6 +69,8 @@ export class CreationModalComponent implements OnInit {
       name: this.simpleCreationForm.get('name').value || '',
       internalName: this.simpleCreationForm.get('internalName').value || '',
       description: this.simpleCreationForm.get('description').value || '',
+      allowedToReserve: this.simpleCreationForm.get('allowedToReserve').value || '',
+      ownership: this.simpleCreationForm.get('allowedToReserve').value || '',
     }
 
     return item as any;

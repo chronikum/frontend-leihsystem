@@ -33,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableButtonGroupComponent } from './components/table-button-group/table-button-group.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { CreationModalComponent } from './modals/creation-modal/creation-modal.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { CreationModalComponent } from './modals/creation-modal/creation-modal.c
     MatTableModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatSelectModule,
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

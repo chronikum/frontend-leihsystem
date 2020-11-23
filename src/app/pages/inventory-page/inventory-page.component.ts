@@ -55,8 +55,15 @@ export class InventoryPageComponent implements OnInit {
       width: '650px',
     });
 
-    dialogRef.afterClosed().subscribe(async result => {
+    dialogRef.afterClosed().subscribe(async (result: Item) => {
       console.log(result);
+      if (result.name) {
+        this.apiService.createItem$(result).subscribe(itemCreated => {
+          if (itemCreated.success) {
+            this.refreshActionStream.next(true)
+          }
+        })
+      }
     });
   }
 

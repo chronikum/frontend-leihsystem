@@ -74,7 +74,15 @@ export class InventoryTableComponent implements OnInit {
       this.loadingCompleted = false;
       this.dataSource = new MatTableDataSource<Item>([...items]);
       this.loadingCompleted = true;
+      this.deselectAll();
     });
+  }
+
+  /**
+   * Deselect all entries
+   */
+  deselectAll() {
+    this.selection.clear()
   }
 
 
