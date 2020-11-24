@@ -3,7 +3,9 @@ import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { CreationModalComponent } from 'src/app/modals/creation-modal/creation-modal.component';
+import { ReserveModalComponent } from 'src/app/modals/reserve-modal/reserve-modal.component';
 import { Item } from 'src/app/models/Item';
+import { Reservation } from 'src/app/models/Reservation';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -63,6 +65,25 @@ export class InventoryPageComponent implements OnInit {
             this.refreshActionStream.next(true)
           }
         })
+      }
+    });
+  }
+
+  /**
+   * Opens the reservation modal for the items
+   */
+  reserveItems() {
+    let reservationItems = Array.from(this.selection.selected || []) as Item[];
+    const dialogRef = this.dialog.open(ReserveModalComponent, {
+      width: '650px',
+      data: { items: reservationItems }
+    });
+
+    dialogRef.afterClosed().subscribe(async (reservation: Reservation) => {
+      if (reservation?.reservationName) {
+        this.apiService.createReservation$(reservation, reservationItems).subscribe(x => {
+          console.log(x);
+        });
       }
     });
   }

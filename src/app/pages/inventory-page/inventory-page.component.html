@@ -1,6 +1,14 @@
 <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
   <div fxFlex="1 1 auto">
-    <app-table-button-group [showCreateButton]="true" [showDeleteButton]="true" (deleteAction)="deleteItems()" [disableDeleteButton]="selection?.isEmpty()" (createAction)="createNewItem()">
+    <app-table-button-group 
+      [showCreateButton]="true" 
+      [showDeleteButton]="true" 
+      [showReserveButton]="true"
+      (deleteAction)="deleteItems()" 
+      (createAction)="createNewItem()"
+      (reserveAction)="reserveItems()"
+      [disableDeleteButton]="selection?.isEmpty()" 
+      [disableReserveButton]="selection?.isEmpty()" >
     </app-table-button-group>
   </div>
   <div fxFlex="2 1 auto">

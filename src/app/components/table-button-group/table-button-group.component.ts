@@ -14,6 +14,11 @@ export class TableButtonGroupComponent implements OnInit {
   @Input() disableDeleteButton = true;
 
   /**
+   * If the reserve button should be enabled
+   */
+  @Input() disableReserveButton = true;
+
+  /**
    * If the create button should be shown
    */
   @Input() showCreateButton = false;
@@ -24,6 +29,11 @@ export class TableButtonGroupComponent implements OnInit {
   @Input() showDeleteButton = false;
 
   /**
+   * If the reserve button should be shown
+   */
+  @Input() showReserveButton = false;
+
+  /**
    * The create button action
    */
   @Output() createAction = new EventEmitter<any>();
@@ -32,6 +42,11 @@ export class TableButtonGroupComponent implements OnInit {
    * The delete button action
    */
   @Output() deleteAction = new EventEmitter<any>();
+
+  /**
+   * The reserve button action
+   */
+  @Output() reserveAction = new EventEmitter<any>();
 
   constructor() { }
 

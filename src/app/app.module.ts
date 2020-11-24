@@ -11,8 +11,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +32,10 @@ import { TableButtonGroupComponent } from './components/table-button-group/table
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { CreationModalComponent } from './modals/creation-modal/creation-modal.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ReserveModalComponent } from './modals/reserve-modal/reserve-modal.component';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MatSelectModule } from '@angular/material/select';
     InventoryTableComponent,
     TableButtonGroupComponent,
     ConfirmationModalComponent,
-    CreationModalComponent
+    CreationModalComponent,
+    ReserveModalComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -70,6 +72,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatCheckboxModule,
     MatDialogModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

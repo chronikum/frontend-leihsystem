@@ -6,6 +6,7 @@ import { tap } from 'rxjs/internal/operators/tap';
 import { Router } from '@angular/router';
 import { Item } from '../models/Item';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Reservation } from '../models/Reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,19 @@ export class ApiService {
   deleteItems$(items: Item[]): Observable<GeneralServerResponse> {
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteItems', {
       items: items
+    });
+  }
+
+  /**
+   * Create reservation with items
+   * 
+   * @param reservation Reservation
+   * @param items Items
+   */
+  createReservation$(reservation: Reservation, items: Item[]): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'reserveItems', {
+      items: items,
+      reservation: reservation,
     });
   }
 
