@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Item } from 'src/app/models/Item';
 
 @Component({
   selector: 'app-table-button-group',
@@ -47,6 +48,11 @@ export class TableButtonGroupComponent implements OnInit {
    * The reserve button action
    */
   @Output() reserveAction = new EventEmitter<any>();
+
+  /**
+   * Items as reference for reserve button
+   */
+  @Input() selectedItems: Item[]
 
   constructor() { }
 

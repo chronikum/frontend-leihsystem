@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Item } from 'src/app/models/Item';
@@ -21,6 +22,11 @@ export class InventoryTableComponent implements OnInit {
    * Datasource
    */
   dataSource: MatTableDataSource<Item> = [] as any;
+
+  /**
+   * Paginator
+   */
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
    * Flag to reference loading state
@@ -73,6 +79,7 @@ export class InventoryTableComponent implements OnInit {
     this.apiService.getInventory$().subscribe(items => {
       this.loadingCompleted = false;
       this.dataSource = new MatTableDataSource<Item>([...items]);
+      this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();
     });
@@ -100,6 +107,14 @@ export class InventoryTableComponent implements OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  /**
+   * Filter string value
+   * @param filterValue String
+   */
+  applyFilter(filterValue?: string): void {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

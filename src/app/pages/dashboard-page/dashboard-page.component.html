@@ -1,1 +1,15 @@
-<h1>Work in progress</h1>
+<div>
+<p style="text-align: center;">Complete dashboard available soon</p>
+</div>
+<div
+fxLayout="row"
+fxLayout.xs="column" 
+fxFlexFill
+fxLayoutAlign="center space-between">
+    <div *ngIf="items && reservations && userCount">
+        <p>Reservation total count {{reservations.length}}</p>
+        <p>Item total count {{items.length}}</p>
+        <p>User count {{userCount}}</p>
+    </div>
+</div>
+

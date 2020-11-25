@@ -5,6 +5,8 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
   {
@@ -26,8 +28,19 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard]
   },
   {
+    path: 'reservations',
+    component: ReservationPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'users',
+    component: UsersPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
     path: '', redirectTo: '/login', pathMatch: 'full',
   },
+
 ];
 
 @NgModule({

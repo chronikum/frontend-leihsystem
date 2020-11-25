@@ -36,6 +36,9 @@ import { ReserveModalComponent } from './modals/reserve-modal/reserve-modal.comp
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     TableButtonGroupComponent,
     ConfirmationModalComponent,
     CreationModalComponent,
-    ReserveModalComponent
+    ReserveModalComponent,
+    ReservationPageComponent,
+    SearchBarComponent,
+    UsersPageComponent
   ],
   imports: [
     FlexLayoutModule,

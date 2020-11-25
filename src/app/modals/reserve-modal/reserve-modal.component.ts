@@ -48,7 +48,6 @@ export class ReserveModalComponent implements OnInit {
       startDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('start').value))), this.simpleReservationForm.get('startDateTime').value),
       plannedEndDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('end').value))), this.simpleReservationForm.get('endDateTime').value),
     } as any
-    console.log(reservation);
     return reservation
   }
 
@@ -79,7 +78,7 @@ export class ReserveModalComponent implements OnInit {
   }
 
   /**
-   * Create reservation
+   * Create reservation and close dialog
    */
   createReservation() {
     let reservation: Reservation = this.getReservation();

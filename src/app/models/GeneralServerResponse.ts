@@ -5,4 +5,5 @@
 export interface GeneralServerResponse {
     success: boolean,
     message?: string,
+    userCount?: number,
 }

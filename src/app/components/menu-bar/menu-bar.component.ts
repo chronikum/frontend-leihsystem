@@ -26,6 +26,14 @@ export class MenuBarComponent implements OnInit {
       title: 'Inventory',
       link: ['inventory']
     },
+    {
+      title: 'Reservations',
+      link: ['reservations']
+    },
+    {
+      title: 'Users',
+      link: ['users']
+    },
   ]
 
   activeItem?: string;

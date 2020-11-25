@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="space-between" style="margin: 20px;">
-    <button class="create-button" mat-button mat-raised-button *ngIf="showCreateButton" (click)="createAction.next(true)">Create</button>
-    <button class="delete-button" mat-button mat-raised-button [disabled]="disableDeleteButton" (click)="deleteAction.next(true)">Delete</button>
-    <button class="reserve-button" mat-button mat-raised-button [disabled]="disableReserveButton" *ngIf="showReserveButton" (click)="reserveAction.next(true)">Reserve</button>
+    <button class="create-button" mat-flat-button *ngIf="showCreateButton" (click)="createAction.next(true)">Create</button>
+    <button class="delete-button"  mat-flat-button [disabled]="disableDeleteButton" (click)="deleteAction.next(true)">Delete</button>
+    <button class="reserve-button"  mat-flat-button [disabled]="disableReserveButton" *ngIf="showReserveButton" (click)="reserveAction.next(true)">Reserve</button>
 </div>

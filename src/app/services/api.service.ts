@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Item } from '../models/Item';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Reservation } from '../models/Reservation';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class ApiService {
    * Refers to the authentication state
    */
   isAuthenticated: boolean = false;
+
+  /**
+   * Current user
+   */
+  currentUser: User;
 
   constructor(
     private httpClient: HttpClient,
@@ -99,6 +105,24 @@ export class ApiService {
       items: items,
       reservation: reservation,
     });
+  }
+
+  /**
+   * Get all reservations from the system
+   * 
+   * @returns reservations
+   */
+  getAllReservations$(): Observable<Reservation[]> {
+    return this.httpClient.post<Reservation[]>(this.endpoint + 'allReservations', {});
+  }
+
+  /**
+   * Get user count
+   * 
+   * @returns user count : number
+   */
+  getUserCount$(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getUserCount', {});
   }
 
   /**

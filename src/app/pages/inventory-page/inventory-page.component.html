@@ -8,7 +8,7 @@
       (createAction)="createNewItem()"
       (reserveAction)="reserveItems()"
       [disableDeleteButton]="selection?.isEmpty()" 
-      [disableReserveButton]="selection?.isEmpty()" >
+      [disableReserveButton]="selection?.isEmpty()">
     </app-table-button-group>
   </div>
   <div fxFlex="2 1 auto">
