@@ -8,8 +8,12 @@
                     Is required
                 </mat-error>
             </mat-form-field>
+            
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'password'" matInput type="password" placeholder="Password">
+                <input [formControlName]="'password'" matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
                 <mat-error>
                     Is required
                 </mat-error>

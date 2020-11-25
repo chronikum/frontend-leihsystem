@@ -69,7 +69,7 @@ export class CreationModalComponent implements OnInit {
       name: this.simpleCreationForm.get('name').value || '',
       internalName: this.simpleCreationForm.get('internalName').value || '',
       description: this.simpleCreationForm.get('description').value || '',
-      allowedToReserve: this.simpleCreationForm.get('allowedToReserve').value || '',
+      requiredRolesToReserve: [this.simpleCreationForm.get('allowedToReserve').value] || ['ADMIn'],
       ownership: this.simpleCreationForm.get('allowedToReserve').value || '',
     }
 

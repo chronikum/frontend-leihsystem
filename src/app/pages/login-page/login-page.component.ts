@@ -16,6 +16,12 @@ export class LoginPageComponent implements OnInit {
    */
   loginForm: FormGroup;
 
+
+  /**
+   * Input is hidden
+   */
+  hide: boolean = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,

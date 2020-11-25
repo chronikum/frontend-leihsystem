@@ -2,9 +2,9 @@
     <mat-card>
         <p style="position: absolute; top: 0; right: 0; text-align: center; width: 100%; font-weight: bold; background-color: red; color: white">UNSTABLE PRE ALPHA iPad Ausleihsystem</p>
         <br>
-        <button mat-flat-button color="primary">ZFM Ausleihsystem</button>    
+        <button mat-flat-button color="primary">ZfM Ausleihsystem</button>    
         <div style="display: inline" *ngFor="let element of menubarItems">
-            <button [ngClass]="{'active': (activeItem === element.title.toLowerCase())}" (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
+            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}" (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
         </div>
         <div *ngIf="isAuthenticated" style="float: right;">
             <span style="padding: 12px;" mat-button>You are logged in.</span>

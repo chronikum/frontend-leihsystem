@@ -21,6 +21,7 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Minimal required role to reserve</mat-label>
                 <mat-select [formControlName]="'allowedToReserve'" [placeholder]="'Select role'">
                     <mat-option *ngFor="let role of allowedToReserve" [value]="role">
                         {{role}}

@@ -58,10 +58,10 @@ export class ApiService {
    * - only works when user was logged in before
    */
   checkAuth$(): Observable<GeneralServerResponse> {
-    this.debugSnackBar("Validating auth");
+    this.debugSnackBar("validated auth");
     this.isAuthenticated = false;
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {}).pipe(
-      tap(x => this.isAuthenticated = x.success),
+      tap(x => x?.success ? (this.isAuthenticated = true) : (this.isAuthenticated = false)),
     )
   }
 
@@ -69,7 +69,6 @@ export class ApiService {
    * Log the user out
    */
   logout$() {
-
     this.debugSnackBar("Logging out");
     this.httpClient.post<any>(this.endpoint + 'logout', {}).subscribe(x => {
       this.router.navigate(['login']);
