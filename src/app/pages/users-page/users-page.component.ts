@@ -43,6 +43,12 @@ export class UsersPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
         let userToDelete = Array.from(this.selection.selected || []) as User[];
+        // Delete the users
+        this.apiService.deleteUsers$(userToDelete).subscribe(result => {
+          if (result.success) {
+            this.refreshActionStream.next(true);
+          }
+        });
         console.log("User confirmed deletion")
       }
     });

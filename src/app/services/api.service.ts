@@ -150,6 +150,15 @@ export class ApiService {
   }
 
   /**
+   * Deletes the users provided with
+   * 
+   * @param users to delete
+   */
+  deleteUsers$(users: User[]): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteUsers', users);
+  }
+
+  /**
    * Debugging with snackbar
    * @param message 
    */
