@@ -1,3 +1,17 @@
-<div style="padding: 12px;">
-    <p style="text-align: center;"><b>User administration available soon</b></p>
-</div>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+    <div fxFlex="1 1 auto">
+      <app-table-button-group 
+        [showCreateButton]="true" 
+        [showDeleteButton]="true" 
+        [showReserveButton]="false"
+        (deleteAction)="deleteUser()" 
+        (createAction)="createUser()"
+        [disableDeleteButton]="selection?.isEmpty()" 
+        [disableReserveButton]="true">
+      </app-table-button-group>
+    </div>
+    <div fxFlex="2 1 auto">
+        <app-users-table></app-users-table>
+    </div>
+  </div>
+  

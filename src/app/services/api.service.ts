@@ -125,6 +125,15 @@ export class ApiService {
   }
 
   /**
+   * Get all users
+   * 
+   * @returns users[]
+   */
+  getAllUsers$(): Observable<User[]> {
+    return this.httpClient.post<User[]>(this.endpoint + 'getAllUsers', {});
+  }
+
+  /**
    * Create a single item
    * @param item to create
    */

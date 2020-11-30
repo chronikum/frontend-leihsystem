@@ -39,6 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { UsersPageComponent } from './pages/users-page/users-page.component';
     ReserveModalComponent,
     ReservationPageComponent,
     SearchBarComponent,
-    UsersPageComponent
+    UsersPageComponent,
+    UsersTableComponent
   ],
   imports: [
     FlexLayoutModule,
