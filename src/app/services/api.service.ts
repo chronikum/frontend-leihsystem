@@ -142,6 +142,14 @@ export class ApiService {
   }
 
   /**
+   * Create a single user
+   * @param user to create
+   */
+  createUser$(user: User): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createUser', user);
+  }
+
+  /**
    * Debugging with snackbar
    * @param message 
    */

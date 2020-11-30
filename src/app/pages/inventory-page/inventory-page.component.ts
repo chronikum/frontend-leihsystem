@@ -52,7 +52,6 @@ export class InventoryPageComponent implements OnInit {
    * - Button action
    */
   createNewItem() {
-    console.log("Open")
     const dialogRef = this.dialog.open(CreationModalComponent, {
       width: '650px',
     });

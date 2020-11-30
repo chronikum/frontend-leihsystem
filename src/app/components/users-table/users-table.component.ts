@@ -16,7 +16,7 @@ export class UsersTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['userId', 'username', 'firstname', 'surname', 'email', 'lastLogin', 'role'];
+  displayedColumns: string[] = ['select', 'userId', 'username', 'firstname', 'surname', 'email', 'lastLogin', 'role'];
 
   /**
    * Datasource
@@ -121,7 +121,10 @@ export class UsersTableComponent implements OnInit {
    * Parses date
    */
   parseDate(number: number): string {
-    return new Date(number).toLocaleDateString();
+    if (number) {
+      return new Date(number).toLocaleDateString();
+    }
+    return '-'
   }
 
 }

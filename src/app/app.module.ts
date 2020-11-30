@@ -40,6 +40,7 @@ import { ReservationPageComponent } from './pages/reservation-page/reservation-p
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
+import { UserCreationModalComponent } from './modals/user-creation-modal/user-creation-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
     ReservationPageComponent,
     SearchBarComponent,
     UsersPageComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    UserCreationModalComponent
   ],
   imports: [
     FlexLayoutModule,
