@@ -117,4 +117,11 @@ export class UsersTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * Parses date
+   */
+  parseDate(number: number): string {
+    return new Date(number).toLocaleDateString();
+  }
+
 }
