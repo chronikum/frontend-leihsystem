@@ -116,6 +116,19 @@ export class ApiService {
   }
 
   /**
+   * Returns the item with the given unique identifier
+   * 
+   * @param uniqueIdentifier string
+   * 
+   * @returns Item
+   */
+  getItembyUniqueIdentifier$(uniqueIdentifier: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getItemByUnique', {
+      uniqueGeneratedString: uniqueIdentifier
+    })
+  }
+
+  /**
    * Get user count
    * 
    * @returns user count : number
