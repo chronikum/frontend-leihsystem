@@ -40,7 +40,8 @@
         <ng-container matColumnDef="available">
           <th mat-header-cell *matHeaderCellDef>available</th>
           <td mat-cell *matCellDef="let element">
-            <span>{{element.available}}</span>
+            <mat-icon *ngIf="element.available">check_box</mat-icon>
+            <mat-icon *ngIf="!element.available">check_box_outline_blank</mat-icon>
           </td>
         </ng-container>
 
@@ -61,7 +62,7 @@
         <ng-container matColumnDef="qrcode">
           <th mat-header-cell *matHeaderCellDef>qrcode</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="showQRCodeEmitter.next(element.generatedUniqueIdentifier)">Show QR Code</button>
+            <button mat-button><mat-icon (click)="showQRCodeEmitter.next(element.generatedUniqueIdentifier)">qr_code</mat-icon></button>
           </td>
         </ng-container>
 
