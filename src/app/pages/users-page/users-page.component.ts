@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { PasswordChangeModalComponent } from 'src/app/modals/password-change-modal/password-change-modal.component';
 import { UserCreationModalComponent } from 'src/app/modals/user-creation-modal/user-creation-modal.component';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
@@ -61,6 +62,28 @@ export class UsersPageComponent implements OnInit {
    */
   selectionChange(selection: SelectionModel<User>) {
     this.selection = selection;
+  }
+
+  /**
+   * Opens the change user password modal
+   */
+  changeUserPasswordModal() {
+    const dialogRef = this.dialog.open(PasswordChangeModalComponent, {
+      width: '650px',
+    });
+
+    let userToChangePasswordFrom = Array.from(this.selection.selected || []) as User[];
+
+    dialogRef.afterClosed().subscribe(async (result: any) => {
+      console.log(result);
+      if (result.newPassword && result.newPasswordConfirmation) {
+        this.apiService.changePassword$(userToChangePasswordFrom[0], result.newPassword).subscribe((result: any) => {
+          if (result.success) {
+            this.refreshActionStream.next(true)
+          }
+        })
+      }
+    });
   }
 
   /**

@@ -12,6 +12,6 @@
     </app-table-button-group>
   </div>
   <div fxFlex="2 1 auto">
-    <app-inventory-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream"></app-inventory-table>
+    <app-inventory-table (selectionChanged)="selectionChange($event)" (showQRCodeEmitter)="showQRCodeModal($event)" [refreshTrigger]="refreshActionStream"></app-inventory-table>
   </div>
 </div>

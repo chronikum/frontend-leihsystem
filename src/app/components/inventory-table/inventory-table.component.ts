@@ -16,7 +16,7 @@ export class InventoryTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['select', 'itemId', 'name', 'description', 'available', 'reservationCount', 'ownership'];
+  displayedColumns: string[] = ['select', 'itemId', 'name', 'description', 'available', 'reservationCount', 'ownership', 'qrcode'];
 
   /**
    * Datasource
@@ -51,6 +51,11 @@ export class InventoryTableComponent implements OnInit {
    * Refresh data trigger
    */
   @Input() refreshTrigger: EventEmitter<any>;
+
+  /**
+   * Show QR Code Emitter - emits the qr code content string
+   */
+  @Output() showQRCodeEmitter = new EventEmitter<string>();
 
   constructor(
     private apiService: ApiService,

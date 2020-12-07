@@ -49,6 +49,31 @@ export class TableButtonGroupComponent implements OnInit {
    */
   @Output() reserveAction = new EventEmitter<any>();
 
+
+  /**
+   * USER PAGE
+   */
+
+  /**
+   * Determinates if user page buttons should be shown
+   */
+  @Input() showUserPageButtons: boolean = false;
+
+  /**
+   * Determinates if user page buttons should be disabled
+   */
+  @Input() disableUserPageButtons: boolean = true;
+
+  /**
+   * The change password action button action
+   */
+  @Output() changePasswordAction = new EventEmitter<any>();
+
+  /**
+   * The edit user profile button action
+   */
+  @Output() editUserProfile = new EventEmitter<any>();
+
   /**
    * Items as reference for reserve button
    */

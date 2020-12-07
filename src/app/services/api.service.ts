@@ -159,6 +159,21 @@ export class ApiService {
   }
 
   /**
+   * Changes the users password
+   * 
+   * @param user 
+   * @param newPassword 
+   * 
+   * @returns GeneralServerResponse
+   */
+  changePassword$(user: User, newPassword: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'changePasswordForUser', {
+      user: user,
+      newPassword: newPassword,
+    });
+  }
+
+  /**
    * Debugging with snackbar
    * @param message 
    */

@@ -3,11 +3,12 @@
       <app-table-button-group 
         [showCreateButton]="true" 
         [showDeleteButton]="true" 
-        [showReserveButton]="false"
         (deleteAction)="deleteUser()" 
         (createAction)="createUser()"
-        [disableDeleteButton]="selection?.isEmpty()" 
-        [disableReserveButton]="true">
+        (changePasswordAction)="changeUserPasswordModal()"
+        [disableDeleteButton]="selection?.isEmpty()"
+        [disableUserPageButtons]="!(selection?.selected.length === 1)"
+        [showUserPageButtons]="true">
       </app-table-button-group>
     </div>
     <div fxFlex="2 1 auto">

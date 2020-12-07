@@ -3,6 +3,7 @@ import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { CreationModalComponent } from 'src/app/modals/creation-modal/creation-modal.component';
+import { QrcodeModalComponent } from 'src/app/modals/qrcode-modal/qrcode-modal.component';
 import { ReserveModalComponent } from 'src/app/modals/reserve-modal/reserve-modal.component';
 import { Item } from 'src/app/models/Item';
 import { Reservation } from 'src/app/models/Reservation';
@@ -66,6 +67,21 @@ export class InventoryPageComponent implements OnInit {
         })
       }
     });
+  }
+
+  /**
+   * Show the qr code modal
+   * 
+   * @param string
+   */
+  showQRCodeModal(generatedUniqueIdentifier: string) {
+    let reservationItems = Array.from(this.selection.selected || []) as Item[];
+    const dialogRef = this.dialog.open(QrcodeModalComponent, {
+      width: '300px',
+      data: { qrcodeData: generatedUniqueIdentifier }
+    });
+
+    dialogRef.afterClosed().subscribe();
   }
 
   /**
