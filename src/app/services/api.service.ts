@@ -8,6 +8,7 @@ import { Item } from '../models/Item';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Reservation } from '../models/Reservation';
 import { User } from '../models/User';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ApiService {
   /**
    * Endpoint
    */
-  endpoint = 'http://localhost:8080/';
+  endpoint = environment.backend;
 
   /**
    * Refers to the authentication state
