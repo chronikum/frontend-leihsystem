@@ -6,6 +6,7 @@ import { InventoryPageComponent } from './pages/inventory-page/inventory-page.co
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
+import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'scanner',
+    component: ScannerPageComponent,
     canActivate: [AuthenticationGuard]
   },
   {

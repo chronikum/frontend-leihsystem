@@ -43,6 +43,10 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
 import { UserCreationModalComponent } from './modals/user-creation-modal/user-creation-modal.component';
 import { PasswordChangeModalComponent } from './modals/password-change-modal/password-change-modal.component';
 import { QrcodeModalComponent } from './modals/qrcode-modal/qrcode-modal.component';
+import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
+
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +67,8 @@ import { QrcodeModalComponent } from './modals/qrcode-modal/qrcode-modal.compone
     UsersTableComponent,
     UserCreationModalComponent,
     PasswordChangeModalComponent,
-    QrcodeModalComponent
+    QrcodeModalComponent,
+    ScannerPageComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -88,6 +93,7 @@ import { QrcodeModalComponent } from './modals/qrcode-modal/qrcode-modal.compone
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ZXingScannerModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials
