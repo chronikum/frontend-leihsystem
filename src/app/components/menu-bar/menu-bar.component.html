@@ -1,14 +1,19 @@
 <div fxLayout="column" fxLayoutAlign="space-evenly stretch">
-    <mat-card>
-        <p style="position: absolute; top: 0; right: 0; text-align: center; width: 100%; font-weight: bold; background-color: red; color: white">UNSTABLE PRE ALPHA iPad Ausleihsystem</p>
-        <br>
-        <button mat-flat-button color="primary">ZfM Ausleihsystem</button>    
-        <div style="display: inline" *ngFor="let element of menubarItems">
-            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}" (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
-        </div>
+  <mat-card>
+      <!-- MOBILE MENU-->
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">Menü</button>
+        <mat-menu #menu="matMenu">
+            <div style="display: inline" *ngFor="let element of menubarItems">
+                <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
+                  (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
+              </div>
+        </mat-menu>
         <div *ngIf="isAuthenticated" style="float: right;">
             <span style="padding: 12px;" mat-button>You are logged in.</span>
-            <button  style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
-        </div>
-    </mat-card>
+            <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
+          </div>
+      </div>
+    <br>
+  </mat-card>
 </div>
