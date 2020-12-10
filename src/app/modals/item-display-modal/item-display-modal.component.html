@@ -1,0 +1,17 @@
+<div mat-dialog-content style="text-align: center; width: 100%;">
+    <h1 mat-dialog-title>Asset-Informationen</h1>
+    <div *ngIf="item">
+        <b>Name</b><br>
+        <span>{{item.name}}</span><br>
+        <b>Description</b><br>
+        <span>{{item.description}}</span><br>
+        <b>Ownership</b><br>
+        <span>{{item.ownership}}</span><br>
+    </div>
+    <div *ngIf="!item">
+        <span>Fehler: Asset nicht existent.</span>
+    </div>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-raised-button"(click)="closeAction()">Close</button>
+</mat-dialog-actions>

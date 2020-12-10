@@ -1,6 +1,8 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+*ZFM Ausleihsystem im Auftrag der pädagogischen Hochschule*
+
+Benötigt das leihsystem-backend zur vollständigen Funktionalität.
 
 ## Development server
 

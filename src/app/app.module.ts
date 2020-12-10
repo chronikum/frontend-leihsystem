@@ -46,6 +46,7 @@ import { QrcodeModalComponent } from './modals/qrcode-modal/qrcode-modal.compone
 import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
 
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ItemDisplayModalComponent } from './modals/item-display-modal/item-display-modal.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     UserCreationModalComponent,
     PasswordChangeModalComponent,
     QrcodeModalComponent,
-    ScannerPageComponent
+    ScannerPageComponent,
+    ItemDisplayModalComponent
   ],
   imports: [
     FlexLayoutModule,
