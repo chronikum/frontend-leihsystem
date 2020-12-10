@@ -23,11 +23,7 @@ export class ScannerPageComponent implements OnInit {
   /**
    * All the cameras available to select from
    */
-  camerasAvailable = [
-    {
-      label: 'test'
-    }
-  ];
+  camerasAvailable = []
 
   /**
    * Camera Selector Formgroup
