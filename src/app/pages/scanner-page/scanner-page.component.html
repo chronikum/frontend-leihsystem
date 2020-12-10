@@ -5,7 +5,7 @@
     <zxing-scanner #scanner  (camerasFound)="camerasFound($event)" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
     <div [formGroup]="cameraSelectorGroup" *ngIf="camerasAvailable.length > 0">
         <mat-label>If needed, change the camera device.</mat-label>
-        <mat-select [formControlName]="'cameraselector'" [placeholder]="'Loading...'">
+        <mat-select [formControlName]="'cameraselector'" [placeholder]="'Loading...'" (selectionChange)="changeCamera($event)">
             <mat-option *ngFor="let camera of camerasAvailable" [value]="camera.label">
                 {{camera.label}}
               </mat-option>

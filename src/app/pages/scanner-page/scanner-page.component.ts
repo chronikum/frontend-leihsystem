@@ -101,6 +101,21 @@ export class ScannerPageComponent implements OnInit {
    */
   camerasFound(cameras: any[]) {
     this.camerasAvailable = cameras;
+    console.log(JSON.stringify(cameras))
+  }
+
+
+  /**
+   * Change camera which should be active
+   * @param $event camera to activate
+   */
+  changeCamera(changeEvent: any) {
+    console.log(changeEvent)
+    let cameraToSet = this.camerasAvailable.filter(singleCamera => changeEvent.source.value === singleCamera.label)
+    console.log(cameraToSet)
+    if (cameraToSet[0]) {
+      this.scanner.device = cameraToSet[0];
+    }
   }
 
 }
