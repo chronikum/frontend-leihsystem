@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { ItemDisplayModalComponent } from 'src/app/modals/item-display-modal/item-display-modal.component';
 import { GeneralServerResponse } from 'src/app/models/GeneralServerResponse';
 import { Item } from 'src/app/models/Item';
@@ -12,12 +14,48 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ScannerPageComponent implements OnInit {
 
+  /**
+   * Get scanner view
+   */
+  @ViewChild('scanner', { static: true })
+  scanner: ZXingScannerComponent;
+
+  /**
+   * All the cameras available to select from
+   */
+  camerasAvailable = [
+    {
+      label: 'test'
+    }
+  ];
+
+  /**
+   * Camera Selector Formgroup
+   */
+  cameraSelectorGroup: FormGroup;
+
+
+
+
   constructor(
     private apiService: ApiService,
+    private formBuilder: FormBuilder,
     public dialog: MatDialog,
-  ) { }
+  ) {
+    this.cameraSelectorGroup = this.formBuilder.group({
+      'cameraselector': ['Loading...', Validators.required]
+    })
+  }
 
+  /**
+   * NgOnInit
+   * 
+   * - also listen for camera device changes
+   */
   ngOnInit(): void {
+    this.scanner.deviceChange.subscribe(device => {
+      this.cameraSelectorGroup.get('cameraselector').setValue(device.label);
+    })
   }
 
   /**
@@ -49,12 +87,24 @@ export class ScannerPageComponent implements OnInit {
    * @param Item
    */
   openItemDisplayInformation(item: Item) {
+    this.scanner.enable = false;
     const dialogRef = this.dialog.open(ItemDisplayModalComponent, {
       width: '650px',
       data: { item: item }
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => {
+      this.scanner.enable = true;
+    });
+  }
+
+  /**
+   * Makes found cameras selectable
+   * 
+   * @param Cameras
+   */
+  camerasFound(cameras: any[]) {
+    this.camerasAvailable = cameras;
   }
 
 }

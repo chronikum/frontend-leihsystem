@@ -2,5 +2,13 @@
     <div>
         <h1>Please scan the qr code on the device</h1>
     </div>
-    <zxing-scanner (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+    <zxing-scanner #scanner  (camerasFound)="camerasFound($event)" (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+    <div [formGroup]="cameraSelectorGroup" *ngIf="camerasAvailable.length > 0">
+        <mat-label>If needed, change the camera device.</mat-label>
+        <mat-select [formControlName]="'cameraselector'" [placeholder]="'Loading...'">
+            <mat-option *ngFor="let camera of camerasAvailable" [value]="camera.label">
+                {{camera.label}}
+              </mat-option>
+        </mat-select>
+    </div>
 </div>
