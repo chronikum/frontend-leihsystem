@@ -1,6 +1,12 @@
-<div fxLayout="column" fxLayoutAlign="space-between stretch">
-<app-menu-bar></app-menu-bar>
-<router-outlet>
-
-</router-outlet>
-</div>
+<mat-drawer-container fxLayout="column" fxLayoutAlign="space-between stretch" style="height: 100%;">
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+            <app-menu-bar></app-menu-bar>
+        </mat-drawer>
+        <!-- OPEN SIDEBAR BUTTON -->
+        <button class="sidebar-button" type="button" mat-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+            <span> MENÜ</span>
+        </button>
+        <router-outlet>
+        </router-outlet>
+</mat-drawer-container>

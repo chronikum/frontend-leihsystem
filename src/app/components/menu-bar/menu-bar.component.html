@@ -1,19 +1,16 @@
 <div fxLayout="column" fxLayoutAlign="space-evenly stretch">
   <mat-card>
       <!-- MOBILE MENU-->
-      <div>
-        <button mat-button [matMenuTriggerFor]="menu">Menü</button>
-        <mat-menu #menu="matMenu">
-            <div style="display: inline" *ngFor="let element of menubarItems">
-                <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
-                  (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
-              </div>
-        </mat-menu>
+      <div fxLayout="column" fxLayoutAlign="space-evenly start">
+        <div *ngFor="let element of menubarItems">
+          <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
+            (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
+        </div>
         <div *ngIf="isAuthenticated" style="float: right;">
-            <span style="padding: 12px;" mat-button>You are logged in.</span>
-            <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
-          </div>
-      </div>
+              <span style="padding: 12px;" mat-button>You are logged in.</span>
+              <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
+            </div>
+        </div>
     <br>
   </mat-card>
 </div>

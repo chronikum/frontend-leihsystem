@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 

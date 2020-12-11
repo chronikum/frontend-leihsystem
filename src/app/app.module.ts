@@ -48,6 +48,8 @@ import { ScannerPageComponent } from './pages/scanner-page/scanner-page.componen
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ItemDisplayModalComponent } from './modals/item-display-modal/item-display-modal.component';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 @NgModule({
   declarations: [
@@ -95,7 +97,8 @@ import { ItemDisplayModalComponent } from './modals/item-display-modal/item-disp
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    MatSidenavModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials
