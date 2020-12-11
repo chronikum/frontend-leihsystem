@@ -1,16 +1,18 @@
-<div fxLayout="column" fxLayoutAlign="space-evenly stretch">
+<div fxLayout="column" fxLayoutAlign="start stretch" class="zfm-background">
   <mat-card>
       <!-- MOBILE MENU-->
       <div fxLayout="column" fxLayoutAlign="space-evenly start">
-        <div *ngFor="let element of menubarItems">
-          <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
-            (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
+          <div>
+            <h3>ZFM AUSLEIHSYSTEM <b>ALPHA</b></h3>
+          </div>
+          <div *ngFor="let element of menubarItems">
+            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
+              (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
+          </div>
+          <div *ngIf="isAuthenticated" style="float: right;">
+                <span style="padding: 12px;" mat-button>You are logged in.</span>
+                <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
+          </div>
         </div>
-        <div *ngIf="isAuthenticated" style="float: right;">
-              <span style="padding: 12px;" mat-button>You are logged in.</span>
-              <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
-            </div>
-        </div>
-    <br>
   </mat-card>
 </div>

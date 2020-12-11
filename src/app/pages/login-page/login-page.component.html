@@ -1,18 +1,28 @@
-<div style="padding: 12px;"
+<div class="zfm-background" style="padding: 12px;"
 fxLayout="column"
 fxLayout.xs="column" 
 fxFlexFill
 fxLayoutAlign="center center">
     <mat-card>
-        <mat-card-subtitle>Please login</mat-card-subtitle>
-        <form [formGroup]="loginForm" style="flex-direction: row;" (submit)="performLogin()">
+        <mat-card-header>
+            <img mat-card-image src="assets/logo_zfm_small.png" alt="ZFM Logo">
+        </mat-card-header>
+        <mat-card-title>ZFM Ausleihsystem</mat-card-title>
+        <mat-card-subtitle>Authentifizierung erforderlich</mat-card-subtitle>
+        <form 
+        [formGroup]="loginForm" 
+        style="flex-direction: row;" 
+        (submit)="performLogin()" 
+        fxLayout="column"
+        fxLayout.xs="column" 
+        fxLayoutAlign="center stretch"
+        >
             <mat-form-field style="display: flex;">
                 <input [formControlName]="'username'" matInput placeholder="Username">
                 <mat-error>
                     Is required
                 </mat-error>
             </mat-form-field>
-            
             <mat-form-field  style="flex-direction: row;">
                 <input [formControlName]="'password'" matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -24,5 +34,8 @@ fxLayoutAlign="center center">
             </mat-form-field>
         </form>
         <button #submitForm [disabled]="!loginForm.valid" mat-raised-button (click)="performLogin()">Login</button>
+        <mat-card-footer>
+            <p style="padding: 5px">ACHTUNG: DIES IST EIN TEST-SYSTEM!</p>
+        </mat-card-footer>
     </mat-card>
 </div>
