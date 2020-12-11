@@ -37,14 +37,38 @@ export class QrcodeModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.buildDownloadLink();
-    QRCode.toCanvas(this.qrcodeData, { errorCorrectionLevel: 'H' }, function (err, canvas) {
-      if (err) throw err
+    var opts = {
+      errorCorrectionLevel: 'H',
+      type: 'image/jpeg',
+      quality: 0.3,
+      margin: 1,
+      color: {
+        dark: "#010599FF",
+        light: "#FFBF60FF"
+      }
+    }
 
+    QRCode.toCanvas(this.qrcodeData, {
+      errorCorrectionLevel: 'H',
+      quality: 1.0,
+    }).then(canvas => {
+      let itemName = this.item.name;
       var container = document.getElementById('qrcode')
-      container.appendChild(canvas)
-    })
 
+      // Also write the item name in the qr code to improve user accessibility
+      let canvas2dContext = canvas.getContext('2d');
+      let rect = canvas.getBoundingClientRect();
+      canvas2dContext.textAlign = 'center'
+      canvas2dContext.fillText(itemName, 65, 128);
+
+      // Set the canvas id
+
+      container.id = 'generated_qr'
+      container.appendChild(canvas)
+      this.buildDownloadLink();
+    }).catch(err => {
+      console.log('ERROR')
+    })
   }
 
 
@@ -52,14 +76,9 @@ export class QrcodeModalComponent implements OnInit {
    * Download QR Image
    */
   buildDownloadLink() {
-    QRCode.toDataURL(this.qrcodeData, { errorCorrectionLevel: 'H' })
-      .then(url => {
-        console.log(url)
-        this.downloadUrl = url;
-      })
-      .catch(err => {
-        console.error(err)
-      })
+    var canvas = document.querySelector('#generated_qr > canvas') as HTMLCanvasElement
+    let dataUrl = canvas.toDataURL()
+    this.downloadUrl = dataUrl;
   }
 
 
