@@ -72,13 +72,13 @@ export class InventoryPageComponent implements OnInit {
   /**
    * Show the qr code modal
    * 
-   * @param string
+   * @param Item the item selected
    */
-  showQRCodeModal(generatedUniqueIdentifier: string) {
+  showQRCodeModal(item: Item) {
     let reservationItems = Array.from(this.selection.selected || []) as Item[];
     const dialogRef = this.dialog.open(QrcodeModalComponent, {
       width: '300px',
-      data: { qrcodeData: generatedUniqueIdentifier }
+      data: { item: item }
     });
 
     dialogRef.afterClosed().subscribe();

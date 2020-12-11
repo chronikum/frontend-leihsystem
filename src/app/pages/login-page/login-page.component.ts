@@ -36,24 +36,26 @@ export class LoginPageComponent implements OnInit {
 
   /**
    * Collects form values and performs login, if successful, navigate to dashboard
+   * - checks if form is valid
    */
   performLogin(): void {
-    const username = this.loginForm.get('username')?.value;
-    const password = this.loginForm.get('password')?.value;
+    if (this.loginForm.valid) {
+      const username = this.loginForm.get('username')?.value;
+      const password = this.loginForm.get('password')?.value;
 
-    this.apiService.login$(username, password).subscribe((result: GeneralServerResponse) => {
-      console.log(result);
-      if (result.success) {
-        this.snackBar.open('Login successful!');
-        this.router.navigate(['dashboard'])
-      } else {
+      this.apiService.login$(username, password).subscribe((result: GeneralServerResponse) => {
+        console.log(result);
+        if (result.success) {
+          this.snackBar.open('Login successful!');
+          this.router.navigate(['dashboard'])
+        } else {
+          this.snackBar.open('Login unsuccessful');
+        }
+      }, (error) => {
+        console.log('ERROR!');
         this.snackBar.open('Login unsuccessful');
-      }
-    }, (error) => {
-      console.log('ERROR!');
-      this.snackBar.open('Login unsuccessful');
-    });
-
+      });
+    }
   }
 
   ngOnInit(): void {

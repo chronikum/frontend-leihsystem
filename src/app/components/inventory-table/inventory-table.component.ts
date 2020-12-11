@@ -55,7 +55,7 @@ export class InventoryTableComponent implements OnInit {
   /**
    * Show QR Code Emitter - emits the qr code content string
    */
-  @Output() showQRCodeEmitter = new EventEmitter<string>();
+  @Output() showQRCodeEmitter = new EventEmitter<Item>();
 
   constructor(
     private apiService: ApiService,

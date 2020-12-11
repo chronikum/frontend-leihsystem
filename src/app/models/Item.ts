@@ -24,4 +24,5 @@ export interface Item {
     requiredRolesToReserve: string[],
     currentReservationId?: string,
     rowPosition?: number,
+    generatedUniqueIdentifier?: string,
 }

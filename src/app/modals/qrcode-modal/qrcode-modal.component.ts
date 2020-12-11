@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import QRCode from 'qrcode'
+import { Item } from 'src/app/models/Item';
 
 @Component({
   selector: 'app-qrcode-modal',
@@ -8,21 +9,35 @@ import QRCode from 'qrcode'
   styleUrls: ['./qrcode-modal.component.scss']
 })
 export class QrcodeModalComponent implements OnInit {
-  // the data in the qr code to be displayed
+  /**
+   * The items generatedUniqueIdentifier
+   */
   qrcodeData: string
+
+  /**
+   * The Download Link offered
+   */
+  downloadUrl = '';
+
+  /**
+   * Current selected item
+   */
+  item: Item;
 
   /**
    * Creates the dialog and loads the data
    * @param dialogRef 
-   * @param data holds the qr code data
+   * @param data holds the item and qr code data
    */
   constructor(
     public dialogRef: MatDialogRef<QrcodeModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { qrcodeData: string }) {
-    this.qrcodeData = data.qrcodeData;
+    @Inject(MAT_DIALOG_DATA) public data: { item: Item }) {
+    this.qrcodeData = data.item.generatedUniqueIdentifier;
+    this.item = data.item;
   }
 
   ngOnInit(): void {
+    this.buildDownloadLink();
     QRCode.toCanvas(this.qrcodeData, { errorCorrectionLevel: 'H' }, function (err, canvas) {
       if (err) throw err
 
@@ -32,6 +47,20 @@ export class QrcodeModalComponent implements OnInit {
 
   }
 
+
+  /**
+   * Download QR Image
+   */
+  buildDownloadLink() {
+    QRCode.toDataURL(this.qrcodeData, { errorCorrectionLevel: 'H' })
+      .then(url => {
+        console.log(url)
+        this.downloadUrl = url;
+      })
+      .catch(err => {
+        console.error(err)
+      })
+  }
 
 
   /**
