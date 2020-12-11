@@ -37,20 +37,16 @@ export class QrcodeModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var opts = {
-      errorCorrectionLevel: 'H',
-      type: 'image/jpeg',
-      quality: 0.3,
-      margin: 1,
-      color: {
-        dark: "#010599FF",
-        light: "#FFBF60FF"
-      }
-    }
+
+    // Canvas width and height
+    let cWidth = 150;
+    let cHeight = 150;
 
     QRCode.toCanvas(this.qrcodeData, {
       errorCorrectionLevel: 'H',
       quality: 1.0,
+      width: `${cWidth}`,
+      height: `${cHeight}`,
     }).then(canvas => {
       let itemName = this.item.name;
       var container = document.getElementById('qrcode')
@@ -59,7 +55,7 @@ export class QrcodeModalComponent implements OnInit {
       let canvas2dContext = canvas.getContext('2d');
       let rect = canvas.getBoundingClientRect();
       canvas2dContext.textAlign = 'center'
-      canvas2dContext.fillText(itemName, 65, 128);
+      canvas2dContext.fillText(itemName, cWidth / 2, cHeight - 4);
 
       // Set the canvas id
 
