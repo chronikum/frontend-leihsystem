@@ -72,6 +72,7 @@ export class ApiService {
   logout$() {
     this.debugSnackBar("Logging out");
     this.httpClient.post<any>(this.endpoint + 'logout', {}).subscribe(x => {
+      this.isAuthenticated = false;
       this.router.navigate(['login']);
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +18,16 @@ export class AppComponent implements OnInit {
   sideNav: MatSidenav;
 
   /**
+   * Determines the user authentication state
+   */
+  isAuthenticated: boolean = false;
+
+  /**
    * Inject router
    */
   constructor(
     private router: Router,
+    private apiService: ApiService,
   ) {
 
   }
@@ -30,6 +37,7 @@ export class AppComponent implements OnInit {
    */
   ngOnInit() {
     this.router.events.subscribe(_ => {
+      this.isAuthenticated = this.apiService.isAuthenticated;
       this.sideNav.close();
     });
   }
