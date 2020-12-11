@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
+import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,6 +14,11 @@ export class MenuBarComponent implements OnInit {
    * Flag if the current user has an authentication
    */
   isAuthenticated: boolean = false;
+
+  /**
+   * Current logged in user
+   */
+  currentUser: User;
 
   /**
    * Items to show in the menu bar
@@ -53,6 +59,7 @@ export class MenuBarComponent implements OnInit {
     this.router.events.subscribe(_ => {
       this.isAuthenticated = this.apiService.isAuthenticated;
       this.activeItem = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
+      this.currentUser = this.apiService.currentUser;
     });
   }
 

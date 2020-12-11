@@ -50,7 +50,20 @@ export class ApiService {
     this.debugSnackBar("Logging in");
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'login', {
       username, password,
-    });
+    }).pipe(
+      tap(x => {
+        if (x?.success) {
+          this.isAuthenticated = true
+        } else {
+          this.isAuthenticated = false
+        }
+
+        if (x?.user) {
+          this.currentUser = x.user;
+        }
+      },
+      ),
+    );
   }
 
 
@@ -62,7 +75,18 @@ export class ApiService {
     this.debugSnackBar("validated auth");
     this.isAuthenticated = false;
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {}).pipe(
-      tap(x => x?.success ? (this.isAuthenticated = true) : (this.isAuthenticated = false)),
+      tap(x => {
+        if (x?.success) {
+          this.isAuthenticated = true
+        } else {
+          this.isAuthenticated = false
+        }
+
+        if (x?.user) {
+          this.currentUser = x.user;
+        }
+      },
+      ),
     )
   }
 

@@ -1,4 +1,5 @@
 import { Item } from './Item';
+import { User } from './User';
 
 /**
  * General server response
@@ -9,4 +10,5 @@ export interface GeneralServerResponse {
     message?: string,
     userCount?: number,
     items?: Item[],
+    user?: User,
 }

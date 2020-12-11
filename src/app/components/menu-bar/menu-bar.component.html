@@ -9,10 +9,12 @@
             <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
               (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
           </div>
-          <div *ngIf="isAuthenticated" style="float: right;">
-                <span style="padding: 12px;" mat-button>You are logged in.</span>
-                <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
-          </div>
+        </div>
+
+        <div *ngIf="isAuthenticated" style="padding: 12px">
+          <span>Hi, {{currentUser.username}}</span><br>
+          <p mat-button>You are logged in.</p>
+          <button style="background-color: red; color: white" (click)="logout()" mat-button>Log out</button>
         </div>
   </mat-card>
 </div>
