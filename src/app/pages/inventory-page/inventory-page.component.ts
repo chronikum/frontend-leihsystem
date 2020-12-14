@@ -70,6 +70,28 @@ export class InventoryPageComponent implements OnInit {
   }
 
   /**
+   * Edit an existing item
+   * - Button action
+   */
+  editExistingItem() {
+    let reservationItem = Array.from(this.selection.selected || []) as Item[];
+
+    const dialogRef = this.dialog.open(CreationModalComponent, {
+      width: '650px',
+      data: { item: reservationItem[0], editingMode: true }
+    });
+
+    dialogRef.afterClosed().subscribe(async (result: Item) => {
+      console.log(result);
+      if (result.name) {
+        this.apiService.updateItem$(result).subscribe(itemCreated => {
+          this.refreshActionStream.next(true)
+        })
+      }
+    });
+  }
+
+  /**
    * Show the qr code modal
    * 
    * @param Item the item selected

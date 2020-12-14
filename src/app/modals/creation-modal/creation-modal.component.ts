@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Item } from 'src/app/models/Item';
 import { ItemOwnership } from 'src/app/models/ItemOwnership';
 import { UserRoles } from 'src/app/models/UserRoles';
@@ -17,10 +17,28 @@ export class CreationModalComponent implements OnInit {
    */
   simpleCreationForm: FormGroup;
 
+
+
   /**
    * If the extended form should be displayed
    */
   showAdvancedForm: boolean = false;
+
+  /**
+   * Determines if editing mode is active
+   */
+  editingMode: boolean = false;
+
+  /**
+   * Injected item data of the item which is being edited
+   * holds the item id - very important
+   */
+  itemBeingEdited: Item;
+
+  /**
+   * Submit button text
+   */
+  submitButtonText = '';
 
   /**
    * Available ownerships
@@ -43,17 +61,36 @@ export class CreationModalComponent implements OnInit {
    * Creates Creation Modal
    * @param formBuilder
    * @param dialogRef 
+   * 
+   * @param {item: Item, editingMode: boolean}
+   * - the editingmode determines the mode of the modal
    */
   constructor(
     private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<CreationModalComponent>
+    public dialogRef: MatDialogRef<CreationModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { item: Item, editingMode: boolean }
   ) {
-    this.simpleCreationForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      internalName: ['', Validators.required],
-      description: [''],
-      allowedToReserve: ['', Validators.required],
-    });
+    this.editingMode = data?.editingMode || false;
+    if (this.editingMode) {
+      this.itemBeingEdited = data?.item;
+      this.simpleCreationForm = this.formBuilder.group({
+        name: [data.item.name, Validators.required],
+        internalName: [data.item.internalName, Validators.required],
+        description: [data.item.description || ''],
+        allowedToReserve: [data.item.requiredRolesToReserve[0], Validators.required], // TODO: Multiple roles can be allowed thanks to technical implementation
+      });
+
+      this.submitButtonText = "Update"
+    } else {
+      this.simpleCreationForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        internalName: ['', Validators.required],
+        description: [''],
+        allowedToReserve: ['', Validators.required],
+      });
+
+      this.submitButtonText = "Create"
+    }
   }
 
   ngOnInit(): void {
@@ -63,16 +100,23 @@ export class CreationModalComponent implements OnInit {
 
   /**
    * Collects the item data
+   * 
+   * - adds the itemid if in editing mode
    */
   collectItemData(): Item {
-    let item = {
+    let item: Item = {
       name: this.simpleCreationForm.get('name').value || '',
       internalName: this.simpleCreationForm.get('internalName').value || '',
       description: this.simpleCreationForm.get('description').value || '',
-      requiredRolesToReserve: [this.simpleCreationForm.get('allowedToReserve').value] || ['ADMIn'],
+      requiredRolesToReserve: [this.simpleCreationForm.get('allowedToReserve').value] || ['ADMIN'],
       ownership: this.simpleCreationForm.get('allowedToReserve').value || '',
+    } as any
+
+    if (this.editingMode) {
+      item.itemId = this.itemBeingEdited.itemId;
     }
 
+    console.log('item' + item)
     return item as any;
   }
 

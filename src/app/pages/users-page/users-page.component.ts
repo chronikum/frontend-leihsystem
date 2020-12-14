@@ -108,4 +108,26 @@ export class UsersPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Edits a user by open the Creation Dialog with preloaded data
+   * 
+   * @param user: User
+   */
+  editDialog() {
+    const dialogRef = this.dialog.open(UserCreationModalComponent, {
+      width: '650px',
+    });
+
+    dialogRef.afterClosed().subscribe(async (result: User) => {
+      console.log(result);
+      if (result.email && result.password) {
+        this.apiService.createUser$(result).subscribe(result => {
+          if (result.success) {
+            this.refreshActionStream.next(true)
+          }
+        })
+      }
+    });
+  }
+
 }

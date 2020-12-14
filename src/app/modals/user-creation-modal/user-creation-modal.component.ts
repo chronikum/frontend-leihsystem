@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from 'src/app/models/User';
@@ -23,6 +23,12 @@ export class UserCreationModalComponent implements OnInit {
     UserRoles.ADMIN,
     UserRoles.USER
   ];
+
+  /**
+   * Determines if an user is currently being edited
+   * @TODO Implement endpoint on API and editing mode on frontend
+   */
+  @Input() editMode: boolean = false;
 
   /**
    * Creates User Creation Modal

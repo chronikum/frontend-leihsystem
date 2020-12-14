@@ -181,6 +181,14 @@ export class ApiService {
   }
 
   /**
+   * Update a single item
+   * @param item to create
+   */
+  updateItem$(item: Item): Observable<Item> {
+    return this.httpClient.post<Item>(this.endpoint + 'updateItem', item);
+  }
+
+  /**
    * Create a single user
    * @param user to create
    */

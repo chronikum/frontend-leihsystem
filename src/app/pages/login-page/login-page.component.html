@@ -12,7 +12,8 @@ fxLayoutAlign="center center">
         <form 
         [formGroup]="loginForm" 
         style="flex-direction: row;" 
-        (submit)="performLogin()" 
+        (submit)="performLogin()"
+        (keydown.enter)="performLogin()"
         fxLayout="column"
         fxLayout.xs="column" 
         fxLayoutAlign="center stretch"

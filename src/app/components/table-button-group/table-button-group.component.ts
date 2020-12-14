@@ -35,6 +35,11 @@ export class TableButtonGroupComponent implements OnInit {
   @Input() showReserveButton = false;
 
   /**
+   * enable item edit button
+   */
+  @Input() enableEditButton = false;
+
+  /**
    * The create button action
    */
   @Output() createAction = new EventEmitter<any>();
@@ -48,6 +53,11 @@ export class TableButtonGroupComponent implements OnInit {
    * The reserve button action
    */
   @Output() reserveAction = new EventEmitter<any>();
+
+  /**
+   * Edit Item Button Action
+   */
+  @Output() editItemButtonAction = new EventEmitter<any>();
 
 
   /**

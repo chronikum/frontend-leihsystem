@@ -4,10 +4,12 @@
       [showCreateButton]="true" 
       [showDeleteButton]="true" 
       [showReserveButton]="true"
+      [enableEditButton]="!(selection?.selected.length === 1)"
       (deleteAction)="deleteItems()" 
       (createAction)="createNewItem()"
       (reserveAction)="reserveItems()"
-      [disableDeleteButton]="selection?.isEmpty()" 
+      (editItemButtonAction)="editExistingItem()"
+      [disableDeleteButton]="selection?.isEmpty()"
       [disableReserveButton]="selection?.isEmpty()">
     </app-table-button-group>
   </div>
