@@ -49,6 +49,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ItemDisplayModalComponent } from './modals/item-display-modal/item-display-modal.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { AvailableNotAvailableIndicatorComponent } from './components/available-not-available-indicator/available-not-available-indicator.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     PasswordChangeModalComponent,
     QrcodeModalComponent,
     ScannerPageComponent,
-    ItemDisplayModalComponent
+    ItemDisplayModalComponent,
+    AvailableNotAvailableIndicatorComponent
   ],
   imports: [
     FlexLayoutModule,

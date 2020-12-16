@@ -8,8 +8,7 @@
         <b>Ownership</b><br>
         <span>{{item.ownership}}</span><br>
         <b>Availability</b><br>
-        <mat-icon *ngIf="item.available">check_box</mat-icon>
-        <mat-icon *ngIf="!item.available">check_box_outline_blank</mat-icon>
+        <app-available-not-available-indicator [available]="item?.available"></app-available-not-available-indicator>
     </div>
     <div *ngIf="!item">
         <span>Fehler: Asset nicht existent.</span>
