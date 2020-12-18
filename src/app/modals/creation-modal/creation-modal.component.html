@@ -15,6 +15,12 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
+                <input [formControlName]="'caIdentifier'" matInput placeholder="CA number">
+                <mat-error>
+                    Is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
                 <input [formControlName]="'description'" matInput placeholder="description">
                 <mat-error>
                     Is required
@@ -28,6 +34,10 @@
                       </mat-option>
                 </mat-select>
             </mat-form-field>
+            <br>
+            <label>Is the device a managed device?</label><br>
+            <mat-checkbox [formControlName]="'managed'">Managed device</mat-checkbox>
+            <br>
         </div>
     </ul>
     <div >

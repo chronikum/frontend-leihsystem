@@ -77,7 +77,9 @@ export class CreationModalComponent implements OnInit {
         name: [data.item.name, Validators.required],
         internalName: [data.item.internalName, Validators.required],
         description: [data.item.description || ''],
+        caIdentifier: ['', data.item.caIdentifier || '', Validators.required],
         allowedToReserve: [data.item.requiredRolesToReserve[0], Validators.required], // TODO: Multiple roles can be allowed thanks to technical implementation
+        managed: [data.item.managed || false]
       });
 
       this.submitButtonText = "Update"
@@ -86,7 +88,9 @@ export class CreationModalComponent implements OnInit {
         name: ['', Validators.required],
         internalName: ['', Validators.required],
         description: [''],
+        caIdentifier: ['', Validators.required],
         allowedToReserve: ['', Validators.required],
+        managed: [false],
       });
 
       this.submitButtonText = "Create"
@@ -110,6 +114,8 @@ export class CreationModalComponent implements OnInit {
       description: this.simpleCreationForm.get('description').value || '',
       requiredRolesToReserve: [this.simpleCreationForm.get('allowedToReserve').value] || ['ADMIN'],
       ownership: this.simpleCreationForm.get('allowedToReserve').value || '',
+      caIdentifier: this.simpleCreationForm.get('caIdentifier').value || '',
+      managed: this.simpleCreationForm.get('managed').value || false,
     } as any
 
     if (this.editingMode) {

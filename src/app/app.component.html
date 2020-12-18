@@ -3,11 +3,13 @@
             <app-menu-bar></app-menu-bar>
         </mat-drawer>
         <!-- OPEN SIDEBAR BUTTON -->
-        <button *ngIf="isAuthenticated" class="sidebar-button" type="button" mat-button (click)="drawer.toggle()">
-            <mat-icon>menu</mat-icon>
-            <span *ngIf="drawer.opened">Menü schließen</span>
-            <span *ngIf="!drawer.opened">Menü öffnen</span>
-        </button>
+        <div>
+            <button *ngIf="isAuthenticated" class="sidebar-button" type="button" mat-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+                <span *ngIf="drawer.opened">Menü schließen</span>
+                <span *ngIf="!drawer.opened">Menü öffnen</span>
+            </button>
+        </div>
         <router-outlet>
         </router-outlet>
 </mat-drawer-container>
