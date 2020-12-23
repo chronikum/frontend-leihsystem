@@ -122,4 +122,14 @@ export class ReservationTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * Parses date
+   */
+  parseDate(number: number): string {
+    if (number) {
+      return new Date(number).toLocaleDateString();
+    }
+    return '-'
+  }
+
 }
