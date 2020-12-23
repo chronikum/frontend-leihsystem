@@ -16,7 +16,7 @@ export class ReservationTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['reservationId', 'reservationName', 'description', 'startDate', 'plannedEndDate'];
+  displayedColumns: string[] = ['select', 'reservationId', 'reservationName', 'description', 'startDate', 'plannedEndDate'];
 
   /**
    * Datasource

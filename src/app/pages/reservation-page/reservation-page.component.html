@@ -1,11 +1,11 @@
 <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
     <div fxFlex="1 1 auto">
-        <app-reservation-button-group>
+        <app-reservation-button-group [showBasicActions]="true" [enableReservation]="!selection.isEmpty()">
 
         </app-reservation-button-group>
     </div>
     <div fxFlex="2 1 auto">
-        <app-reservation-table>
+        <app-reservation-table (selectionChanged)="selectionChange($event)">
 
         </app-reservation-table>
     </div>

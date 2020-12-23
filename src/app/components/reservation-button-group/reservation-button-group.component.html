@@ -1,1 +1,5 @@
-<p>reservation-button-group works!</p>
+<div fxLayout="column" fxLayoutAlign="space-between" style="margin: 20px;">
+    <button class="accept-button" mat-flat-button *ngIf="showBasicActions" (click)="allocateReservation.next(true)" [disabled]="!enableReservation">Freigeben</button>
+    <button class="deny-button" mat-flat-button *ngIf="showBasicActions" (click)="denyReservation.next(true)" [disabled]="!enableReservation">Ablehnen</button>
+    <button class="add-comment-button" mat-flat-button *ngIf="showBasicActions" (click)="addCommentToReservation.next(true)" [disabled]="!enableReservation">Kommentar hinzufügen</button>
+</div>
