@@ -3,11 +3,11 @@
     <div *ngIf="item">
         <b>Name</b><br>
         <span>{{item.name}}</span><br>
-        <b>Description</b><br>
+        <b>Beschreibung</b><br>
         <span>{{item.description}}</span><br>
-        <b>Ownership</b><br>
+        <b>Eigentümer</b><br>
         <span>{{item.ownership}}</span><br>
-        <b>Availability</b><br>
+        <b>Verfügbarkeit</b><br>
         <app-available-not-available-indicator [available]="item?.available"></app-available-not-available-indicator>
     </div>
     <div *ngIf="!item">
@@ -15,5 +15,5 @@
     </div>
 </div>
 <mat-dialog-actions style="float: right">
-    <button class="mat-raised-button"(click)="closeAction()">Close</button>
+    <button class="mat-raised-button"(click)="closeAction()">Schließen</button>
 </mat-dialog-actions>

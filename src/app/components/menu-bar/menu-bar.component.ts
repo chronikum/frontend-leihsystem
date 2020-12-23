@@ -25,19 +25,19 @@ export class MenuBarComponent implements OnInit {
    */
   menubarItems = [
     {
-      title: 'Dashboard',
+      title: 'Startseite',
       link: ['dashboard']
     },
     {
-      title: 'Inventory',
+      title: 'Geräte',
       link: ['inventory']
     },
     {
-      title: 'Reservations',
+      title: 'Reservierungsanfragen',
       link: ['reservations']
     },
     {
-      title: 'Users',
+      title: 'User',
       link: ['users']
     },
     {

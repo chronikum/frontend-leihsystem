@@ -1,19 +1,19 @@
 <div mat-dialog-content>
-  <h3 style="font-weight: bold" mat-dialog-title>Create a new item</h3>
+  <h3 style="font-weight: bold" mat-dialog-title>Eine neue Reservierung erstellen</h3>
   <ul style="float: left;">
     <div [formGroup]="simpleReservationForm">
       <mat-form-field style="display: flex;">
         <input [formControlName]="'reservationName'" matInput placeholder="Reservierungsname">
         <mat-error>
-          Is required
+          Erforderlich
         </mat-error>
       </mat-form-field>
       <mat-label>Wählen Sie das Reservierungsdatum aus <b>(auch wenn es nur vom gleichen Tag bis zum gleichen Tag ist)</b> Die Uhrzeit können Sie im Folgeschritt spezifizieren.</mat-label>
       <mat-form-field appearance="fill">
-        <mat-label>Reservation time</mat-label>
+        <mat-label>Reservierungszeit</mat-label>
         <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="Start date">
-          <input matEndDate formControlName="end" placeholder="End date">
+          <input matStartDate formControlName="start" placeholder="Startdatum">
+          <input matEndDate formControlName="end" placeholder="Enddatum">
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
@@ -34,6 +34,6 @@
   </ul>
 </div>
 <mat-dialog-actions style="float: right">
-  <button class="mat-button" (click)="cancelModal()">Cancel</button>
-  <button class="mat-raised-button" (click)="createReservation()">Reserve {{items?.length || 0}} items</button>
+  <button class="mat-button" (click)="cancelModal()">Abbrechen</button>
+  <button class="mat-raised-button" (click)="createReservation()">Reservieren Sie {{items?.length || 0}} Gerät(e)</button>
 </mat-dialog-actions>

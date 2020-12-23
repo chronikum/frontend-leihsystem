@@ -93,7 +93,7 @@ export class CreationModalComponent implements OnInit {
         managed: [false],
       });
 
-      this.submitButtonText = "Create"
+      this.submitButtonText = "Erstellen"
     }
   }
 

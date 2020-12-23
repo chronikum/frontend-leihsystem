@@ -1,53 +1,50 @@
 <div mat-dialog-content>
-    <h3 style="font-weight: bold" mat-dialog-title>Create a new user</h3>
+    <h3 style="font-weight: bold" mat-dialog-title>Neuen User erstellen</h3>
     <ul style="float: left;">
         <div [formGroup]="userCreationForm">
 
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'username'" matInput placeholder="Username">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'firstname'" matInput placeholder="First name">
+                <input [formControlName]="'firstname'" matInput placeholder="Vorname">
             </mat-form-field>
 
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'surname'" matInput placeholder="Sur name">
+                <input [formControlName]="'surname'" matInput placeholder="Nachname">
             </mat-form-field>
 
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'email'" matInput placeholder="email">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'password'" matInput placeholder="password">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field>
-                <mat-label>The role the user will have</mat-label>
+                <mat-label>Zugewiesene Userrolle</mat-label>
                 <mat-select [formControlName]="'role'" [placeholder]="'Select role'">
                     <mat-option *ngFor="let role of rolesAvailable" [value]="role">
                         {{role}}
                       </mat-option>
                 </mat-select>
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
         </div>
     </ul>
-    <div>
-        <h4>Users created now may be incompatible with later versions.</h4>
-    </div>
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-button"(click)="cancelAction()">Cancel</button>

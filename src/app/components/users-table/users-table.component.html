@@ -19,47 +19,47 @@
           </ng-container>
           
           <ng-container matColumnDef="userId" sticky>
-            <th mat-header-cell *matHeaderCellDef>userId</th>
+            <th mat-header-cell *matHeaderCellDef>ID</th>
             <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
           </ng-container>
 
           <ng-container matColumnDef="username">
-            <th mat-header-cell *matHeaderCellDef>username</th>
+            <th mat-header-cell *matHeaderCellDef>Username</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.username}}</span>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="firstname">
-            <th mat-header-cell *matHeaderCellDef>firstname</th>
+            <th mat-header-cell *matHeaderCellDef>Vorname</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.firstname}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="surname">
-            <th mat-header-cell *matHeaderCellDef>surname</th>
+            <th mat-header-cell *matHeaderCellDef>Nachname</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.surname}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>email</th>
+            <th mat-header-cell *matHeaderCellDef>E-Mail</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.email}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="lastLogin">
-            <th mat-header-cell *matHeaderCellDef>lastLogin</th>
+            <th mat-header-cell *matHeaderCellDef>Letzter Login</th>
             <td mat-cell *matCellDef="let element">
               <span>{{parseDate(element.lastLogin)}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef>role</th>
+            <th mat-header-cell *matHeaderCellDef>Userrolle</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.role}}</span>
             </td>

@@ -1,33 +1,33 @@
 <div mat-dialog-content>
-    <h3 style="font-weight: bold" mat-dialog-title>Create a new item</h3>
+    <h3 style="font-weight: bold" mat-dialog-title>Ein neues Gerät erstellen</h3>
     <ul style="float: left;">
         <div [formGroup]="simpleCreationForm">
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'name'" matInput placeholder="Name">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'internalName'" matInput placeholder="Internal name">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'caIdentifier'" matInput placeholder="CA number">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'description'" matInput placeholder="description">
                 <mat-error>
-                    Is required
+                    Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Minimal required role to reserve</mat-label>
+                <mat-label>Minimale Nutzerberechtigungen für eine Reservierung</mat-label>
                 <mat-select [formControlName]="'allowedToReserve'" [placeholder]="'Select role'">
                     <mat-option *ngFor="let role of allowedToReserve" [value]="role">
                         {{role}}
@@ -35,16 +35,13 @@
                 </mat-select>
             </mat-form-field>
             <br>
-            <label>Is the device a managed device?</label><br>
+            <label>ist das Gerät ein managed device?</label><br>
             <mat-checkbox [formControlName]="'managed'">Managed device</mat-checkbox>
             <br>
         </div>
     </ul>
-    <div >
-        <h4>Items created now may be incompatible with later versions.</h4>
-    </div>
 </div>
 <mat-dialog-actions style="float: right">
-    <button class="mat-button"(click)="cancelAction()">Cancel</button>
+    <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
     <button class="mat-raised-button" (click)="createAction()">{{submitButtonText}}</button>
 </mat-dialog-actions>
