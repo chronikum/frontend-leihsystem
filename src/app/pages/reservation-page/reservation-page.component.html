@@ -1,10 +1,12 @@
-<div style="padding: 12px;"
-fxLayout="row"
-fxLayout.xs="column" 
-fxFlexFill
-fxLayoutAlign="center space-between">
-<p><b>This page will allow you to see upcoming reservation and handle them.
-    Also, you can easily cancel or accept reservation requests (coming soon!).
-    If you cancel them, the associated person will receive an e-mail.
-</b></p>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+    <div fxFlex="1 1 auto">
+        <app-reservation-button-group>
+
+        </app-reservation-button-group>
+    </div>
+    <div fxFlex="2 1 auto">
+        <app-reservation-table>
+
+        </app-reservation-table>
+    </div>
 </div>

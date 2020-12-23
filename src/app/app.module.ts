@@ -50,6 +50,8 @@ import { ItemDisplayModalComponent } from './modals/item-display-modal/item-disp
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AvailableNotAvailableIndicatorComponent } from './components/available-not-available-indicator/available-not-available-indicator.component';
+import { ReservationTableComponent } from './components/reservation-table/reservation-table.component';
+import { ReservationButtonGroupComponent } from './components/reservation-button-group/reservation-button-group.component';
 
 
 @NgModule({
@@ -74,7 +76,9 @@ import { AvailableNotAvailableIndicatorComponent } from './components/available-
     QrcodeModalComponent,
     ScannerPageComponent,
     ItemDisplayModalComponent,
-    AvailableNotAvailableIndicatorComponent
+    AvailableNotAvailableIndicatorComponent,
+    ReservationTableComponent,
+    ReservationButtonGroupComponent
   ],
   imports: [
     FlexLayoutModule,
