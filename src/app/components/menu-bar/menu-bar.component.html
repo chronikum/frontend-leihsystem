@@ -1,20 +1,59 @@
 <div fxLayout="column" fxLayoutAlign="start stretch" class="zfm-background">
   <mat-card>
-      <!-- MOBILE MENU-->
-      <div fxLayout="column" fxLayoutAlign="space-evenly start">
-          <div>
-            <h3>ZFM AUSLEIHSYSTEM <b>ALPHA</b></h3>
+    <!-- MOBILE MENU-->
+    <div fxLayout="column" fxLayoutAlign="space-evenly start">
+      <div>
+        <h3>ZFM AUSLEIHSYSTEM <br><b>ALPHA</b></h3>
+      </div>
+      <mat-accordion #menuSections [displayMode]="'flat'" [multi]="true">
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              ALLGEMEIN
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngFor="let item of getMenuItemsByCategory(1)">
+            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+              (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
           </div>
-          <div *ngFor="let element of menubarItems">
-            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === element.title.toLowerCase())}"
-              (click)="navigateToTargetLink(element.link)" mat-button>{{element.title}}</button>
-          </div>
-        </div>
+        </mat-expansion-panel>
 
-        <div *ngIf="isAuthenticated" style="padding: 12px">
-          <span>Hi, {{currentUser.username}}</span><br>
-          <p mat-button>Sie sind eingeloggt.</p>
-          <button style="background-color: red; color: white" (click)="logout()" mat-button>Ausloggen</button>
-        </div>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              USER-MANAGEMENT
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngFor="let item of getMenuItemsByCategory(2)">
+            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+              (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              OTHER
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngFor="let item of getMenuItemsByCategory(3)">
+            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+              (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+    <div *ngIf="isAuthenticated" style="padding: 12px">
+      <span>Hi, {{currentUser.username}}</span><br>
+      <p mat-button>Sie sind eingeloggt.</p>
+      <button style="background-color: red; color: white" (click)="logout()" mat-button>Ausloggen</button>
+    </div>
   </mat-card>
 </div>

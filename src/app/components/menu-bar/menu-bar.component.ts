@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, Output, ViewChild } from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
 import { Router, RouterEvent } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
@@ -21,28 +22,51 @@ export class MenuBarComponent implements OnInit {
   currentUser: User;
 
   /**
+   * Menu Sections
+   */
+  @ViewChild('menuSections', { static: true })
+  menuSections: MatAccordion;
+
+
+
+  /**
    * Items to show in the menu bar
    */
   menubarItems = [
     {
       title: 'Startseite',
-      link: ['dashboard']
+      link: ['dashboard'],
+      category: 1,
     },
     {
       title: 'Geräte',
-      link: ['inventory']
+      link: ['inventory'],
+      category: 1,
+    },
+    {
+      title: 'Reservierungen',
+      link: ['reservations'],
+      category: 1,
     },
     {
       title: 'Reservierungsanfragen',
-      link: ['reservations']
+      link: ['requests'],
+      category: 1,
     },
     {
       title: 'User',
-      link: ['users']
+      link: ['users'],
+      category: 2,
+    },
+    {
+      title: 'Gruppen',
+      link: ['groups'],
+      category: 2,
     },
     {
       title: 'Scanner',
-      link: ['scanner']
+      link: ['scanner'],
+      category: 3,
     },
   ]
 
@@ -76,5 +100,15 @@ export class MenuBarComponent implements OnInit {
    */
   navigateToTargetLink(targetLink: string[]): void {
     this.router.navigate(targetLink);
+  }
+
+  /**
+   * Get menu items by category
+   * @param number category identifier
+   * 
+   * @returns menu items
+   */
+  getMenuItemsByCategory(category: number): any[] {
+    return this.menubarItems.filter(item => item.category === category);
   }
 }

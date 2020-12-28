@@ -23,6 +23,11 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean = false;
 
   /**
+   * Current active site
+   */
+  activeSite: string = "";
+
+  /**
    * Inject router
    */
   constructor(
@@ -38,6 +43,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(_ => {
       this.isAuthenticated = this.apiService.isAuthenticated;
+      this.activeSite = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
       this.sideNav.close();
     });
   }

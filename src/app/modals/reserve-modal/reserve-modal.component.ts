@@ -7,7 +7,7 @@ import { Reservation } from 'src/app/models/Reservation';
 @Component({
   selector: 'app-reserve-modal',
   templateUrl: './reserve-modal.component.html',
-  styleUrls: ['./reserve-modal.component.scss']
+  styleUrls: ['./reserve-modal.component.scss'],
 })
 export class ReserveModalComponent implements OnInit {
 
@@ -59,10 +59,13 @@ export class ReserveModalComponent implements OnInit {
    */
   createDatetimeOfDayTime(date_time: number, day_time: string): number {
     let separate = day_time.split(":");
-    let day_seconds = (parseInt(separate[0]) * 3600);
-    let minute_seconds = (parseInt(separate[1]) * 60);
+    let day_seconds = (parseInt(separate[0]) * 3600000);
+    let minute_seconds = (parseInt(separate[1]) * 60000);
+    console.log("Calculated time:" + (day_seconds + minute_seconds));
+    console.log("Calculated date time:" + date_time);
 
-    return (day_seconds + minute_seconds) + date_time;
+    // Add the calculated time parts together and subtract a hour, if we have winter time.
+    return (((day_seconds + minute_seconds) + date_time));
   }
 
   /**

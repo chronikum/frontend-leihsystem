@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReserveModalComponent } from './modals/reserve-modal/reserve-modal.component';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
@@ -52,6 +53,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { AvailableNotAvailableIndicatorComponent } from './components/available-not-available-indicator/available-not-available-indicator.component';
 import { ReservationTableComponent } from './components/reservation-table/reservation-table.component';
 import { ReservationButtonGroupComponent } from './components/reservation-button-group/reservation-button-group.component';
+
+import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS } from "@angular/material-moment-adapter";
+import { RequestsPageComponent } from './pages/requests-page/requests-page.component';
+import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
+
 
 
 @NgModule({
@@ -78,7 +84,9 @@ import { ReservationButtonGroupComponent } from './components/reservation-button
     ItemDisplayModalComponent,
     AvailableNotAvailableIndicatorComponent,
     ReservationTableComponent,
-    ReservationButtonGroupComponent
+    ReservationButtonGroupComponent,
+    RequestsPageComponent,
+    GroupsPageComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -104,12 +112,16 @@ import { ReservationButtonGroupComponent } from './components/reservation-button
     MatDatepickerModule,
     MatNativeDateModule,
     ZXingScannerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatMomentDateModule,
+    MatExpansionModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials
     [
-      { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }
+      { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
+      { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUTC: false } },
+      { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
     ],
   ],
   bootstrap: [AppComponent]
