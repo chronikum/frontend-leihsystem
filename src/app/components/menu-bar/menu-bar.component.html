@@ -20,7 +20,7 @@
           </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="true" *ngIf="userHasPermissionToSeeItem('ADMIN')">
+        <mat-expansion-panel [expanded]="true" *ngIf="userHasPermissionToSeeItem(this.adminUser)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               USER-MANAGEMENT

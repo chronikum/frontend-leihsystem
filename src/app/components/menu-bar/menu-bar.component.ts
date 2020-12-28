@@ -28,6 +28,11 @@ export class MenuBarComponent implements OnInit {
   @ViewChild('menuSections', { static: true })
   menuSections: MatAccordion;
 
+  /**
+   * Admin user enum reference
+   */
+  adminUser: UserRoles = UserRoles.ADMIN;
+
 
 
   /**
