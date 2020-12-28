@@ -1,4 +1,5 @@
 import { Item } from './Item';
+import { Request } from './Request';
 import { User } from './User';
 
 /**
@@ -11,4 +12,5 @@ export interface GeneralServerResponse {
     userCount?: number,
     items?: Item[],
     user?: User,
+    request?: Request,
 }

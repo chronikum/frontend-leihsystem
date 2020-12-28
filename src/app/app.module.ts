@@ -57,6 +57,7 @@ import { ReservationButtonGroupComponent } from './components/reservation-button
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS } from "@angular/material-moment-adapter";
 import { RequestsPageComponent } from './pages/requests-page/requests-page.component';
 import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
+import { RequestionPageComponent } from './pages/requestion-page/requestion-page.component';
 
 
 
@@ -87,6 +88,7 @@ import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
     ReservationButtonGroupComponent,
     RequestsPageComponent,
     GroupsPageComponent,
+    RequestionPageComponent,
   ],
   imports: [
     FlexLayoutModule,

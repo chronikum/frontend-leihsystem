@@ -15,12 +15,12 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngFor="let item of getMenuItemsByCategory(1)">
-            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+            <button *ngIf="userHasPermissionToSeeItem(item.userRole)" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
               (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
           </div>
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel [expanded]="true" *ngIf="userHasPermissionToSeeItem('ADMIN')">
           <mat-expansion-panel-header>
             <mat-panel-title>
               USER-MANAGEMENT
@@ -29,7 +29,7 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngFor="let item of getMenuItemsByCategory(2)">
-            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+            <button *ngIf="userHasPermissionToSeeItem(item.userRole)" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
               (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
           </div>
         </mat-expansion-panel>
@@ -37,13 +37,13 @@
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              OTHER
+              SONSTIGES
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngFor="let item of getMenuItemsByCategory(3)">
-            <button *ngIf="isAuthenticated" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+            <button *ngIf="userHasPermissionToSeeItem(item.userRole)" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
               (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
           </div>
         </mat-expansion-panel>

@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, Output, ViewChild } from '@angula
 import { MatAccordion } from '@angular/material/expansion';
 import { Router, RouterEvent } from '@angular/router';
 import { User } from 'src/app/models/User';
+import { UserRoles } from 'src/app/models/UserRoles';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -37,36 +38,49 @@ export class MenuBarComponent implements OnInit {
       title: 'Startseite',
       link: ['dashboard'],
       category: 1,
+      userRole: UserRoles.USER,
     },
     {
       title: 'Geräte',
       link: ['inventory'],
       category: 1,
+      userRole: UserRoles.ADMIN,
     },
     {
       title: 'Reservierungen',
       link: ['reservations'],
       category: 1,
+      userRole: UserRoles.ADMIN,
     },
     {
       title: 'Reservierungsanfragen',
       link: ['requests'],
       category: 1,
+      userRole: UserRoles.ADMIN,
     },
     {
       title: 'User',
       link: ['users'],
       category: 2,
+      userRole: UserRoles.ADMIN,
     },
     {
       title: 'Gruppen',
       link: ['groups'],
       category: 2,
+      userRole: UserRoles.ADMIN,
     },
     {
       title: 'Scanner',
       link: ['scanner'],
       category: 3,
+      userRole: UserRoles.USER,
+    },
+    {
+      title: 'Anfrage erstellen',
+      link: ['requestion'],
+      category: 3,
+      userRole: UserRoles.USER,
     },
   ]
 
@@ -110,5 +124,14 @@ export class MenuBarComponent implements OnInit {
    */
   getMenuItemsByCategory(category: number): any[] {
     return this.menubarItems.filter(item => item.category === category);
+  }
+
+  /**
+   * Validates user permissions - if user is admin user, user is allowed to see item
+   * @returns boolean
+   * @param role provided from the item
+   */
+  userHasPermissionToSeeItem(role: UserRoles): Boolean {
+    return ((this.currentUser?.role === role) || this.currentUser.role === UserRoles.ADMIN);
   }
 }

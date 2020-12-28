@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Reservation } from '../models/Reservation';
 import { User } from '../models/User';
 import { environment } from 'src/environments/environment';
+import { Request } from '../models/Request';
 
 @Injectable({
   providedIn: 'root'
@@ -161,6 +162,30 @@ export class ApiService {
    */
   getUserCount$(): Observable<GeneralServerResponse> {
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getUserCount', {});
+  }
+
+  /**
+   * Requests Management
+   */
+
+  /**
+   * Create new request
+   * @param request to create
+   */
+  createNewRequest$(request: Request): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createRequest', {
+      request: request
+    });
+  }
+
+  /**
+   * Updates a single request
+   * @param request to update
+   */
+  updateRequests$(request: Request): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'updateRequest', {
+      request: request
+    });
   }
 
   /**

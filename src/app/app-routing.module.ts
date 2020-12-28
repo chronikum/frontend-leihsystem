@@ -6,6 +6,7 @@ import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { RequestionPageComponent } from './pages/requestion-page/requestion-page.component';
 import { RequestsPageComponent } from './pages/requests-page/requests-page.component';
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
 import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
@@ -53,6 +54,11 @@ const routes: Routes = [
   {
     path: 'groups',
     component: GroupsPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'requestion',
+    component: RequestionPageComponent,
     canActivate: [AuthenticationGuard]
   },
   {
