@@ -58,6 +58,7 @@ import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_F
 import { RequestsPageComponent } from './pages/requests-page/requests-page.component';
 import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { RequestionPageComponent } from './pages/requestion-page/requestion-page.component';
+import { GroupTableComponent } from './components/group-table/group-table.component';
 
 
 
@@ -89,6 +90,7 @@ import { RequestionPageComponent } from './pages/requestion-page/requestion-page
     RequestsPageComponent,
     GroupsPageComponent,
     RequestionPageComponent,
+    GroupTableComponent,
   ],
   imports: [
     FlexLayoutModule,

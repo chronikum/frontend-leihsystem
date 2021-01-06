@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-requestion-page',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestionPageComponent implements OnInit {
 
-  constructor() { }
+  /**
+   * Request form
+   */
+  requestForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ) {
+    this.requestForm = formBuilder.group({
+      deviceAmount: [''],
+      start: [''],
+      end: [''],
+    })
+  }
 
   ngOnInit(): void {
   }

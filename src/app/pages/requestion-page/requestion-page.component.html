@@ -5,13 +5,36 @@
         <p>Bitte füllen Sie das Formular aus. Sie werden über den Stand Ihrer Reservierung über die E-Mail informiert, mit welcher Sie sich im System registriert haben.</p>
         </div>
         </div>
-        <div
-        fxLayout="row"
-        fxLayout.xs="column" 
-        fxFlexFill
-        fxLayoutAlign="center space-between">
+        <div fxLayout="row" fxLayoutAlign="center stretch">
+        <div [formGroup]="requestForm">
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'deviceAmount'" matInput placeholder="Geräte-Anzahl">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
 
+            <mat-form-field appearance="fill">
+                <mat-label>Reservierungszeit</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate formControlName="start" placeholder="Startdatum">
+                  <input matEndDate formControlName="end" placeholder="Enddatum">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+              <mat-form-field *ngIf="requestForm.get('start')?.value" type="time" style="display: flex;">
+                <input [formControlName]="'startDateTime'" matInput placeholder="Startuhrzeit in (HH:MM)">
+                <mat-error>
+                  Zeitformat: zB 12:00 korrekt - statt 8:00 aber 08:00 verwenden (HH:MM)
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="requestForm.get('end')?.value" style="display: flex;">
+                <input [formControlName]="'endDateTime'" matInput placeholder="Enduhrzeit in (HH:MM)">
+                <mat-error>
+                  Zeitformat: zB 12:00 korrekt - statt 8:00 aber 08:00 verwenden (HH:MM)
+                </mat-error>
+              </mat-form-field>
         </div>
-        
-        
+        </div>
 </div>

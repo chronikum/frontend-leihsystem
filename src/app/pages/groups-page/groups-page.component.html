@@ -1,1 +1,14 @@
-<p>groups-page works!</p>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+    <div fxFlex="1 1 auto">
+      <app-table-button-group
+      [showCreateButton]="true" 
+      [showDeleteButton]="true"
+      [enableEditButton]="!(selection?.selected.length === 1)"
+      [disableDeleteButton]="selection?.isEmpty()">
+      </app-table-button-group>
+    </div>
+    <div fxFlex="2 1 auto">
+        <app-group-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream"></app-group-table>
+    </div>
+  </div>
+  

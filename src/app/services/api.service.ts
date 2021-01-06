@@ -231,6 +231,17 @@ export class ApiService {
   }
 
   /**
+   * Group Management
+   */
+
+  /**
+   * Get all groups
+   */
+  getAllGroups$(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllGroups', {});
+  }
+
+  /**
    * Changes the users password
    * 
    * @param user 
