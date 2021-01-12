@@ -1,0 +1,34 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>Neue Gruppe erstellen</h3>
+    <ul style="float: left;">
+        <div [formGroup]="groupCreationForm">
+
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'groupName'" matInput placeholder="Gruppenname">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'description'" matInput placeholder="Gruppenbeschreibung">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-label>Welche Berechtigungen soll diese Gruppe haben?</mat-label>
+            <br>
+            <span>
+                <mat-checkbox *ngFor="let role of roles" style="padding: 5px">
+                {{role}}
+                </mat-checkbox>
+            </span>
+        </div>
+    </ul>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
+    <button [disabled]="groupCreationForm.valid" class="mat-raised-button" (click)="createAction()">Erstellen</button>
+</mat-dialog-actions>

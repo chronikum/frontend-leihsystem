@@ -59,6 +59,7 @@ import { RequestsPageComponent } from './pages/requests-page/requests-page.compo
 import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { RequestionPageComponent } from './pages/requestion-page/requestion-page.component';
 import { GroupTableComponent } from './components/group-table/group-table.component';
+import { GroupCreationModalComponent } from './modals/group-creation-modal/group-creation-modal.component';
 
 
 
@@ -91,6 +92,7 @@ import { GroupTableComponent } from './components/group-table/group-table.compon
     GroupsPageComponent,
     RequestionPageComponent,
     GroupTableComponent,
+    GroupCreationModalComponent,
   ],
   imports: [
     FlexLayoutModule,

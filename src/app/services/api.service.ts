@@ -10,6 +10,9 @@ import { Reservation } from '../models/Reservation';
 import { User } from '../models/User';
 import { environment } from 'src/environments/environment';
 import { Request } from '../models/Request';
+import { GroupCreationModalComponent } from '../modals/group-creation-modal/group-creation-modal.component';
+import { Group } from '../models/Group';
+import { UserRoles } from '../models/UserRoles';
 
 @Injectable({
   providedIn: 'root'
@@ -239,6 +242,26 @@ export class ApiService {
    */
   getAllGroups$(): Observable<GeneralServerResponse> {
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllGroups', {});
+  }
+
+  /**
+   * Create a new group with given permission
+   * @param group 
+   */
+  createGroup$(group: Group): Observable<Group> {
+    return this.httpClient.post<Group>(this.endpoint + 'createGroup', group);
+  }
+
+  /**
+   * Permission Management
+   */
+
+  /**
+  * Create a new group with given permission
+  * @param group 
+  */
+  getAllRoles$(): Observable<UserRoles[]> {
+    return this.httpClient.post<UserRoles[]>(this.endpoint + 'rolesAvailable', {});
   }
 
   /**

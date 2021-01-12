@@ -2,6 +2,7 @@ import { Group } from './Group';
 import { Item } from './Item';
 import { Request } from './Request';
 import { User } from './User';
+import { UserRoles } from './UserRoles';
 
 /**
  * General server response
@@ -14,5 +15,6 @@ export interface GeneralServerResponse {
     items?: Item[],
     user?: User,
     request?: Request,
-    groups?: Group[]
+    groups?: Group[],
+    roles: UserRoles[],
 }

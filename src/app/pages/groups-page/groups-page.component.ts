@@ -1,6 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { GroupCreationModalComponent } from 'src/app/modals/group-creation-modal/group-creation-modal.component';
 import { Group } from 'src/app/models/Group';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-groups-page',
@@ -19,9 +22,30 @@ export class GroupsPageComponent implements OnInit {
    */
   refreshActionStream = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(
+    private apiService: ApiService,
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Create new group with group modal
+   */
+  openGroupModal() {
+    const dialogRef = this.dialog.open(GroupCreationModalComponent, {
+      width: '650px',
+    });
+
+    dialogRef.afterClosed().subscribe(async (result: Group) => {
+      console.log(result);
+      if (result.displayName && result.role) {
+        this.apiService.createGroup$(result).subscribe(group => {
+          this.refreshActionStream.next(true);
+        })
+      }
+    });
   }
 
   /**
