@@ -20,6 +20,7 @@ export class RequestionPageComponent implements OnInit {
       deviceAmount: [''],
       start: [''],
       end: [''],
+      notes: [''],
     })
   }
 

@@ -137,6 +137,6 @@ export class MenuBarComponent implements OnInit {
    * @param role provided from the item
    */
   userHasPermissionToSeeItem(role: UserRoles): Boolean {
-    return ((this.currentUser?.role === role) || this.currentUser.role === UserRoles.ADMIN);
+    return (((this.currentUser?.role === role) || (this.currentUser?.groupRoles?.includes(role))) || this.currentUser.role === UserRoles.ADMIN);
   }
 }

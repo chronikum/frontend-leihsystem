@@ -51,7 +51,6 @@ export class ApiService {
    * @param password 
    */
   login$(username: string, password: string): Observable<GeneralServerResponse> {
-    this.debugSnackBar("Logging in");
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'login', {
       username, password,
     }).pipe(
@@ -76,7 +75,6 @@ export class ApiService {
    * - only works when user was logged in before
    */
   checkAuth$(): Observable<GeneralServerResponse> {
-    this.debugSnackBar("validated auth");
     this.isAuthenticated = false;
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {}).pipe(
       tap(x => {
@@ -87,6 +85,7 @@ export class ApiService {
         }
 
         if (x?.user) {
+          this.debugSnackBar("USER SET")
           this.currentUser = x.user;
         }
       },

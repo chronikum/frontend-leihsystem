@@ -14,4 +14,5 @@ export interface User {
     lastLogin?: number,
     session?: string,
     role: UserRoles,
+    groupRoles?: UserRoles[],
 }
