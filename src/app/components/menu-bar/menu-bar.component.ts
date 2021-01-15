@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, Output, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router, RouterEvent } from '@angular/router';
+import { tap } from 'rxjs/internal/operators/tap';
 import { User } from 'src/app/models/User';
 import { UserRoles } from 'src/app/models/UserRoles';
 import { ApiService } from 'src/app/services/api.service';
@@ -132,11 +133,24 @@ export class MenuBarComponent implements OnInit {
   }
 
   /**
-   * Validates user permissions - if user is admin user, user is allowed to see item
+   * Validates user permissions - if user is admin user, user is allowed to see item. Also reloads user if it is not available right now
    * @returns boolean
    * @param role provided from the item
    */
   userHasPermissionToSeeItem(role: UserRoles): Boolean {
+    if (this.apiService.currentUser) {
+      return this.checkPermission(role);
+    } else {
+      this.apiService.checkAuth$().subscribe();
+      return this.checkPermission(role);
+    }
+  }
+
+  /**
+   * Checks permission
+   * @param role of the user
+   */
+  checkPermission(role: UserRoles): Boolean {
     return (((this.currentUser?.role === role) || (this.currentUser?.groupRoles?.includes(role))) || this.currentUser.role === UserRoles.ADMIN);
   }
 }

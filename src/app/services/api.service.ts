@@ -94,6 +94,14 @@ export class ApiService {
   }
 
   /**
+   * Reloads the current user in the service, as example after a reload
+   * 
+   */
+  reloadCurrentUser(): Observable<GeneralServerResponse> {
+    return this.checkAuth$();
+  }
+
+  /**
    * Log the user out
    */
   logout$() {
