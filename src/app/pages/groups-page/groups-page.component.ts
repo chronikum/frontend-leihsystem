@@ -63,6 +63,13 @@ export class GroupsPageComponent implements OnInit {
   }
 
   /**
+   * Edit Group Members
+   */
+  editMembers() {
+
+  }
+
+  /**
    * Selection of the table is being changed
    * 
    * @param SelectionModel<Item> the current selection of the table

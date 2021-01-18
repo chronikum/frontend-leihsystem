@@ -260,6 +260,13 @@ export class ApiService {
   }
 
   /**
+   * Get all group members
+   */
+  getGroupMembers$(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getGroupMembers', {});
+  }
+
+  /**
    * Create a new group with given permission
    * @param group 
    */

@@ -58,6 +58,7 @@ export class GroupCreationModalComponent implements OnInit {
     } else {
       this.activeRoles.add(role);
     }
+    console.log(Array.from(this.activeRoles))
   }
 
   /**
@@ -73,8 +74,8 @@ export class GroupCreationModalComponent implements OnInit {
   getGroup(): Group {
     let group: Group = {
       displayName: this.groupCreationForm.get('groupName').value,
-      role: this.getRoles(),
       description: this.groupCreationForm.get('description').value,
+      role: this.getRoles(),
     }
 
     return group;
@@ -90,10 +91,11 @@ export class GroupCreationModalComponent implements OnInit {
   }
 
   /**
-   * Cancel
+   * Create action
    */
   createAction() {
     let group = this.getGroup();
+    console.log(group)
     this.dialogRef.close(group);
   }
 

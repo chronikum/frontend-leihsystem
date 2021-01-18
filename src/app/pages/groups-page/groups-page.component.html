@@ -3,7 +3,9 @@
       <app-table-button-group
       [showCreateButton]="true" 
       [showDeleteButton]="true"
+      [showGroupButtons]="true"
       [enableEditButton]="!(selection?.selected.length === 1)"
+      (editGroupMembers)="editMembers()"
       [disableDeleteButton]="selection?.isEmpty()"
       (createAction)="openGroupModal()"
       >

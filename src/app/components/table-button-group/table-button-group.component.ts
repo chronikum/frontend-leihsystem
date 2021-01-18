@@ -40,6 +40,11 @@ export class TableButtonGroupComponent implements OnInit {
   @Input() enableEditButton = false;
 
   /**
+   * enable group edit buttons
+   */
+  @Input() showGroupButtons = false;
+
+  /**
    * The create button action
    */
   @Output() createAction = new EventEmitter<any>();
@@ -58,6 +63,11 @@ export class TableButtonGroupComponent implements OnInit {
    * Edit Item Button Action
    */
   @Output() editItemButtonAction = new EventEmitter<any>();
+
+  /**
+   * Edit Group Members
+   */
+  @Output() editGroupMembers = new EventEmitter<any>();
 
 
   /**

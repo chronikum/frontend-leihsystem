@@ -5,4 +5,5 @@
     <button class="change-password-button"  mat-flat-button [disabled]="disableUserPageButtons" *ngIf="showUserPageButtons" (click)="changePasswordAction.next(true)">Passwort ändern</button>
     <button class="edit-profile-button"  mat-flat-button [disabled]="disableUserPageButtons" *ngIf="showUserPageButtons" (click)="editUserProfile.next(true)">Account bearbeiten</button>
     <button class="edit-item-button"  mat-flat-button [disabled]="enableEditButton" *ngIf="showReserveButton" (click)="editItemButtonAction.next(true)">Geräteinfo bearbeiten</button>
+    <button class="edit-group-button"  mat-flat-button [disabled]="enableEditButton" *ngIf="showGroupButtons" (click)="editGroupMembers.next(true)">Mitglieder bearbeiten</button>
 </div>
