@@ -1,1 +1,17 @@
-<p>manage-group-members-modal works!</p>
+<div mat-dialog-content>
+    <div style="padding: 5px">
+        <mat-list role="list" style="max-height: 400px;overflow:scroll;">
+            <p>Mitglieder:</p>
+            <mat-list-item *ngFor="let member of members">{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}}</mat-list-item>
+          </mat-list>
+    </div>
+    <mat-card>
+        <span>Fügen Sie neues Mitglied hinzu – Suchen Sie nach Vorname, Nachname oder Username. Enter drücken, um zu suchen</span>
+        <div>
+            <input type="text" (change)="getSuggestions($event)" />
+        </div>
+    </mat-card>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-raised-button" (click)="cancel()">Schließen</button>
+</mat-dialog-actions> 

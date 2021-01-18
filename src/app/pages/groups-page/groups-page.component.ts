@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GroupCreationModalComponent } from 'src/app/modals/group-creation-modal/group-creation-modal.component';
+import { ManageGroupMembersModalComponent } from 'src/app/modals/manage-group-members-modal/manage-group-members-modal.component';
 import { Group } from 'src/app/models/Group';
 import { UserRoles } from 'src/app/models/UserRoles';
 import { ApiService } from 'src/app/services/api.service';
@@ -66,7 +67,14 @@ export class GroupsPageComponent implements OnInit {
    * Edit Group Members
    */
   editMembers() {
+    const dialogRef = this.dialog.open(ManageGroupMembersModalComponent, {
+      width: '650px',
+      data: { group: this.selection.selected[0] }
+    });
 
+    dialogRef.afterClosed().subscribe(_ => {
+      console.log("Closed");
+    });
   }
 
   /**

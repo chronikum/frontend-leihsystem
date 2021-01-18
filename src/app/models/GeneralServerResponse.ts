@@ -17,4 +17,5 @@ export interface GeneralServerResponse {
     request?: Request,
     groups?: Group[],
     roles: UserRoles[],
+    users: User[],
 }

@@ -21,11 +21,12 @@
             <mat-label>Welche Berechtigungen soll diese Gruppe haben?</mat-label>
             <br>
             <span>
-                <span *ngFor="let role of roles" style="padding: 5px">
-                    <button (click)="toggleUserRole(role)" [ngClass]="{'active-role': this.activeRoles.has(role)}" mat-button>{{role}}</button>
-                </span>
+                <button mat-button *ngFor="let role of roles" (click)="toggleUserRole(role)" [ngClass]="{'active-role': this.activeRoles.has(role)}">
+                    {{role}}
+                </button>
             </span>
         </div>
+        <span style="color: red" *ngIf="this.activeRoles.size == 0">Um eine Gruppe zu erstellen, muss mindestens eine Berechtigung ausgewählt sein.</span>
     </ul>
 </div>
 <mat-dialog-actions style="float: right">

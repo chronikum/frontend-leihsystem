@@ -232,6 +232,15 @@ export class ApiService {
   }
 
   /**
+   * Suggest users
+   */
+  suggestUsers$(query: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'suggestUserNames', {
+      query
+    });
+  }
+
+  /**
    * Updates a user
    * @param user to create
    */
@@ -261,9 +270,12 @@ export class ApiService {
 
   /**
    * Get all group members
+   * @param group
    */
-  getGroupMembers$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getGroupMembers', {});
+  getGroupMembers$(group: Group): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getGroupMembers', {
+      group
+    });
   }
 
   /**
@@ -278,8 +290,8 @@ export class ApiService {
    * Create a new group with given permission
    * @param group 
    */
-  addUserToGroup$(user: User, group: Group): Observable<User> {
-    return this.httpClient.post<User>(this.endpoint + 'addUserToGroup', group);
+  addUserToGroup$(user: User, group: Group): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'addUserToGroup', group);
   }
 
   /**
