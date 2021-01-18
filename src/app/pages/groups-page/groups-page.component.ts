@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GroupCreationModalComponent } from 'src/app/modals/group-creation-modal/group-creation-modal.component';
 import { Group } from 'src/app/models/Group';
+import { UserRoles } from 'src/app/models/UserRoles';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -22,12 +23,24 @@ export class GroupsPageComponent implements OnInit {
    */
   refreshActionStream = new EventEmitter<any>();
 
+  /**
+   * Roles
+   */
+  roles: UserRoles[] = [];
+
   constructor(
     private apiService: ApiService,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
+    this.apiService.getAllRoles$().subscribe(result => {
+      if (result.success) {
+        this.roles = result.roles;
+      } else {
+        this.roles = [];
+      }
+    })
   }
 
   /**
@@ -36,6 +49,7 @@ export class GroupsPageComponent implements OnInit {
   openGroupModal() {
     const dialogRef = this.dialog.open(GroupCreationModalComponent, {
       width: '650px',
+      data: { roles: this.roles }
     });
 
     dialogRef.afterClosed().subscribe(async (result: Group) => {

@@ -267,8 +267,8 @@ export class ApiService {
   * Create a new group with given permission
   * @param group 
   */
-  getAllRoles$(): Observable<UserRoles[]> {
-    return this.httpClient.post<UserRoles[]>(this.endpoint + 'rolesAvailable', {});
+  getAllRoles$(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'rolesAvailable', {});
   }
 
   /**

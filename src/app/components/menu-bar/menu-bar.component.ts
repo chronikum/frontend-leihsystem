@@ -138,12 +138,7 @@ export class MenuBarComponent implements OnInit {
    * @param role provided from the item
    */
   userHasPermissionToSeeItem(role: UserRoles): Boolean {
-    if (this.apiService.currentUser) {
-      return this.checkPermission(role);
-    } else {
-      this.apiService.checkAuth$().subscribe();
-      return this.checkPermission(role);
-    }
+    return this.checkPermission(role);
   }
 
   /**

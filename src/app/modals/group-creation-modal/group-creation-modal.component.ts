@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Group } from 'src/app/models/Group';
 import { User } from 'src/app/models/User';
 import { UserRoles } from 'src/app/models/UserRoles';
@@ -21,7 +21,7 @@ export class GroupCreationModalComponent implements OnInit {
   /**
    * Permissions available (need to fetch from the server!)
    */
-  roles: UserRoles[] = [UserRoles.ADMIN, UserRoles.USER];
+  @Input() roles: UserRoles[] = [];
 
   /**
    * UserRoles selected (Set)
@@ -32,7 +32,9 @@ export class GroupCreationModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<GroupCreationModalComponent>,
     private apiService: ApiService,
+    @Inject(MAT_DIALOG_DATA) public data: { roles: UserRoles[] }
   ) {
+    this.roles = data.roles;
     this.groupCreationForm = this.formBuilder.group({
       groupName: ['', Validators.required],
       description: ['', Validators.required],
@@ -43,9 +45,7 @@ export class GroupCreationModalComponent implements OnInit {
    * Init and get all roles available
    */
   ngOnInit(): void {
-    this.apiService.getAllRoles$().subscribe(roles => {
-      this.roles = roles;
-    })
+
   }
 
   /**
