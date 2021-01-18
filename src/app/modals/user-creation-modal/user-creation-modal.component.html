@@ -25,7 +25,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field  style="display: flex;">
+            <mat-form-field *ngIf="enablePassword" style="display: flex;" >
                 <input [formControlName]="'password'" matInput placeholder="password">
                 <mat-error>
                     Erforderlich

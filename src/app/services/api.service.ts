@@ -232,6 +232,14 @@ export class ApiService {
   }
 
   /**
+   * Updates a user
+   * @param user to create
+   */
+  updateUser$(user: User): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'updateUser', { user: user });
+  }
+
+  /**
    * Deletes the users provided with
    * 
    * @param users to delete
@@ -257,6 +265,14 @@ export class ApiService {
    */
   createGroup$(group: Group): Observable<Group> {
     return this.httpClient.post<Group>(this.endpoint + 'createGroup', group);
+  }
+
+  /**
+   * Create a new group with given permission
+   * @param group 
+   */
+  addUserToGroup$(user: User, group: Group): Observable<User> {
+    return this.httpClient.post<User>(this.endpoint + 'addUserToGroup', group);
   }
 
   /**

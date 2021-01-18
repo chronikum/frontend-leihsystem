@@ -5,6 +5,7 @@
         [showDeleteButton]="true" 
         (deleteAction)="deleteUser()" 
         (createAction)="createUser()"
+        (editUserProfile)="editDialog()"
         (changePasswordAction)="changeUserPasswordModal()"
         [disableDeleteButton]="selection?.isEmpty()"
         [disableUserPageButtons]="!(selection?.selected.length === 1)"

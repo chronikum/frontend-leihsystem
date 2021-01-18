@@ -114,8 +114,10 @@ export class UsersPageComponent implements OnInit {
    * @param user: User
    */
   editDialog() {
+    console.log("ASd")
     const dialogRef = this.dialog.open(UserCreationModalComponent, {
       width: '650px',
+      data: { user: this.selection.selected[0] }
     });
 
     dialogRef.afterClosed().subscribe(async (result: User) => {
@@ -126,6 +128,16 @@ export class UsersPageComponent implements OnInit {
             this.refreshActionStream.next(true)
           }
         })
+      } else {
+        console.log("UPDATE 1")
+        if (result.email && !result.password) {
+          this.apiService.updateUser$(result).subscribe(result => {
+            console.log("UPDATE 2")
+            if (result.success) {
+              this.refreshActionStream.next(true)
+            }
+          })
+        }
       }
     });
   }

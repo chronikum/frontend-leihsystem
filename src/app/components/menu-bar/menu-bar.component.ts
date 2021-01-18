@@ -146,6 +146,10 @@ export class MenuBarComponent implements OnInit {
    * @param role of the user
    */
   checkPermission(role: UserRoles): Boolean {
-    return (((this.currentUser?.role === role) || (this.currentUser?.groupRoles?.includes(role))) || this.currentUser.role === UserRoles.ADMIN);
+    if (this.currentUser) {
+      return (((this.currentUser?.role === role) || (this.currentUser?.groupRoles?.includes(role))) || this.currentUser.role === UserRoles.ADMIN);
+    } else {
+      return false;
+    }
   }
 }
