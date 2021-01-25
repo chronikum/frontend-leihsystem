@@ -49,9 +49,8 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-
     <div *ngIf="isAuthenticated" style="padding: 12px">
-      <span>Hi, {{currentUser.username}}</span><br>
+      <span>Hi, {{currentUser.username}}</span><mat-icon style="font-size: 20px; margin: 0px;">person</mat-icon><br>
       <p mat-button>Sie sind eingeloggt.</p>
       <button style="background-color: red; color: white" (click)="logout()" mat-button>Ausloggen</button>
     </div>

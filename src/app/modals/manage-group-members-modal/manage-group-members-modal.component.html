@@ -2,13 +2,33 @@
     <div style="padding: 5px">
         <mat-list role="list" style="max-height: 400px;overflow:scroll;">
             <p>Mitglieder:</p>
-            <mat-list-item *ngFor="let member of members">{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}}</mat-list-item>
-          </mat-list>
+            <div *ngIf="members.length !== 0">
+                <mat-list-item *ngFor="let member of members">
+                    <mat-icon mat-list-icon>person</mat-icon>
+                    {{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}}
+                    <button mat-button color="'#ff000'">Entfernen</button>
+                </mat-list-item>
+            </div>
+            <div *ngIf="members.length === 0">
+                <span>Diese Gruppe hat noch keine Mitglieder</span>
+            </div>
+        </mat-list>
     </div>
     <mat-card>
         <span>Fügen Sie neues Mitglied hinzu – Suchen Sie nach Vorname, Nachname oder Username. Enter drücken, um zu suchen</span>
-        <div>
-            <input type="text" (change)="getSuggestions($event)" />
+        <br>
+        <div style="padding: 5px;">
+            <mat-form-field  style="display: flex;">
+                <input matInput placeholder="User suchen" (change)="getSuggestions($event)">
+            </mat-form-field>
+            <mat-list>
+                <div *ngIf="suggested?.length !== 0">
+                    <mat-list-item *ngFor="let member of suggested">{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}} <button mat-button (click)="addMemberToGroup(member)">Zu Gruppe hinzufügen</button></mat-list-item>
+                </div>
+                <div *ngIf="suggested?.length === 0">
+                    <span>Keine Ergebnisse – bitte Suchen Sie NUR nach Vorname, Nachname oder Username.</span>
+                </div>
+            </mat-list>
         </div>
     </mat-card>
 </div>

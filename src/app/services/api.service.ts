@@ -291,7 +291,9 @@ export class ApiService {
    * @param group 
    */
   addUserToGroup$(user: User, group: Group): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'addUserToGroup', group);
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'addUserToGroup', {
+      group, user
+    });
   }
 
   /**
