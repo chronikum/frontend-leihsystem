@@ -45,42 +45,49 @@ export class MenuBarComponent implements OnInit {
       link: ['dashboard'],
       category: 1,
       userRole: UserRoles.USER,
+      icon: 'dashboard'
     },
     {
       title: 'Geräte',
       link: ['inventory'],
       category: 1,
       userRole: UserRoles.ADMIN,
+      icon: 'smartphone'
     },
     {
       title: 'Reservierungen',
       link: ['reservations'],
       category: 1,
       userRole: UserRoles.ADMIN,
+      icon: 'add_to_home_screen'
     },
     {
       title: 'Reservierungsanfragen',
       link: ['requests'],
       category: 1,
       userRole: UserRoles.ADMIN,
+      icon: 'device_unknown'
     },
     {
       title: 'User',
       link: ['users'],
       category: 2,
       userRole: UserRoles.ADMIN,
+      icon: 'person'
     },
     {
       title: 'Gruppen',
       link: ['groups'],
       category: 2,
       userRole: UserRoles.ADMIN,
+      icon: 'group'
     },
     {
       title: 'Scanner',
       link: ['scanner'],
       category: 3,
       userRole: UserRoles.USER,
+      icon: 'camera'
     },
     {
       title: 'Anfrage erstellen',

@@ -9,26 +9,31 @@
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              ALLGEMEIN
+              <mat-icon>devices</mat-icon>
+               <span class="menu-section">GERÄTE & RESERVIERUNGEN</span>
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngFor="let item of getMenuItemsByCategory(1)">
+            <mat-icon matPrefix class="menu-page-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
             <button *ngIf="userHasPermissionToSeeItem(item.userRole)" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
-              (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
+              (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}
+            </button>
           </div>
         </mat-expansion-panel>
 
         <mat-expansion-panel [expanded]="true" *ngIf="userHasPermissionToSeeItem(this.adminUser)">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              USER-MANAGEMENT
+              <mat-icon>groups</mat-icon>
+              <span class="menu-section">USER-MANAGEMENT</span>
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngFor="let item of getMenuItemsByCategory(2)">
+            <mat-icon matPrefix class="menu-page-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
             <button *ngIf="userHasPermissionToSeeItem(item.userRole)" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
               (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
           </div>
@@ -37,7 +42,8 @@
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              SONSTIGES
+              <mat-icon>source</mat-icon>
+              <span class="menu-section">SONSTIGES</span>
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
