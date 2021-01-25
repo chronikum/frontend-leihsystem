@@ -18,4 +18,5 @@ export interface GeneralServerResponse {
     groups?: Group[],
     roles: UserRoles[],
     users: User[],
+    errorCode: number, // If -1 error connection error to database
 }

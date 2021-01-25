@@ -62,6 +62,7 @@ import { RequestionPageComponent } from './pages/requestion-page/requestion-page
 import { GroupTableComponent } from './components/group-table/group-table.component';
 import { GroupCreationModalComponent } from './modals/group-creation-modal/group-creation-modal.component';
 import { ManageGroupMembersModalComponent } from './modals/manage-group-members-modal/manage-group-members-modal.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 
 
 
@@ -96,6 +97,7 @@ import { ManageGroupMembersModalComponent } from './modals/manage-group-members-
     GroupTableComponent,
     GroupCreationModalComponent,
     ManageGroupMembersModalComponent,
+    ErrorPageComponent,
   ],
   imports: [
     FlexLayoutModule,

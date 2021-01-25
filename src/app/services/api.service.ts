@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { GeneralServerResponse } from '../models/GeneralServerResponse';
 import { tap } from 'rxjs/internal/operators/tap';
-import { Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Item } from '../models/Item';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Reservation } from '../models/Reservation';
@@ -41,7 +41,16 @@ export class ApiService {
     private httpClient: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
-  ) { }
+  ) {
+    this.router.events.subscribe(e => {
+      if (e instanceof NavigationEnd) {
+        const page = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
+        if (page !== 'error') {
+          this.backendAvailable$();
+        }
+      }
+    });
+  }
 
 
   /**
@@ -67,6 +76,13 @@ export class ApiService {
       },
       ),
     );
+  }
+
+  /**
+   * Check Availability of backend
+   */
+  backendAvailable$() {
+    this.httpClient.post<any>(this.endpoint + 'availabe', {}).subscribe();
   }
 
 

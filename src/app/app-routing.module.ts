@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -13,6 +14,10 @@ import { ScannerPageComponent } from './pages/scanner-page/scanner-page.componen
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
+  {
+    path: 'error',
+    component: ErrorPageComponent,
+  },
   {
     path: 'login',
     component: LoginPageComponent,
