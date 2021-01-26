@@ -29,6 +29,16 @@ export class UsersTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
+   * Users which were preloaded -> table is in display mode
+   */
+  @Input() preloadedUsers: User[] = [];
+
+  /**
+   * Determines if table is presenting data or is a primary element. If displaymode is true, data won't be reloaded and preloadUsers will be used.
+   */
+  @Input() displayMode: boolean = false;
+
+  /**
    * Flag to reference loading state
    */
   loadingCompleted = false;
@@ -55,34 +65,47 @@ export class UsersTableComponent implements OnInit {
   constructor(
     private apiService: ApiService,
   ) {
+    if (this.displayMode) {
+      this.displayedColumns = ['userId', 'username', 'firstname', 'surname', 'email', 'lastLogin', 'role'];
+    }
     this.loadData();
   }
 
   ngOnInit(): void {
-    /**
+    if (!this.displayMode) {
+      /**
      * Will be fired if events change to stream the output to the parent component
      */
-    this.selection.changed.subscribe(change => {
-      this.selectionChanged.next(this.selection);
-    })
+      this.selection.changed.subscribe(change => {
+        this.selectionChanged.next(this.selection);
+      })
 
-    /**
-     * Will be fired if a refresh event should be triggered
-     */
-    this.refreshTrigger.subscribe(trigger => this.loadData())
+      /**
+       * Will be fired if a refresh event should be triggered
+       */
+      this.refreshTrigger.subscribe(trigger => this.loadData())
+    }
   }
 
   /**
-   * Loads the table with data
+   * Loads the table with data from server or input
    */
   loadData(): void {
-    this.apiService.getAllUsers$().subscribe(users => {
+    if (!this.displayMode) {
+      this.apiService.getAllUsers$().subscribe(users => {
+        this.loadingCompleted = false;
+        this.dataSource = new MatTableDataSource<User>([...users]);
+        this.dataSource.paginator = this.paginator;
+        this.loadingCompleted = true;
+        this.deselectAll();
+      });
+    } else { // Display mode is active
       this.loadingCompleted = false;
-      this.dataSource = new MatTableDataSource<User>([...users]);
+      this.dataSource = new MatTableDataSource<User>([...this.preloadedUsers]);
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();
-    });
+    }
   }
 
   /**

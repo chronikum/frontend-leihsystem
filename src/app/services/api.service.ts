@@ -82,7 +82,7 @@ export class ApiService {
    * Check Availability of backend
    */
   backendAvailable$() {
-    this.httpClient.post<any>(this.endpoint + 'availabe', {}).subscribe();
+    this.httpClient.post<any>(this.endpoint + 'available', {}).subscribe();
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Result } from '@zxing/library';
@@ -37,20 +37,15 @@ export class ManageGroupMembersModalComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     public dialogRef: MatDialogRef<ManageGroupMembersModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { group: Group }
+    @Inject(MAT_DIALOG_DATA) public data: { group: Group, members: User[] }
   ) {
-    this.managedGroup = this.data.group;
+    this.managedGroup = this.data?.group;
+    this.members = this.data?.members;
   }
 
   ngOnInit(): void {
     if (this.managedGroup) {
-      this.apiService.getGroupMembers$(this.managedGroup).subscribe(response => {
-        console.log("Get users")
-        console.log(response?.users)
-        if (response.success) {
-          this.members = response.users;
-        }
-      })
+      console.log(this.members)
     }
   }
 

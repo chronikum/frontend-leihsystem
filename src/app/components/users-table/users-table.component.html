@@ -1,7 +1,7 @@
 <div>
     <div class="mat-elevation-z8">
-      <app-search-bar (searchString)="applyFilter($event)" [placeholder]="'Item suchen'"></app-search-bar>
-      <div class="table-holder">
+      <app-search-bar (searchString)="applyFilter($event)" [placeholder]="'User suchen'"></app-search-bar>
+      <div [ngClass]="{'table-holder': !displayMode, 'table-holder-display': !displayMode}">
         <table *ngIf="loadingCompleted" mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>

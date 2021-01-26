@@ -2,14 +2,8 @@
     <div style="padding: 5px">
         <mat-list role="list" style="max-height: 400px;overflow:scroll;">
             <p>Mitglieder:</p>
-            <div *ngIf="members.length !== 0">
-                <mat-list-item *ngFor="let member of members">
-                    <mat-icon mat-list-icon>person</mat-icon>
-                    {{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}}
-                    <button mat-button color="'#ff000'">Entfernen</button>
-                </mat-list-item>
-            </div>
-            <div *ngIf="members.length === 0">
+            <app-info-table [data]="members" [displayedColumns]="['firstname','surname','username']"></app-info-table>
+            <div *ngIf="members?.length === 0">
                 <span>Diese Gruppe hat noch keine Mitglieder</span>
             </div>
         </mat-list>
