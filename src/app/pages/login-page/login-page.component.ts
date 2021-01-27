@@ -46,14 +46,10 @@ export class LoginPageComponent implements OnInit {
       this.apiService.login$(username, password).subscribe((result: GeneralServerResponse) => {
         console.log(result);
         if (result.success) {
-          this.snackBar.open('Login successful!');
           this.router.navigate(['dashboard'])
-        } else {
-          this.snackBar.open('Login unsuccessful');
         }
       }, (error) => {
         console.log('ERROR!');
-        this.snackBar.open('Login unsuccessful');
       });
     }
   }

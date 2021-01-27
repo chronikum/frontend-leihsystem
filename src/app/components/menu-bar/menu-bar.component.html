@@ -9,7 +9,6 @@
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>devices</mat-icon>
                <span class="menu-section">GERÄTE & RESERVIERUNGEN</span>
             </mat-panel-title>
             <mat-panel-description>
@@ -26,7 +25,6 @@
         <mat-expansion-panel [expanded]="true" *ngIf="userHasPermissionToSeeItem(this.adminUser)">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>groups</mat-icon>
               <span class="menu-section">USER-MANAGEMENT</span>
             </mat-panel-title>
             <mat-panel-description>
@@ -42,13 +40,13 @@
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>source</mat-icon>
               <span class="menu-section">SONSTIGES</span>
             </mat-panel-title>
             <mat-panel-description>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div *ngFor="let item of getMenuItemsByCategory(3)">
+            <mat-icon matPrefix class="menu-page-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
             <button *ngIf="userHasPermissionToSeeItem(item.userRole)" [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
               (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
           </div>
@@ -58,7 +56,10 @@
     <div *ngIf="isAuthenticated" style="padding: 12px">
       <span>Hi, {{currentUser.username}}</span><mat-icon style="font-size: 20px; margin: 0px;">person</mat-icon><br>
       <p mat-button>Sie sind eingeloggt.</p>
-      <button style="background-color: red; color: white" (click)="logout()" mat-button>Ausloggen</button>
+      <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
+        <button style="background-color: gray; color: white; width: 100%; margin: 3px;" (click)="gotoProfile()" mat-button>Mein Profil</button>
+        <button style="background-color: red; color: white; width: 100%; margin: 3px;" (click)="logout()" mat-button>Ausloggen</button>
+      </div>
     </div>
   </mat-card>
 </div>

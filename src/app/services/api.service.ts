@@ -101,7 +101,6 @@ export class ApiService {
         }
 
         if (x?.user) {
-          this.debugSnackBar("USER SET")
           this.currentUser = x.user;
         }
       },
@@ -121,7 +120,6 @@ export class ApiService {
    * Log the user out
    */
   logout$() {
-    this.debugSnackBar("Logging out");
     this.httpClient.post<any>(this.endpoint + 'logout', {}).subscribe(x => {
       this.isAuthenticated = false;
       this.router.navigate(['login']);
@@ -133,7 +131,6 @@ export class ApiService {
    * @returns Item[] available
    */
   getInventory$(): Observable<Item[]> {
-    this.debugSnackBar("Get inventory");
     return this.httpClient.post<Item[]>(this.endpoint + 'getAvailableItems', {});
   }
 

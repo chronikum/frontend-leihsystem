@@ -7,6 +7,7 @@ import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RequestionPageComponent } from './pages/requestion-page/requestion-page.component';
 import { RequestsPageComponent } from './pages/requests-page/requests-page.component';
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfilePageComponent,
+    canActivate: [AuthenticationGuard]
   },
   {
     path: 'dashboard',

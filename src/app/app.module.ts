@@ -64,6 +64,7 @@ import { GroupCreationModalComponent } from './modals/group-creation-modal/group
 import { ManageGroupMembersModalComponent } from './modals/manage-group-members-modal/manage-group-members-modal.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { InfoTableComponent } from './components/info-table/info-table.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 
 
@@ -100,6 +101,7 @@ import { InfoTableComponent } from './components/info-table/info-table.component
     ManageGroupMembersModalComponent,
     ErrorPageComponent,
     InfoTableComponent,
+    ProfilePageComponent,
   ],
   imports: [
     FlexLayoutModule,

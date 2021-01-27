@@ -87,13 +87,14 @@ export class MenuBarComponent implements OnInit {
       link: ['scanner'],
       category: 3,
       userRole: UserRoles.USER,
-      icon: 'camera'
+      icon: 'qr_code'
     },
     {
       title: 'Anfrage erstellen',
       link: ['requestion'],
       category: 3,
       userRole: UserRoles.USER,
+      icon: 'mail'
     },
   ]
 
@@ -119,6 +120,13 @@ export class MenuBarComponent implements OnInit {
    */
   logout() {
     this.apiService.logout$();
+  }
+
+  /**
+   * Go to profile page
+   */
+  gotoProfile() {
+    this.router.navigate(['profile']);
   }
 
   /**
