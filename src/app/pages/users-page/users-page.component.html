@@ -11,6 +11,7 @@
         [disableUserPageButtons]="!(selection?.selected.length === 1)"
         [showUserPageButtons]="true">
       </app-table-button-group>
+      <mat-icon style="padding: 20px"matTooltip="Erstellen Sie User, setzen Sie Passwörter zurück oder löschen Sie User, die nicht mehr benötigt werden.">help</mat-icon>
     </div>
     <div fxFlex="2 1 auto">
         <app-users-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream"></app-users-table>

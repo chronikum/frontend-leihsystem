@@ -66,7 +66,9 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { InfoTableComponent } from './components/info-table/info-table.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RequestTableComponent } from './components/request-table/request-table.component';
+import { RequestButtonGroupComponent } from './components/request-button-group/request-button-group.component';
 
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -104,6 +106,7 @@ import { RequestTableComponent } from './components/request-table/request-table.
     InfoTableComponent,
     ProfilePageComponent,
     RequestTableComponent,
+    RequestButtonGroupComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -132,7 +135,8 @@ import { RequestTableComponent } from './components/request-table/request-table.
     MatSidenavModule,
     MatMomentDateModule,
     MatExpansionModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

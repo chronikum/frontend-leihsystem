@@ -1,17 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
     <div fxFlex="1 1 auto">
-      <!-- <app-table-button-group 
-        [showCreateButton]="true" 
-        [showDeleteButton]="true" 
-        [showReserveButton]="true"
-        [enableEditButton]="!(selection?.selected.length === 1)"
-        [disableDeleteButton]="selection?.isEmpty()"
-        (deleteAction)="deleteItems()" 
-        (createAction)="createNewItem()"
-        (reserveAction)="reserveItems()"
-        (editItemButtonAction)="editExistingItem()"
-        [disableReserveButton]="selection?.isEmpty()">
-      </app-table-button-group> -->
+      <app-request-button-group></app-request-button-group>
     </div>
     <div fxFlex="2 1 auto">
       <app-request-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream"></app-request-table>

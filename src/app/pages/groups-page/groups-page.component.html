@@ -11,6 +11,7 @@
       (createAction)="openGroupModal()"
       >
       </app-table-button-group>
+      <mat-icon style="padding: 20px"matTooltip="Erstellen Sie Gruppen und weisen Sie diesen Rechte und User zu.">help</mat-icon>
     </div>
     <div fxFlex="2 1 auto">
         <app-group-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream"></app-group-table>
