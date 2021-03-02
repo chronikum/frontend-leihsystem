@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Item } from 'src/app/models/Item';
+import { Reservation } from 'src/app/models/Reservation';
 
 @Component({
   selector: 'app-requests-page',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsPageComponent implements OnInit {
 
+  /**
+   * Holds the current selection information
+   */
+  selection = new SelectionModel<Reservation>();
+
+  /**
+   * Refresh action stream
+   */
+  refreshActionStream = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  /**
+   * Selection of the table is being changed
+   * 
+   * @param SelectionModel<Item> the current selection of the table
+   */
+  selectionChange(selection: SelectionModel<Reservation>) {
+    this.selection = selection;
+  }
+
 
 }

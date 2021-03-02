@@ -15,6 +15,7 @@ export interface GeneralServerResponse {
     items?: Item[],
     user?: User,
     request?: Request,
+    requests?: Request[],
     groups?: Group[],
     roles: UserRoles[],
     users: User[],

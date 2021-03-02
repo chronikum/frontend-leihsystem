@@ -134,7 +134,7 @@ export class InventoryPageComponent implements OnInit {
     console.log("Open dialog")
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       width: '650px',
-      data: { message: "The selected items will be deleted. Please confirm this action.", critical: true }
+      data: { message: "Die ausgewählten Geräte werden unwiderruflich gelöscht.", critical: true }
     });
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {

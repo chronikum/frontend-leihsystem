@@ -212,6 +212,14 @@ export class ApiService {
   }
 
   /**
+   * Get all requests
+   * @returns all {@link Requests} available 
+   */
+  getAllRequests$(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllRequests', {});
+  }
+
+  /**
    * Get all users
    * 
    * @returns users[]

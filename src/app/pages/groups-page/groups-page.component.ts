@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { GroupCreationModalComponent } from 'src/app/modals/group-creation-modal/group-creation-modal.component';
 import { ManageGroupMembersModalComponent } from 'src/app/modals/manage-group-members-modal/manage-group-members-modal.component';
 import { Group } from 'src/app/models/Group';
@@ -81,6 +82,21 @@ export class GroupsPageComponent implements OnInit {
         });
       }
     })
+  }
+
+  /**
+   * Group deletion modal
+   */
+  deleteGroup() {
+    let groupToDelete: Group = this.selection.selected[0];
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      width: '650px',
+      data: { message: "Die ausgewählten Gruppen werden unwiderruflich gelöscht.", critical: true }
+    });
+
+    dialogRef.afterClosed().subscribe(_ => {
+      console.log("Closed");
+    });
   }
 
   /**
