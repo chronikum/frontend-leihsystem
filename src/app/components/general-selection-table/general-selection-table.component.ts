@@ -39,22 +39,31 @@ export class GeneralSelectionTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   /**
-   * Gets called when table selection is being changed
+   * Gets called when table selection is being changed and provides the values to be used outside
    */
   @Output() selectionChanged = new EventEmitter<SelectionModel<any>>();
 
   /**
    * Current table selection
    */
-  selection = new SelectionModel<any>(true, []);
-
+  @Input() selection: SelectionModel<any>;
   constructor() {
   }
 
+  /**
+   * Load data in - if no selection is given from the outside, initialize the selection
+   */
   ngOnInit(): void {
+    if (!this.selection) {
+      this.selection = new SelectionModel<any>(true, []);
+    }
     this.dataSource = new MatTableDataSource<any>([...this.data]);
     this.dataSource.paginator = this.paginator;
     this.columns = this.columns.concat(this.displayedColumns);
+
+    this.selection.changed.subscribe(change => {
+      this.selectionChanged.next(this.selection);
+    })
   }
 
   /**

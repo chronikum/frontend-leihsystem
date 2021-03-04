@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -58,9 +59,19 @@ export class CreationModalComponent implements OnInit {
   ];
 
   /**
+   * The device model of the current element
+   */
+  currentDeviceModel: DeviceModel;
+
+  /**
    * All device models
    */
   allDeviceModels: DeviceModel[];
+
+  /**
+   * The model currently selected in the device model table
+   */
+  currentSelection = new SelectionModel<DeviceModel>();
 
   /**
    * Creates Creation Modal
@@ -107,6 +118,8 @@ export class CreationModalComponent implements OnInit {
     }
   }
 
+  // TODO: MAKE SELECTED CATEGORY RELEVANT
+
   /**
    * Gets all device models in the table
    * TODO: check if needs to be awaited or in ngoninit
@@ -115,6 +128,13 @@ export class CreationModalComponent implements OnInit {
     this.apiService.getAllModels$().subscribe(response => {
       console.log(response);
       this.allDeviceModels = response.deviceModels;
+      // Also load preselected item in model table if available
+      console.log("Looking for model...");
+      if (this.data.item?.modelIdentifier) {
+        const selectedDeviceModel: DeviceModel = this.allDeviceModels.filter(x => x.deviceModelId === this.data.item.modelIdentifier)[0];
+        console.log("The selected model is:")
+        console.log(selectedDeviceModel);
+      }
     })
   }
 
@@ -127,6 +147,7 @@ export class CreationModalComponent implements OnInit {
    * Collects the item data
    * 
    * - adds the itemid if in editing mode
+   * - adds the selected model of the device table
    */
   collectItemData(): Item {
     let item: Item = {
@@ -141,6 +162,12 @@ export class CreationModalComponent implements OnInit {
 
     if (this.editingMode) {
       item.itemId = this.itemBeingEdited.itemId;
+    }
+
+    // Assign the model user selected if existing
+    if (this.currentSelection.selected) {
+      const deviceModel = this.currentSelection.selected[0];
+      item.modelIdentifier = deviceModel.deviceModelId;
     }
 
     console.log('item' + item)
