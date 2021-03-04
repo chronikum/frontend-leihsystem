@@ -27,4 +27,5 @@ export interface Item {
     currentReservationId?: string,
     rowPosition?: number,
     generatedUniqueIdentifier?: string,
+    modelIdentifier?: number, // the associated device model id
 }

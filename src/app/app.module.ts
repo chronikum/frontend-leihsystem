@@ -76,6 +76,7 @@ import { DeviceModelTableComponent } from './components/device-model-table/devic
 import { DeviceModelButtonGroupComponent } from './components/device-model-button-group/device-model-button-group.component';
 import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
 import { DeviceModelCreationModalComponent } from './modals/device-model-creation-modal/device-model-creation-modal.component';
+import { GeneralSelectionTableComponent } from './components/general-selection-table/general-selection-table.component';
 
 
 @NgModule({
@@ -121,6 +122,7 @@ import { DeviceModelCreationModalComponent } from './modals/device-model-creatio
     DeviceModelButtonGroupComponent,
     DeviceModelPageComponent,
     DeviceModelCreationModalComponent,
+    GeneralSelectionTableComponent,
   ],
   imports: [
     FlexLayoutModule,
