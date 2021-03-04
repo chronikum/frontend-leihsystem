@@ -1,8 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeviceModelCreationModalComponent } from 'src/app/modals/device-model-creation-modal/device-model-creation-modal.component';
 import { DeviceModel } from 'src/app/models/DeviceModel';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-device-model-page',
@@ -16,8 +17,14 @@ export class DeviceModelPageComponent implements OnInit {
    */
   selection = new SelectionModel<DeviceModel>();
 
+  /**
+   * Refresh action stream
+   */
+  refreshActionStream = new EventEmitter<any>();
+
   constructor(
     private dialog: MatDialog,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit(): void {
@@ -27,20 +34,19 @@ export class DeviceModelPageComponent implements OnInit {
    * Create a new model
    */
   createModel() {
-    console.log("Open")
     const dialogRef = this.dialog.open(DeviceModelCreationModalComponent, {
       width: '650px',
     });
 
     dialogRef.afterClosed().subscribe(async (result: DeviceModel) => {
       console.log(result);
-      // if (result.name) {
-      //   this.apiService.createItem$(result).subscribe(itemCreated => {
-      //     if (itemCreated.success) {
-      //       this.refreshActionStream.next(true)
-      //     }
-      //   })
-      // }
+      if (result.displayName) {
+        this.apiService.createModel$(result).subscribe(itemCreated => {
+          if (itemCreated) {
+            this.refreshActionStream.next(true)
+          }
+        })
+      }
     });
   }
 
@@ -50,6 +56,22 @@ export class DeviceModelPageComponent implements OnInit {
   editAction() {
     console.log("edit")
     const deviceModel = this.selection.selected[0];
+
+    const dialogRef = this.dialog.open(DeviceModelCreationModalComponent, {
+      width: '650px',
+      data: { deviceModel }
+    });
+
+    dialogRef.afterClosed().subscribe(async (result: DeviceModel) => {
+      console.log(result);
+      if (result.displayName) {
+        this.apiService.editModel$(result).subscribe(itemCreated => {
+          if (itemCreated) {
+            this.refreshActionStream.next(true)
+          }
+        })
+      }
+    });
   }
 
   /**

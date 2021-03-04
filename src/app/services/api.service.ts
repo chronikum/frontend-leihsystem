@@ -326,14 +326,18 @@ export class ApiService {
    * Create new device model
    */
   createModel$(model: DeviceModel): Observable<DeviceModel> {
-    return this.httpClient.post<DeviceModel>(this.endpoint + 'createModel', model);
+    return this.httpClient.post<DeviceModel>(this.endpoint + 'createModel', {
+      deviceModel: model
+    });
   }
 
   /**
    * Edit existing device model
    */
   editModel$(model: DeviceModel): Observable<DeviceModel> {
-    return this.httpClient.post<DeviceModel>(this.endpoint + 'editModel', model);
+    return this.httpClient.post<DeviceModel>(this.endpoint + 'editModel', {
+      deviceModel: model
+    });
   }
 
   /**

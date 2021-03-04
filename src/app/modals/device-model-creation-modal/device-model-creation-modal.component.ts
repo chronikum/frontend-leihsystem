@@ -40,15 +40,46 @@ export class DeviceModelCreationModalComponent implements OnInit {
     });
   }
 
+
+  /**
+   * Collect details and built DeviceModel
+   * - If not all details are provided, it will return null.
+   */
+  collectDetails() {
+    let deviceModel: DeviceModel = {
+      displayName: this.deviceModalForm.get('displayName').value,
+      description: this.deviceModalForm.get('description').value,
+      capabilities: this.deviceModalForm.get('capabilities').value,
+      defaultDeviceValue: this.deviceModalForm.get('defaultDeviceValue').value,
+    }
+    // If device is being edited apply original deviceModelId
+    if (this.deviceModelBeingEdited) {
+      deviceModel.deviceModelId = this.deviceModelBeingEdited.deviceModelId;
+    }
+    if (deviceModel.displayName && deviceModel.description && deviceModel.capabilities) {
+      return deviceModel;
+    } else {
+      return null;
+    }
+  }
+
   ngOnInit(): void {
   }
 
+
+  /**
+   * User cancels action 
+   */
   cancelAction() {
 
   }
 
+  /**
+   * Creates or updates the device
+   */
   createAction() {
-
+    const deviceModel = this.collectDetails();
+    this.dialogRef.close(deviceModel);
   }
 
 }
