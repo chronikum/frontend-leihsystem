@@ -1,0 +1,33 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>{{deviceModelBeingEdited ? 'Neues Gerätemodell erstellen' : 'Gerätemodell updaten'}}</h3>
+    <ul style="float: left;">
+        <div [formGroup]="deviceModalForm">
+
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'displayName'" matInput placeholder="Anzeigename">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'description'" matInput placeholder="Beschreibung">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'capabilities'" matInput placeholder="Funktionen">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'defaultDeviceValue'" matInput placeholder="defaultDeviceValue">
+            </mat-form-field>
+        </div>
+    </ul>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
+    <button class="mat-raised-button" (click)="createAction()">{{deviceModelBeingEdited ? 'Erstellen' : 'Updaten'}}</button>
+</mat-dialog-actions>

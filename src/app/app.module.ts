@@ -75,6 +75,7 @@ import { AccesssoireButtonGroupComponent } from './components/accesssoire-button
 import { DeviceModelTableComponent } from './components/device-model-table/device-model-table.component';
 import { DeviceModelButtonGroupComponent } from './components/device-model-button-group/device-model-button-group.component';
 import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
+import { DeviceModelCreationModalComponent } from './modals/device-model-creation-modal/device-model-creation-modal.component';
 
 
 @NgModule({
@@ -119,6 +120,7 @@ import { DeviceModelPageComponent } from './pages/device-model-page/device-model
     DeviceModelTableComponent,
     DeviceModelButtonGroupComponent,
     DeviceModelPageComponent,
+    DeviceModelCreationModalComponent,
   ],
   imports: [
     FlexLayoutModule,

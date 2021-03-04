@@ -17,7 +17,7 @@ export interface GeneralServerResponse {
     user?: User,
     request?: Request,
     requests?: Request[],
-    models: DeviceModel[],
+    deviceModels: DeviceModel[],
     groups?: Group[],
     roles: UserRoles[],
     users: User[],

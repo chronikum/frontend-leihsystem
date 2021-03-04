@@ -16,9 +16,6 @@ export class CreationModalComponent implements OnInit {
    * simple creation form
    */
   simpleCreationForm: FormGroup;
-
-
-
   /**
    * If the extended form should be displayed
    */
