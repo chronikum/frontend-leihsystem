@@ -77,7 +77,7 @@ export class InventoryPageComponent implements OnInit {
     let reservationItem = Array.from(this.selection.selected || []) as Item[];
 
     const dialogRef = this.dialog.open(CreationModalComponent, {
-      width: '850px',
+      width: '550px',
       data: { item: reservationItem[0], editingMode: true }
     });
 

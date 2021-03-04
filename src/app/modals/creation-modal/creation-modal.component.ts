@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeviceModel } from 'src/app/models/DeviceModel';
@@ -74,6 +74,11 @@ export class CreationModalComponent implements OnInit {
   currentSelection = new SelectionModel<DeviceModel>();
 
   /**
+   * Will be called if we know what deviceModel the original item has to display it in the table
+   */
+  @Output() selectionChanged = new EventEmitter<SelectionModel<any>>();
+
+  /**
    * Creates Creation Modal
    * @param formBuilder
    * @param dialogRef 
@@ -129,11 +134,10 @@ export class CreationModalComponent implements OnInit {
       console.log(response);
       this.allDeviceModels = response.deviceModels;
       // Also load preselected item in model table if available
-      console.log("Looking for model...");
       if (this.data.item?.modelIdentifier) {
         const selectedDeviceModel: DeviceModel = this.allDeviceModels.filter(x => x.deviceModelId === this.data.item.modelIdentifier)[0];
-        console.log("The selected model is:")
-        console.log(selectedDeviceModel);
+        this.currentDeviceModel = selectedDeviceModel;
+        console.log("Aktuelles Modell: " + this.currentDeviceModel.displayName)
       }
     })
   }
@@ -165,9 +169,9 @@ export class CreationModalComponent implements OnInit {
     }
 
     // Assign the model user selected if existing
-    if (this.currentSelection.selected) {
+    if (this.currentSelection.selected[0]?.deviceModelId) {
       const deviceModel = this.currentSelection.selected[0];
-      item.modelIdentifier = deviceModel.deviceModelId;
+      item.modelIdentifier = deviceModel?.deviceModelId;
     }
 
     console.log('item' + item)
