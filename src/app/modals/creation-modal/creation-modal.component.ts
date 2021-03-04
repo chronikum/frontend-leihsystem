@@ -70,11 +70,12 @@ export class CreationModalComponent implements OnInit {
     this.editingMode = data?.editingMode || false;
     if (this.editingMode) {
       this.itemBeingEdited = data?.item;
+      console.log(this.itemBeingEdited)
       this.simpleCreationForm = this.formBuilder.group({
         name: [data.item.name, Validators.required],
         internalName: [data.item.internalName, Validators.required],
         description: [data.item.description || ''],
-        caIdentifier: ['', data.item.caIdentifier || '', Validators.required],
+        caIdentifier: [data.item.caIdentifier || '', Validators.required],
         allowedToReserve: [data.item.requiredRolesToReserve[0], Validators.required], // TODO: Multiple roles can be allowed thanks to technical implementation
         managed: [data.item.managed || false]
       });
