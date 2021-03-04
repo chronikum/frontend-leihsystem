@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'deviceModels',
+    component: DeviceModelPageComponent,
     canActivate: [AuthenticationGuard]
   },
   {

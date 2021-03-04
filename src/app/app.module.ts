@@ -69,6 +69,12 @@ import { RequestTableComponent } from './components/request-table/request-table.
 import { RequestButtonGroupComponent } from './components/request-button-group/request-button-group.component';
 
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AccessoirePageComponent } from './pages/accessoire-page/accessoire-page.component';
+import { AccessoireTableComponent } from './components/accessoire-table/accessoire-table.component';
+import { AccesssoireButtonGroupComponent } from './components/accesssoire-button-group/accesssoire-button-group.component';
+import { DeviceModelTableComponent } from './components/device-model-table/device-model-table.component';
+import { DeviceModelButtonGroupComponent } from './components/device-model-button-group/device-model-button-group.component';
+import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
 
 
 @NgModule({
@@ -107,6 +113,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ProfilePageComponent,
     RequestTableComponent,
     RequestButtonGroupComponent,
+    AccessoirePageComponent,
+    AccessoireTableComponent,
+    AccesssoireButtonGroupComponent,
+    DeviceModelTableComponent,
+    DeviceModelButtonGroupComponent,
+    DeviceModelPageComponent,
   ],
   imports: [
     FlexLayoutModule,

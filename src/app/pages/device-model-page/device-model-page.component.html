@@ -1,0 +1,10 @@
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+    <div fxFlex="1 1 auto">
+        <app-device-model-button-group (editAction)="editAction" (createAction)="createModel"></app-device-model-button-group>
+      <mat-icon style="padding: 20px"matTooltip="Erstellen Sie User, setzen Sie Passwörter zurück oder löschen Sie User, die nicht mehr benötigt werden.">help</mat-icon>
+    </div>
+    <div fxFlex="2 1 auto">
+        <app-device-model-table></app-device-model-table>
+    </div>
+  </div>
+  

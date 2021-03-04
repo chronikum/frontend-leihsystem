@@ -1,3 +1,4 @@
+import { DeviceModel } from './DeviceModel';
 import { Group } from './Group';
 import { Item } from './Item';
 import { Request } from './Request';
@@ -16,6 +17,7 @@ export interface GeneralServerResponse {
     user?: User,
     request?: Request,
     requests?: Request[],
+    models: DeviceModel[],
     groups?: Group[],
     roles: UserRoles[],
     users: User[],

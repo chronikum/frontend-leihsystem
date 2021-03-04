@@ -55,6 +55,13 @@ export class MenuBarComponent implements OnInit {
       icon: 'smartphone'
     },
     {
+      title: 'Gerätemodelle',
+      link: ['deviceModels'],
+      category: 1,
+      userRole: UserRoles.ADMIN,
+      icon: 'devices'
+    },
+    {
       title: 'Reservierungen',
       link: ['reservations'],
       category: 1,

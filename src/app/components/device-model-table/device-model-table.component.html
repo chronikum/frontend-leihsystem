@@ -1,0 +1,56 @@
+<div>
+    <div class="mat-elevation-z8">
+      <app-search-bar (searchString)="applyFilter($event)" [placeholder]="'Gerätemodell suchen'"></app-search-bar>
+      <div class="table-holder">
+        <table *ngIf="loadingCompleted" mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+                            (change)="$event ? selection.toggle(row) : null"
+                            [checked]="selection.isSelected(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="deviceModelId" sticky>
+            <th mat-header-cell *matHeaderCellDef>deviceModelId</th>
+            <td mat-cell *matCellDef="let element"> {{element.deviceModelId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="displayName" sticky>
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description" sticky>
+            <th mat-header-cell *matHeaderCellDef>Beschreibung</th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="capabilities" sticky>
+            <th mat-header-cell *matHeaderCellDef>Funktionen</th>
+            <td mat-cell *matCellDef="let element"> {{element.capabilities}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="defaultDeviceValue" sticky>
+            <th mat-header-cell *matHeaderCellDef>Priority</th>
+            <td mat-cell *matCellDef="let element"> {{element.defaultDeviceValue}} </td>
+          </ng-container>
+  
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+  
+  
+        </table>
+      </div>
+      <mat-paginator [pageSizeOptions]="[15, 10, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  

@@ -13,6 +13,7 @@ import { Request } from '../models/Request';
 import { GroupCreationModalComponent } from '../modals/group-creation-modal/group-creation-modal.component';
 import { Group } from '../models/Group';
 import { UserRoles } from '../models/UserRoles';
+import { DeviceModel } from '../models/DeviceModel';
 
 @Injectable({
   providedIn: 'root'
@@ -315,6 +316,31 @@ export class ApiService {
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'addUserToGroup', {
       group, user
     });
+  }
+
+  /**
+   * Device Models
+   */
+
+  /**
+   * Create new device model
+   */
+  createModel$(model: DeviceModel): Observable<DeviceModel> {
+    return this.httpClient.post<DeviceModel>(this.endpoint + 'createModel', model);
+  }
+
+  /**
+   * Edit existing device model
+   */
+  editModel$(model: DeviceModel): Observable<DeviceModel> {
+    return this.httpClient.post<DeviceModel>(this.endpoint + 'editModel', model);
+  }
+
+  /**
+   * Get all available models
+   */
+  getAllModels$(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllModels', {});
   }
 
   /**
