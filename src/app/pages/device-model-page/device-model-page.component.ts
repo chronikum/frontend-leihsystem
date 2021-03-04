@@ -1,4 +1,6 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
+import { DeviceModel } from 'src/app/models/DeviceModel';
 
 @Component({
   selector: 'app-device-model-page',
@@ -6,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./device-model-page.component.scss']
 })
 export class DeviceModelPageComponent implements OnInit {
+
+  /**
+   * Holds the current selection information
+   */
+  selection = new SelectionModel<DeviceModel>();
 
   constructor() { }
 
@@ -23,7 +30,15 @@ export class DeviceModelPageComponent implements OnInit {
    * Edit an model
    */
   editAction() {
+    const deviceModel = this.selection.selected[0];
+  }
 
+  /**
+   * Selection of the table is being changed
+   * 
+   */
+  selectionChange(selection: SelectionModel<DeviceModel>) {
+    this.selection = selection;
   }
 
 }

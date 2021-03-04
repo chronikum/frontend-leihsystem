@@ -1,4 +1,4 @@
 <div fxLayout="column" fxLayoutAlign="space-between" style="margin: 20px;">
-    <button class="accept-button"  mat-flat-button (click)="createAction.next(true)">Neues Gerätemodell erstellen</button>
-    <button class="edit-button" mat-flat-button (click)="editAction.next(true)">Gerätemodell editieren</button>
+    <button class="create-button"  mat-flat-button (click)="createAction.next(true)">Neues Gerätemodell erstellen</button>
+    <button class="edit-button" mat-flat-button [disabled]="!showEditButton" (click)="editAction.next(true)">Gerätemodell editieren</button>
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-device-model-button-group',
@@ -11,6 +11,8 @@ export class DeviceModelButtonGroupComponent implements OnInit {
    * Edit existing device model action emitter
    */
   @Output() editAction = new EventEmitter<any>();
+
+  @Input() showEditButton: boolean = false;
 
   /**
    * Create new device model action emitter
