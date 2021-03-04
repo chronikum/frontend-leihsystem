@@ -1,7 +1,6 @@
-<div mat-dialog-content>
-    <h3 style="font-weight: bold" mat-dialog-title>Ein neues Gerät erstellen</h3>
-    <ul style="float: left;">
-        <div [formGroup]="simpleCreationForm">
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" mat-dialog-content>
+        <div fxFlex="1 1 auto" [formGroup]="simpleCreationForm"> 
+            <h3 style="font-weight: bold" mat-dialog-title>Ein neues Gerät erstellen</h3>
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'name'" matInput placeholder="Name">
                 <mat-error>
@@ -39,10 +38,12 @@
             <mat-checkbox [formControlName]="'managed'">Managed device</mat-checkbox>
             <br>
         </div>
-    </ul>
-    <app-general-selection-table *ngIf="allDeviceModels" [data]="allDeviceModels" [displayedColumns]="['displayName']">
+        <div fxFlex="2 1 auto">
+            <h3 style="font-weight: bold" mat-dialog-title>Weisen Sie dem Gerät eine Kategorie zu</h3>
+            <app-general-selection-table *ngIf="allDeviceModels" [data]="allDeviceModels" [displayedColumns]="['deviceModelId', 'displayName', 'description']">
 
-    </app-general-selection-table>
+            </app-general-selection-table>
+        </div>
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-button"(click)="cancelAction()">Abbrechen</button>

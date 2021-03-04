@@ -54,7 +54,7 @@ export class InventoryPageComponent implements OnInit {
    */
   createNewItem() {
     const dialogRef = this.dialog.open(CreationModalComponent, {
-      width: '650px',
+      width: '850px',
     });
 
     dialogRef.afterClosed().subscribe(async (result: Item) => {
@@ -77,7 +77,7 @@ export class InventoryPageComponent implements OnInit {
     let reservationItem = Array.from(this.selection.selected || []) as Item[];
 
     const dialogRef = this.dialog.open(CreationModalComponent, {
-      width: '650px',
+      width: '850px',
       data: { item: reservationItem[0], editingMode: true }
     });
 
