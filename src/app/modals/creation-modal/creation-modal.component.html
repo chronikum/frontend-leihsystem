@@ -40,6 +40,9 @@
             <br>
         </div>
     </ul>
+    <app-general-selection-table *ngIf="allDeviceModels" [data]="allDeviceModels" [displayedColumns]="['displayName']">
+
+    </app-general-selection-table>
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-button"(click)="cancelAction()">Abbrechen</button>

@@ -12,9 +12,11 @@ export class GeneralSelectionTableComponent implements OnInit {
 
   /**
    * The columns which should be displayed
-   * IMPORTANT: MUST HOLD 'select' as first index.
+   * IMPORTANT: MUST NOT HOLD 'select' as first index.
    */
   @Input() displayedColumns: string[];
+
+  columns: string[] = ['select'];
 
   /**
    * The datasource (item[]) you want to show
@@ -41,11 +43,18 @@ export class GeneralSelectionTableComponent implements OnInit {
    */
   @Output() selectionChanged = new EventEmitter<SelectionModel<any>>();
 
-  constructor() { }
+  /**
+   * Current table selection
+   */
+  selection = new SelectionModel<any>(true, []);
+
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<any>([...this.data]);
     this.dataSource.paginator = this.paginator;
+    this.columns = this.columns.concat(this.displayedColumns);
   }
 
   /**
@@ -54,6 +63,30 @@ export class GeneralSelectionTableComponent implements OnInit {
   */
   applyFilter(filterValue?: string): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  /**
+   * Deselect all entries
+   */
+  deselectAll() {
+    this.selection.clear()
+  }
+
+
+  /**
+   * Selection Methods
+   */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
 }
