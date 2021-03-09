@@ -44,7 +44,6 @@ export class LoginPageComponent implements OnInit {
       const password = this.loginForm.get('password')?.value;
 
       this.apiService.login$(username, password).subscribe((result: GeneralServerResponse) => {
-        console.log(result);
         if (result.success) {
           this.router.navigate(['dashboard'])
         }

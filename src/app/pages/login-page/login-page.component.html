@@ -28,9 +28,9 @@ fxLayoutAlign="center center">
             </mat-form-field>
             <mat-form-field  style="flex-direction: row;">
                 <input [formControlName]="'password'" matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
+                </span>
                 <mat-error>
                     Erforderlich
                 </mat-error>
