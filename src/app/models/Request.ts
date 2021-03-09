@@ -1,3 +1,5 @@
+import { SubRequest } from "./SubRequest";
+
 /**
  * Represents a registration request
  */
@@ -9,6 +11,9 @@ export interface Request {
     startDate: number, // start date of the reservation reqeust
     plannedEndDate: number // end date of the reservation request
     note?: string, // notes provided by the user making the request
+    // Values above will be deprecated at a point of time. Request will have a collection of SubRequests, specifying
+    // which device model was requested how many times
+    subRequest?: SubRequest[],
     created: number,
     modified?: number,
     priority?: number,

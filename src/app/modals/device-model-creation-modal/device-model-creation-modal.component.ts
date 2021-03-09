@@ -23,6 +23,9 @@ export class DeviceModelCreationModalComponent implements OnInit {
   deviceModelBeingEdited?: DeviceModel;
 
 
+  /**
+   * Constructs a new instance and builts the deviceModalForm-Form
+   */
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DeviceModelCreationModalComponent>,
@@ -71,7 +74,7 @@ export class DeviceModelCreationModalComponent implements OnInit {
    * User cancels action 
    */
   cancelAction() {
-
+    this.dialogRef.close();
   }
 
   /**

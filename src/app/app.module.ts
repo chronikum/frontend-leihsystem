@@ -12,6 +12,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -77,6 +79,8 @@ import { DeviceModelButtonGroupComponent } from './components/device-model-butto
 import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
 import { DeviceModelCreationModalComponent } from './modals/device-model-creation-modal/device-model-creation-modal.component';
 import { GeneralSelectionTableComponent } from './components/general-selection-table/general-selection-table.component';
+import { ModelCountSelectorComponent } from './components/model-count-selector/model-count-selector.component';
+import { ModelCountChipComponent } from './components/model-count-chip/model-count-chip.component';
 
 
 @NgModule({
@@ -123,6 +127,8 @@ import { GeneralSelectionTableComponent } from './components/general-selection-t
     DeviceModelPageComponent,
     DeviceModelCreationModalComponent,
     GeneralSelectionTableComponent,
+    ModelCountSelectorComponent,
+    ModelCountChipComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -152,7 +158,9 @@ import { GeneralSelectionTableComponent } from './components/general-selection-t
     MatMomentDateModule,
     MatExpansionModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule,
+    MatBadgeModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials
