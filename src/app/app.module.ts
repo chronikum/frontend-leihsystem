@@ -14,6 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatStepperModule } from '@angular/material/stepper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -81,6 +82,7 @@ import { DeviceModelCreationModalComponent } from './modals/device-model-creatio
 import { GeneralSelectionTableComponent } from './components/general-selection-table/general-selection-table.component';
 import { ModelCountSelectorComponent } from './components/model-count-selector/model-count-selector.component';
 import { ModelCountChipComponent } from './components/model-count-chip/model-count-chip.component';
+import { ModelCountRequestModalComponent } from './modals/model-count-request-modal/model-count-request-modal.component';
 
 
 @NgModule({
@@ -129,6 +131,7 @@ import { ModelCountChipComponent } from './components/model-count-chip/model-cou
     GeneralSelectionTableComponent,
     ModelCountSelectorComponent,
     ModelCountChipComponent,
+    ModelCountRequestModalComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -160,7 +163,8 @@ import { ModelCountChipComponent } from './components/model-count-chip/model-cou
     MatListModule,
     MatTooltipModule,
     MatChipsModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatStepperModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

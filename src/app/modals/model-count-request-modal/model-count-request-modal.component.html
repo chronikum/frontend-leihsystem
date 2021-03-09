@@ -1,0 +1,38 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>Fügen Sie eine Geräteanfrage hinzu</h3>
+    <mat-horizontal-stepper #stepper [linear]="true">
+        <mat-step label="Gerätemodell wählen">
+            <app-general-selection-table *ngIf="allDeviceModels" [data]="allDeviceModels" [displayedColumns]="['deviceModelId', 'displayName', 'description']" (selectionChanged)="currentSelection = $event">
+
+            </app-general-selection-table>
+        </mat-step>
+        <mat-step label="Geräteanzahl angeben">
+          <p>Geben Sie die Anzahl der Geräte ein, die Sie von diesem Modell benötigen.</p>
+          <div [formGroup]="deviceCountForm">
+            <mat-form-field  style="display: flex;">
+              <input [formControlName]="'deviceCount'" matInput placeholder="Geräteanzahl">
+              <mat-error>
+                  Erforderlich
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
+    <button mat-raised-button *ngIf="stepperCompleted" (click)="addRequest()">Hinzufügen</button>
+    <button mat-raised-button (click)="goBack(stepper)" type="button">Zurück</button>
+    <button mat-raised-button [disabled]="
+    (stepper.selectedIndex === 0 ? !(this.currentSelection.selected.length === 1) : false) ||
+    (stepper.selectedIndex === 1 ? !(this.deviceCountForm.get('deviceCount').value) : false)
+    " (click)="goForward(stepper)" type="button">Weiter</button>
+</mat-dialog-actions>

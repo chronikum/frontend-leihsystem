@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModelCountRequestModalComponent } from 'src/app/modals/model-count-request-modal/model-count-request-modal.component';
 import { DeviceModel } from 'src/app/models/DeviceModel';
 import { SubRequest } from 'src/app/models/SubRequest';
 import { ApiService } from 'src/app/services/api.service';
@@ -40,6 +42,7 @@ export class ModelCountSelectorComponent implements OnInit {
    */
   constructor(
     private apiService: ApiService,
+    private dialog: MatDialog,
   ) {
   }
 
@@ -82,6 +85,22 @@ export class ModelCountSelectorComponent implements OnInit {
     this.totalDevicesSelected = total;
   }
 
+  /**
+   * Create new model count request
+   * - Opens modal where user can select device model and give amount wanted
+   * - If model closes successful, returned request will be added to the SubRequest Collection
+   */
+  createNewModelCountRequest() {
+    const dialogRef = this.dialog.open(ModelCountRequestModalComponent, {
+      width: '650px',
+    });
+
+    dialogRef.afterClosed().subscribe(async (result: SubRequest) => {
+      if (result) {
+        this.addSubRequest(result.deviceModel, result.count);
+      }
+    });
+  }
 
   /**
    * Gets all device models in the table
