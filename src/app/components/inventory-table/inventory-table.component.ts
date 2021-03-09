@@ -3,6 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DeviceModel } from 'src/app/models/DeviceModel';
 import { Item } from 'src/app/models/Item';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -16,7 +17,7 @@ export class InventoryTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['select', 'itemId', 'name', 'description', 'available', 'reservationCount', 'ownership', 'qrcode'];
+  displayedColumns: string[] = ['select', 'itemId', 'name', 'type', 'description', 'available', 'reservationCount', 'ownership', 'qrcode'];
 
   /**
    * Datasource
@@ -41,6 +42,11 @@ export class InventoryTableComponent implements OnInit {
   @ViewChild('searchInput') searchInput: ElementRef;
 
   @ViewChild(MatSort) sort: MatSort;
+
+  /**
+   * All device models
+   */
+  allDeviceModels: DeviceModel[];
 
   /**
    * Gets called when table selection is being changed
@@ -75,8 +81,39 @@ export class InventoryTableComponent implements OnInit {
      * Will be fired if a refresh event should be triggered
      */
     this.refreshTrigger.subscribe(trigger => this.loadData())
+
+    /**
+     * Load all device models from the server
+     */
+    this.loadDeviceModels();
   }
 
+  /**
+   * Gets all device models in the table
+   */
+  loadDeviceModels() {
+    this.apiService.getAllModels$().subscribe(response => {
+      console.log(response);
+      this.allDeviceModels = response.deviceModels;
+    })
+  }
+
+
+  /**
+   * Get the device model name for the given item. If not available, return "-"
+   * @param device to get the device model name from
+   * @returns display name as string
+   */
+  getNameOfDeviceModel(device: Item): string {
+    // Also load preselected item in model table if available
+    if (device?.modelIdentifier) {
+      const selectedDeviceModel: DeviceModel = this.allDeviceModels.filter(x => x.deviceModelId === device.modelIdentifier)[0];
+      if (selectedDeviceModel) {
+        return selectedDeviceModel?.displayName;
+      }
+    }
+    return "-";
+  }
   /**
    * Loads the table with data
    */

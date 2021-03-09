@@ -37,6 +37,13 @@
           </td>
         </ng-container>
 
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Gerätekategorie</th>
+          <td mat-cell *matCellDef="let element">
+            <span>{{getNameOfDeviceModel(element)}}</span>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="available">
           <th mat-header-cell *matHeaderCellDef>Verfügbar</th>
           <td mat-cell *matCellDef="let element">
