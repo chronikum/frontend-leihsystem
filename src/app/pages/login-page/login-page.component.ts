@@ -49,6 +49,9 @@ export class LoginPageComponent implements OnInit {
         }
       }, (error) => {
         console.log('ERROR!');
+        this.snackBar.open("Die Zugangsdaten sind nicht korrekt.", 'ERROR', {
+          duration: 3000
+        });
       });
     }
   }
