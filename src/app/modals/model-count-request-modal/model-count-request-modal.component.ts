@@ -34,7 +34,7 @@ export class ModelCountRequestModalComponent implements OnInit {
   deviceCountForm: FormGroup;
 
   /**
-   * Constructs a new instance of ModelCountRequestModalComponent and loads all device models
+   * Constructs a new instance of ModelCountRequestModalComponent and builts the form used later on
    */
   constructor(
     private dialogRef: MatDialogRef<ModelCountRequestModalComponent>,
@@ -46,8 +46,22 @@ export class ModelCountRequestModalComponent implements OnInit {
     });
   }
 
+  /**
+   * Load device models
+   */
   ngOnInit(): void {
     this.loadDeviceModels();
+  }
+
+  /**
+   * This text sums up the device selection and count
+   */
+  getSubmissionText(): string {
+    if (this.deviceCountForm?.get('deviceCount').value && this.currentSelection.selected[0]?.displayName) {
+      return `Diese Anfrage fügt Ihrer Reservierungsanfrage ${this.deviceCountForm.get('deviceCount').value || '-'} Geräte der Geräteart ${this.currentSelection.selected[0].displayName} hinzu. Wollen Sie dies bestätigen?`;
+    } else {
+      return 'Bitte geben Sie alle notwendigen Daten an.';
+    }
   }
 
 
@@ -61,11 +75,16 @@ export class ModelCountRequestModalComponent implements OnInit {
     })
   }
 
-
+  /**
+   * Cancels the modal
+   */
   cancelAction() {
     this.dialogRef.close();
   }
 
+  /**
+   * Creates the requests and closes the modal with it as argument
+   */
   addRequest() {
 
   }
@@ -78,6 +97,7 @@ export class ModelCountRequestModalComponent implements OnInit {
    * Go back
    */
   goBack(stepper: MatStepper) {
+    this.stepperCompleted = false;
     stepper.previous();
   }
 
@@ -85,6 +105,7 @@ export class ModelCountRequestModalComponent implements OnInit {
    * Go forward
    */
   goForward(stepper: MatStepper) {
+    this.stepperCompleted = false;
     stepper.next();
   }
 }

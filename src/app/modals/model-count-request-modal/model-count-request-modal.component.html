@@ -10,7 +10,7 @@
           <p>Geben Sie die Anzahl der Geräte ein, die Sie von diesem Modell benötigen.</p>
           <div [formGroup]="deviceCountForm">
             <mat-form-field  style="display: flex;">
-              <input [formControlName]="'deviceCount'" matInput placeholder="Geräteanzahl">
+              <input [formControlName]="'deviceCount'" matInput placeholder="Geräteanzahl" type="number">
               <mat-error>
                   Erforderlich
               </mat-error>
@@ -18,12 +18,7 @@
           </div>
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
+          <p>{{getSubmissionText()}}</p>
         </mat-step>
       </mat-horizontal-stepper>
 </div>

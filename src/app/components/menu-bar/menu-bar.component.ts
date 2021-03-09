@@ -38,6 +38,7 @@ export class MenuBarComponent implements OnInit {
 
   /**
    * Items to show in the menu bar
+   * TODO: Accept generic user group as permissions
    */
   menubarItems = [
     {

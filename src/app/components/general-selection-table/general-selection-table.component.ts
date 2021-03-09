@@ -12,7 +12,6 @@ export class GeneralSelectionTableComponent implements OnInit {
 
   /**
    * The columns which should be displayed
-   * IMPORTANT: MUST NOT HOLD 'select' as first index.
    */
   @Input() displayedColumns: string[];
 
