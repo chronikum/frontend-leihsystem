@@ -14,11 +14,6 @@ import { ApiService } from 'src/app/services/api.service';
 export class ModelCountSelectorComponent implements OnInit {
 
   /**
-   * The total count of devices which will be requested
-   */
-  @Input() totalCount: number;
-
-  /**
    * The current subrequests
    */
   @Output() subRequestsEmitter = new EventEmitter<SubRequest[]>();

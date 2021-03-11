@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -164,7 +165,8 @@ import { ModelCountRequestModalComponent } from './modals/model-count-request-mo
     MatTooltipModule,
     MatChipsModule,
     MatBadgeModule,
-    MatStepperModule
+    MatStepperModule,
+    MatRadioModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

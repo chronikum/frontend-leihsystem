@@ -28,6 +28,7 @@ export class RequestionPageComponent implements OnInit {
     private apiService: ApiService,
   ) {
     this.requestForm = formBuilder.group({
+      advancedSelection: ['', ''],
       deviceAmount: [''],
       start: [''],
       end: [''],

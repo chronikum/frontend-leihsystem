@@ -6,15 +6,9 @@
         </div>
         </div>
         <div fxLayout="row" fxLayoutAlign="center stretch">
-        <div [formGroup]="requestForm">
-          <label>Wie viele Geräte benötigen Sie insgessamt? Sie können die Art der Geräte später spezifizieren, falls nötig.</label>
-            <mat-form-field appearance="fill" style="display: flex;">
-                <input [formControlName]="'deviceAmount'" matInput placeholder="Geräte-Anzahl">
-                <mat-error>
-                    Erforderlich
-                </mat-error>
-            </mat-form-field>
-            <label>Bitte geben Sie den Zeitraum an, in dem Sie die Geräte benötigen werden.</label>
+        <div [formGroup]="requestForm" style="max-width: 600px;">
+            <mat-card>
+              <label>Bitte geben Sie den Zeitraum an, in dem Sie die Geräte benötigen werden.</label>
             <mat-form-field appearance="fill" style="display: flex;">
                 <mat-label>Reservierungszeit</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
@@ -35,12 +29,30 @@
                 <mat-error>
                   Zeitformat: zB 12:00 korrekt - statt 8:00 aber 08:00 verwenden (HH:MM)
                 </mat-error>
-              </mat-form-field>
-              <mat-card>
-                <mat-card-subtitle>Geben Sie hier ein, wieviel von welchen Geräten Sie benötigen.</mat-card-subtitle>
-                <!-- TODO: Add totalDevice Count -->
-                <app-model-count-selector></app-model-count-selector>
-              </mat-card>
+            </mat-form-field>
+            </mat-card>
+            <mat-card>
+              <label><p><b>HINWEIS</b> <br>-> Sollten Sie <i>zum Beispiel</i> fünf Geräte eines bestimmten Types brauchen, wählen Sie die <b>ERWEITERTE</b> Option. Ansonsten erhalten Sie Geräte, die aktuell verfügbar sind. <br> -> Wenn Ihnen die Gerätemodelle und die Kombination der Geräte egal ist, wählen Sie die <b>EINFACHE</b> Option.</label>
+              <mat-radio-group [formControlName]="'advancedSelection'" aria-label="Select an option" style="display: flex; flex-direction: column;">
+                <mat-radio-button style="margin: 2px;" [value]="'simple'">EINFACHE AUSWAHL</mat-radio-button>
+                <mat-radio-button style="margin: 2px;" [value]="'advanced'">ERWEITERTE AUSWAHl</mat-radio-button>
+              </mat-radio-group>
+              <br>
+            </mat-card>
+            <mat-card *ngIf="requestForm.get('advancedSelection').value === 'simple'">
+              <label>Geben Sie hier die Anzahl der Geräte ein, die Sie benötigen.</label>
+              <mat-form-field appearance="fill" style="display: flex;">
+                <input [formControlName]="'deviceAmount'" matInput placeholder="Geräte-Anzahl">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            </mat-card>
+            <mat-card *ngIf="requestForm.get('advancedSelection').value === 'advanced'">
+              <mat-card-subtitle>Geben Sie hier ein, wieviel von welchen Geräten Sie benötigen.</mat-card-subtitle>
+              <!-- TODO: Add totalDevice Count -->
+              <app-model-count-selector></app-model-count-selector>
+            </mat-card>
         </div>
         </div>
 </div>
