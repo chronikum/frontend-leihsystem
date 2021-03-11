@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-review-reservation-request-modal',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewReservationRequestModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialogRef<ReviewReservationRequestModalComponent>
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Closes the modal
+   */
+  closeAction() {
+    this.dialog.close();
   }
 
 }

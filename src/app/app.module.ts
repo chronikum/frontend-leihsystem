@@ -16,6 +16,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -172,7 +173,8 @@ import { ReviewReservationRequestModalComponent } from './modals/review-reservat
     MatChipsModule,
     MatBadgeModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatAutocompleteModule
   ],
   providers: [
     // Http Interceptor(s) -  adds with Client Credentials

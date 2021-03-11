@@ -19,6 +19,11 @@ export class ManageGroupMembersModalComponent implements OnInit {
   members: User[] = [];
 
   /**
+   * All Users
+   */
+  allUsers: User[] = [];
+
+  /**
    * Group which is being currently managed
    */
   managedGroup: Group;
@@ -55,7 +60,8 @@ export class ManageGroupMembersModalComponent implements OnInit {
    * @param query to search
    */
   getSuggestions(event: any) {
-    this.suggested = undefined;
+    this.suggested = [];
+    console.log("Query");
     let query = event.target.value || '';
     this.apiService.suggestUsers$(query).subscribe(result => {
       if (result.success) {

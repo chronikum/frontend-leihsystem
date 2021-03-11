@@ -9,20 +9,18 @@
         </mat-list>
     </div>
     <mat-card>
-        <span>Fügen Sie neues Mitglied hinzu – Suchen Sie nach Vorname, Nachname oder Username. Enter drücken, um zu suchen</span>
         <br>
-        <div style="padding: 5px;">
-            <mat-form-field  style="display: flex;">
-                <input matInput placeholder="User suchen" (change)="getSuggestions($event)">
+        <div style="padding: 5px">
+            <span>Fügen Sie neues Mitglied hinzu – Suchen Sie nach Vorname, Nachname oder Username. Enter drücken, um zu suchen</span>
+            <mat-form-field  style="display: block;" [appearance]="'fill'">
+                <input matInput style="width: 100%;" autocomplete="off" [matAutocomplete]="auto" placeholder="User suchen" (keyup)="getSuggestions($event)">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let member of suggested" [value]="option">
+                        <mat-list-item>{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}} <button mat-button (click)="addMemberToGroup(member)">Zu Gruppe hinzufügen</button></mat-list-item>
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
-            <mat-list>
-                <div *ngIf="suggested?.length !== 0">
-                    <mat-list-item *ngFor="let member of suggested">{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}} <button mat-button (click)="addMemberToGroup(member)">Zu Gruppe hinzufügen</button></mat-list-item>
-                </div>
-                <div *ngIf="suggested?.length === 0">
-                    <span>Keine Ergebnisse – bitte Suchen Sie NUR nach Vorname, Nachname oder Username.</span>
-                </div>
-            </mat-list>
+            <label>Bitte Suchen Sie NUR nach Vorname, Nachname oder Username.</label>
         </div>
     </mat-card>
 </div>
