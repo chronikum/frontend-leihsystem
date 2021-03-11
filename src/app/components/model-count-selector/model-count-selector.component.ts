@@ -99,12 +99,13 @@ export class ModelCountSelectorComponent implements OnInit {
   }
 
   /**
-   * Updates the total devices selected property
+   * Updates the total devices selected property and notifies to parent components about the change
    */
   updateTotalDevicesSelected() {
     let total = 0;
     this.subRequests.forEach(request => total += request.count);
     this.totalDevicesSelected = total;
+    this.subRequestsEmitter.next(this.subRequests);
   }
 
   /**
@@ -131,26 +132,6 @@ export class ModelCountSelectorComponent implements OnInit {
     this.apiService.getAllModels$().subscribe(response => {
       console.log(response);
       this.allDeviceModels = response.deviceModels;
-      this.subRequests = [{
-        count: 7,
-        deviceModelIdentifier: 2,
-        deviceModel: this.allDeviceModels[0],
-      },
-      {
-        count: 8,
-        deviceModelIdentifier: 5,
-        deviceModel: this.allDeviceModels[1],
-      },
-      {
-        count: 8,
-        deviceModelIdentifier: 5,
-        deviceModel: this.allDeviceModels[1],
-      },
-      {
-        count: 9,
-        deviceModelIdentifier: 3,
-        deviceModel: this.allDeviceModels[2],
-      }]
     })
   }
 
