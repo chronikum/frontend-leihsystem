@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { ModelCountRequestModalComponent } from 'src/app/modals/model-count-request-modal/model-count-request-modal.component';
 import { DeviceModel } from 'src/app/models/DeviceModel';
 import { SubRequest } from 'src/app/models/SubRequest';
@@ -82,10 +83,19 @@ export class ModelCountSelectorComponent implements OnInit {
    * TODO: Check if this actually works
    */
   deleteSubRequest(request: SubRequest) {
-    this.subRequests = this.subRequests.filter((subRequest: SubRequest) => {
-      return subRequest !== request;
-    })
-    this.updateTotalDevicesSelected();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      width: '650px',
+      data: { message: `Wollen Sie die Anfrage für ${request.count} ${request.deviceModel.displayName}(s) wirklich entfernen?`, critical: true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.subRequests = this.subRequests.filter((subRequest: SubRequest) => {
+          return subRequest !== request;
+        })
+        this.updateTotalDevicesSelected();
+      }
+    });
   }
 
   /**
