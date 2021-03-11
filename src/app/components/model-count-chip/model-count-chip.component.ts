@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EventEmitter } from 'events';
 import { DeviceModel } from 'src/app/models/DeviceModel';
+import { SubRequest } from 'src/app/models/SubRequest';
 
 /**
  * Displays the count and the device name. Offers the option to delete a SubRequest from the mat chip list
@@ -16,14 +18,21 @@ export class ModelCountChipComponent implements OnInit {
   /**
    * The device model selected
    */
-  @Input() deviceModel: DeviceModel;
+  @Input() subRequest: SubRequest;
 
   /**
-   * Count of devices
+   * Delete listener
    */
-  @Input() deviceCount: number;
+  @Input() deleteListener: EventEmitter;
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Delete the request
+   */
+  deleteRequest() {
+    this.deleteListener.emit(this.subRequest as any);
   }
 
 }

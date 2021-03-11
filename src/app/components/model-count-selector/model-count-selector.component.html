@@ -2,8 +2,8 @@
     <div style="display: flex; max-width: 600px">
         <label>Aktuell ausgewählt:</label>
         <div style="display: block;">
-            <mat-chip-list aria-label="Fish selection" *ngFor="let chip of subRequests" style="display: inline-block; padding: 5px">
-                <app-model-count-chip [deviceModel]="chip.deviceModel" [deviceCount]="chip.count"></app-model-count-chip>
+            <mat-chip-list aria-label="Fish selection" *ngFor="let subRequest of subRequests" style="display: inline-block; padding: 5px">
+                <app-model-count-chip [subRequest]="subRequest" [deleteListener]="deleteSubRequestListener"></app-model-count-chip>
             </mat-chip-list>
         </div>
         <label>Geräte insgesamt: {{totalDevicesSelected}}</label>

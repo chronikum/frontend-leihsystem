@@ -24,10 +24,10 @@
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
-    <button mat-raised-button *ngIf="stepperCompleted" (click)="addRequest()">Hinzufügen</button>
     <button mat-raised-button (click)="goBack(stepper)" type="button">Zurück</button>
-    <button mat-raised-button [disabled]="
+    <button mat-raised-button *ngIf="stepper.selectedIndex !== 2" [disabled]="
     (stepper.selectedIndex === 0 ? !(this.currentSelection.selected.length === 1) : false) ||
     (stepper.selectedIndex === 1 ? !(this.deviceCountForm.get('deviceCount').value) : false)
     " (click)="goForward(stepper)" type="button">Weiter</button>
+    <button mat-raised-button *ngIf="stepper.selectedIndex === 2" (click)="addRequest()">Hinzufügen</button>
 </mat-dialog-actions>

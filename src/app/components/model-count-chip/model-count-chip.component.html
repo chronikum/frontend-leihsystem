@@ -1,4 +1,5 @@
-<mat-chip [matBadge]="deviceCount" matBadge="4">
-    {{deviceModel?.displayName || '-'}}
-    <mat-icon matSuffix>close</mat-icon>
+<mat-chip style="background-color: #a0ce4e; display: flex;">
+    <span style="background-color: white; color: black; padding-left: 4px; padding-right: 4px; border-radius: 20%;">{{subRequest?.count}}</span>
+    <span style="padding-left: 4px; padding-right: 4px;">{{subRequest?.deviceModel?.displayName || '-'}}</span>
+    <mat-icon (click)="deleteRequest()" style="color: red; background-color: black; border-radius: 20%;">close</mat-icon>
 </mat-chip>

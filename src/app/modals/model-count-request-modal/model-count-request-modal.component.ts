@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { DeviceModel } from 'src/app/models/DeviceModel';
+import { SubRequest } from 'src/app/models/SubRequest';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -86,7 +87,12 @@ export class ModelCountRequestModalComponent implements OnInit {
    * Creates the requests and closes the modal with it as argument
    */
   addRequest() {
-
+    const request: SubRequest = {
+      count: this.deviceCountForm.get('deviceCount').value,
+      deviceModel: this.currentSelection.selected[0],
+      deviceModelIdentifier: this.currentSelection.selected[0].deviceModelId,
+    }
+    this.dialogRef.close(request);
   }
 
   /**

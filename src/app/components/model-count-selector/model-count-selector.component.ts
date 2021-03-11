@@ -33,6 +33,11 @@ export class ModelCountSelectorComponent implements OnInit {
   subRequests: SubRequest[] = [];
 
   /**
+   * Subrequest deletion requested listener
+   */
+  deleteSubRequestListener = new EventEmitter<SubRequest>();
+
+  /**
    * Total devices selected with model select count
    */
   totalDevicesSelected: number = 0;
@@ -46,8 +51,15 @@ export class ModelCountSelectorComponent implements OnInit {
   ) {
   }
 
+  /**
+   * Loads device models and sets up deleteSubRequestListener.
+   * We will apply the listener to the items added on the interface, 
+   * if the delete button is triggered, we will be notified
+   * and can take care of it.
+   */
   ngOnInit(): void {
     this.loadDeviceModels();
+    this.deleteSubRequestListener.subscribe(requestToDelete => this.deleteSubRequest(requestToDelete));
   }
 
   /**
@@ -69,9 +81,9 @@ export class ModelCountSelectorComponent implements OnInit {
    * Will updated total devices selected afterwards
    * TODO: Check if this actually works
    */
-  deleteSubRequest(deviceModel: DeviceModel) {
+  deleteSubRequest(request: SubRequest) {
     this.subRequests = this.subRequests.filter((subRequest: SubRequest) => {
-      return deviceModel.deviceModelId !== subRequest.deviceModelIdentifier
+      return subRequest !== request;
     })
     this.updateTotalDevicesSelected();
   }
