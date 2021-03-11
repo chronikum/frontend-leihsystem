@@ -10,7 +10,7 @@ export class RequestButtonGroupComponent implements OnInit {
   /**
    * The request accept and reservation create button action
    */
-  @Output() reserveAction = new EventEmitter<any>();
+  @Output() reviewReservation = new EventEmitter<any>();
 
   /**
    * The request decline button action

@@ -86,6 +86,7 @@ import { ModelCountChipComponent } from './components/model-count-chip/model-cou
 import { ModelCountRequestModalComponent } from './modals/model-count-request-modal/model-count-request-modal.component';
 import { InfoBoxComponent } from './components/info-box/info-box.component';
 import { WarningModalComponent } from './modals/warning-modal/warning-modal.component';
+import { ReviewReservationRequestModalComponent } from './modals/review-reservation-request-modal/review-reservation-request-modal.component';
 
 
 @NgModule({
@@ -137,6 +138,7 @@ import { WarningModalComponent } from './modals/warning-modal/warning-modal.comp
     ModelCountRequestModalComponent,
     InfoBoxComponent,
     WarningModalComponent,
+    ReviewReservationRequestModalComponent,
   ],
   imports: [
     FlexLayoutModule,

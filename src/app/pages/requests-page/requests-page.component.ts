@@ -13,7 +13,7 @@ export class RequestsPageComponent implements OnInit {
   /**
    * Holds the current selection information
    */
-  selection = new SelectionModel<Reservation>();
+  selection = new SelectionModel<Request>();
 
   /**
    * Refresh action stream
@@ -26,11 +26,18 @@ export class RequestsPageComponent implements OnInit {
   }
 
   /**
+   * Review the reservation request selected
+   */
+  reviewReservationRequest() {
+    const selectedReservationRequest = this.selection.selected[0];
+  }
+
+  /**
    * Selection of the table is being changed
    * 
    * @param SelectionModel<Item> the current selection of the table
    */
-  selectionChange(selection: SelectionModel<Reservation>) {
+  selectionChange(selection: SelectionModel<Request>) {
     this.selection = selection;
   }
 
