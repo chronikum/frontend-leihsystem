@@ -85,6 +85,7 @@ export class RequestTableComponent implements OnInit {
     this.apiService.getAllRequests$().subscribe(response => {
       const requests: Request[] = response.requests;
       this.loadingCompleted = false;
+      console.log(requests)
       this.dataSource = new MatTableDataSource<Request>([...requests]);
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;

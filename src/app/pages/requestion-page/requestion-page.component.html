@@ -44,10 +44,7 @@
             <mat-card *ngIf="requestForm.get('advancedSelection').value === 'simple'">
               <mat-card-subtitle>Geben Sie hier die Anzahl der Geräte ein, die Sie benötigen.</mat-card-subtitle>
               <mat-form-field appearance="outline" style="display: flex;">
-                <input [formControlName]="'deviceAmount'" matInput placeholder="Geräte-Anzahl">
-                <mat-error>
-                    Erforderlich
-                </mat-error>
+                <input [formControlName]="'deviceAmount'" matInput type="number" placeholder="Geräte-Anzahl">
             </mat-form-field>
             </mat-card>
             <mat-card *ngIf="requestForm.get('advancedSelection').value === 'advanced'">
