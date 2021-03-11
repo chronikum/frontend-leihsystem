@@ -16,7 +16,7 @@ export class ModelCountSelectorComponent implements OnInit {
   /**
    * The current subrequests
    */
-  @Output() subRequestsEmitter = new EventEmitter<SubRequest[]>();
+  @Input() subRequestsEmitter: EventEmitter<SubRequest[]>;
 
   /**
    * All device models

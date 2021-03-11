@@ -84,6 +84,8 @@ import { GeneralSelectionTableComponent } from './components/general-selection-t
 import { ModelCountSelectorComponent } from './components/model-count-selector/model-count-selector.component';
 import { ModelCountChipComponent } from './components/model-count-chip/model-count-chip.component';
 import { ModelCountRequestModalComponent } from './modals/model-count-request-modal/model-count-request-modal.component';
+import { InfoBoxComponent } from './components/info-box/info-box.component';
+import { WarningModalComponent } from './modals/warning-modal/warning-modal.component';
 
 
 @NgModule({
@@ -133,6 +135,8 @@ import { ModelCountRequestModalComponent } from './modals/model-count-request-mo
     ModelCountSelectorComponent,
     ModelCountChipComponent,
     ModelCountRequestModalComponent,
+    InfoBoxComponent,
+    WarningModalComponent,
   ],
   imports: [
     FlexLayoutModule,
