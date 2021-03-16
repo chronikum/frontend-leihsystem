@@ -89,6 +89,7 @@ export class RequestTableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();
+      console.log(requests)
     });
   }
 

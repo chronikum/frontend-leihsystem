@@ -49,9 +49,6 @@ export class ManageGroupMembersModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.managedGroup) {
-      console.log(this.members)
-    }
   }
 
   /**

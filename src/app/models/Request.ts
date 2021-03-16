@@ -1,4 +1,5 @@
 import { SubRequest } from "./SubRequest";
+import { User } from "./User";
 
 /**
  * Represents a registration request
@@ -11,6 +12,7 @@ export interface Request {
     subRequest?: SubRequest[], // Submitted subrequests - can be undefined
     deviceCount?: number, // Device count if request is simple request
     created?: number,
+    requestingUser?: User, // the user requesting the reservation. only available under certain circumstances
     modified?: number,
     priority?: number,
 }

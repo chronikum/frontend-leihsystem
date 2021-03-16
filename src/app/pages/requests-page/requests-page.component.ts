@@ -2,8 +2,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewReservationRequestModalComponent } from 'src/app/modals/review-reservation-request-modal/review-reservation-request-modal.component';
-import { Item } from 'src/app/models/Item';
-import { Reservation } from 'src/app/models/Reservation';
 
 @Component({
   selector: 'app-requests-page',
