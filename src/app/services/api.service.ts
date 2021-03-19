@@ -213,6 +213,16 @@ export class ApiService {
   }
 
   /**
+   * Gets a reservation suggestion for a reservation request
+   * @param request to update
+   */
+  getReservationSuggestion$(request: Request): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'suggestReservationForRequest', {
+      request: request
+    });
+  }
+
+  /**
    * Get all requests
    * @returns all {@link Requests} available 
    */
