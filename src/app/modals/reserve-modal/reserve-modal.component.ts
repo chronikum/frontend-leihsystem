@@ -43,7 +43,10 @@ export class ReserveModalComponent implements OnInit {
    * Get Reservation
    */
   getReservation(): Reservation {
+    // Item Ids to fill in
+    const itemIds = this.items.map((item) => item.itemId);
     let reservation: Reservation = {
+      itemIds: itemIds,
       reservationName: this.simpleReservationForm.get('reservationName').value,
       startDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('start').value))), this.simpleReservationForm.get('startDateTime').value),
       plannedEndDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('end').value))), this.simpleReservationForm.get('endDateTime').value),

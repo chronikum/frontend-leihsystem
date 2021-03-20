@@ -223,6 +223,16 @@ export class ApiService {
   }
 
   /**
+   * Gets a reservation suggestion for a reservation request
+   * @param request to update
+   */
+  getDevicesForTimespan$(request: Request): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getItemsForTimespan', {
+      request: request
+    });
+  }
+
+  /**
    * Get all requests
    * @returns all {@link Requests} available 
    */

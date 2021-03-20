@@ -83,6 +83,7 @@ export class ReservationTableComponent implements OnInit {
   loadData(): void {
     this.apiService.getAllReservations$().subscribe(reservations => {
       this.loadingCompleted = false;
+      console.log(reservations)
       this.dataSource = new MatTableDataSource<Reservation>([...reservations]);
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
