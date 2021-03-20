@@ -29,12 +29,17 @@ export class RequestsPageComponent implements OnInit {
 
   /**
    * Review the reservation request selected
+   * 
+   * - opens the dialog with the reservation
    */
   reviewReservationRequest() {
     const selectedReservationRequest = this.selection.selected[0];
     if (selectedReservationRequest) {
       const dialogRef = this.dialog.open(ReviewReservationRequestModalComponent, {
         width: '80%',
+        data: {
+          request: selectedReservationRequest,
+        }
       });
 
       dialogRef.afterClosed().subscribe(result => {
