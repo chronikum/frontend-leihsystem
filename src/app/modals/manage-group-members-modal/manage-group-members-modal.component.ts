@@ -64,6 +64,7 @@ export class ManageGroupMembersModalComponent implements OnInit {
       if (result.success) {
         if (result.users) {
           this.suggested = result.users;
+          console.log(this.suggested)
         }
       }
     })

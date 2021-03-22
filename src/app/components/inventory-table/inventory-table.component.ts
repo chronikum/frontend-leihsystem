@@ -70,6 +70,7 @@ export class InventoryTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadDeviceModels();
     /**
      * Will be fired if events change to stream the output to the parent component
      */
@@ -85,7 +86,6 @@ export class InventoryTableComponent implements OnInit {
     /**
      * Load all device models from the server
      */
-    this.loadDeviceModels();
   }
 
   /**

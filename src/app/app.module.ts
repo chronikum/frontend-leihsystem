@@ -88,6 +88,7 @@ import { ModelCountRequestModalComponent } from './modals/model-count-request-mo
 import { InfoBoxComponent } from './components/info-box/info-box.component';
 import { WarningModalComponent } from './modals/warning-modal/warning-modal.component';
 import { ReviewReservationRequestModalComponent } from './modals/review-reservation-request-modal/review-reservation-request-modal.component';
+import { ReviewRequestSelectorTableComponent } from './components/review-request-selector-table/review-request-selector-table.component';
 
 
 @NgModule({
@@ -140,6 +141,7 @@ import { ReviewReservationRequestModalComponent } from './modals/review-reservat
     InfoBoxComponent,
     WarningModalComponent,
     ReviewReservationRequestModalComponent,
+    ReviewRequestSelectorTableComponent,
   ],
   imports: [
     FlexLayoutModule,

@@ -128,7 +128,7 @@ export class ReservationTableComponent implements OnInit {
    */
   parseDate(number: number): string {
     if (number) {
-      return new Date(number).toLocaleDateString() + new Date(number).toLocaleTimeString();
+      return new Date(number).toLocaleDateString() + ' um ' + new Date(number).toLocaleTimeString();
     }
     return '-'
   }

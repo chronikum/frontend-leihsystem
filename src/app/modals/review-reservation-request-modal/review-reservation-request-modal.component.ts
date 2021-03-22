@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Item } from 'src/app/models/Item';
 import { Request } from 'src/app/models/Request';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -16,26 +17,29 @@ export class ReviewReservationRequestModalComponent implements OnInit {
    */
   reservationRequest: Request;
 
+  /**
+   * Suggested items
+   */
+  suggestedItems = new EventEmitter<Item[]>();
+
   constructor(
     private dialog: MatDialogRef<ReviewReservationRequestModalComponent>,
     private apiService: ApiService,
     @Inject(MAT_DIALOG_DATA) public data: { request: Request }) {
     this.reservationRequest = data?.request;
+    this.getSuggestion();
   }
 
   ngOnInit(): void {
   }
 
   /**
-   * Gets a suggestion from the server
+   * Gets a suggestion from the server and fire a subscriber pointing to the table
    */
   getSuggestion() {
-    this.apiService.getReservationSuggestion$(this.reservationRequest).subscribe(result => {
-      // let reservation = result.reservation;
-      console.log(result)
-    });
     this.apiService.getDevicesForTimespan$(this.reservationRequest).subscribe(response => {
       let items = response.items;
+      this.suggestedItems.next(items);
     })
   }
 

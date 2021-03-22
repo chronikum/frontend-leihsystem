@@ -2,6 +2,7 @@
     <h3 mat-dialog-subtitle>Bitte überprüfen Sie die Anfrage</h3>
     <button class="mat-raised-button" (click)="getSuggestion()">Test</button>
     <div style="display: flex;"></div>
+    <app-review-request-selector-table *ngIf="suggestedItems" [dataEmitter]="suggestedItems"></app-review-request-selector-table>
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-raised-button" (click)="closeAction()">Schließen</button>

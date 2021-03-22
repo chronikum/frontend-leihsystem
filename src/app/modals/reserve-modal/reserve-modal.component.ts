@@ -66,7 +66,6 @@ export class ReserveModalComponent implements OnInit {
     let minute_seconds = (parseInt(separate[1]) * 60000);
     console.log("Calculated time:" + (day_seconds + minute_seconds));
     console.log("Calculated date time:" + date_time);
-
     // Add the calculated time parts together and subtract a hour, if we have winter time.
     return (((day_seconds + minute_seconds) + date_time));
   }
