@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Request } from 'src/app/models/Request';
 
 @Component({
-  selector: 'app-reqest-review-status-box',
-  templateUrl: './reqest-review-status-box.component.html',
-  styleUrls: ['./reqest-review-status-box.component.scss']
+  selector: 'app-request-review-status-box',
+  templateUrl: './request-review-status-box.component.html',
+  styleUrls: ['./request-review-status-box.component.scss']
 })
 export class ReqestReviewStatusBoxComponent implements OnInit {
 
@@ -23,6 +23,20 @@ export class ReqestReviewStatusBoxComponent implements OnInit {
    */
   getSimpleOrComplex() {
     return (this.request?.subRequest[0] || false) ? 'Komplex' : 'Einfach';
+  }
+
+  /**
+   * Simple request
+   */
+  isSimple() {
+    return (this.getSimpleOrComplex() === 'Einfach')
+  }
+
+  /**
+   * Complex request
+   */
+  isComplex() {
+    return (this.getSimpleOrComplex() === 'Komplex')
   }
 
 }

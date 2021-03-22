@@ -1,0 +1,25 @@
+<div style="max-width: 600px;">
+    <mat-card>
+        <p class="mat-title">Die Reservierungsanfrage hat folgende Anforderungen:</p>
+        <!-- SIMPLE OR COMPLEX -->
+        <p><b>Anfragenart:</b> {{getSimpleOrComplex()}}
+            <br>
+            <span *ngIf="isSimple()">Eine einfache Anfrage bedeutet, dass die reservierende Person nicht ein spezielles Gerätemodell erwünscht.</span>
+            <span *ngIf="isComplex()">Eine komplexe Anfrage bedeutet, dass die reservierende Person spezielle Gerätemodelle erwünscht.</span>
+        </p>
+        <br>
+        <!-- SIMPLE REQUEST -->
+        <div *ngIf="isSimple()">
+            <app-condition-view [text]="'EINE BEDINGUNG DIE ERFÜLLT WERDEN MUSS'"></app-condition-view>
+        </div>
+        <div *ngIf="isSimple()">
+            <app-condition-view [text]="'EINE BEDINGUNG DIE ERFÜLLT WERDEN MUSS'"></app-condition-view>
+        </div>
+        <div *ngIf="isSimple()">
+            <app-condition-view [text]="'EINE BEDINGUNG DIE ERFÜLLT WERDEN MUSS'"></app-condition-view>
+        </div>
+        <div *ngIf="isSimple()">
+            <app-condition-view [text]="'EINE BEDINGUNG DIE ERFÜLLT WERDEN MUSS'"></app-condition-view>
+        </div>
+    </mat-card>
+</div>
