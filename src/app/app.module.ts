@@ -146,7 +146,7 @@ import { ConditionViewComponent } from './components/condition-view/condition-vi
     ReviewReservationRequestModalComponent,
     ReviewRequestSelectorTableComponent,
     RequestInfoBoxComponent,
-    ReqestReviewStatusBoxComponent,
+    RequestReviewStatusBoxComponent,
     ConditionViewComponent,
   ],
   imports: [

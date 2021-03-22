@@ -6,7 +6,7 @@ import { Request } from 'src/app/models/Request';
   templateUrl: './request-review-status-box.component.html',
   styleUrls: ['./request-review-status-box.component.scss']
 })
-export class ReqestReviewStatusBoxComponent implements OnInit {
+export class RequestReviewStatusBoxComponent implements OnInit {
 
   /**
    * The request to fulfill

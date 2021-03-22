@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReqestReviewStatusBoxComponent } from './request-review-status-box.component';
+import { RequestReviewStatusBoxComponent } from './request-review-status-box.component';
 
-describe('ReqestReviewStatusBoxComponent', () => {
-  let component: ReqestReviewStatusBoxComponent;
-  let fixture: ComponentFixture<ReqestReviewStatusBoxComponent>;
+describe('RequestReviewStatusBoxComponent', () => {
+  let component: RequestReviewStatusBoxComponent;
+  let fixture: ComponentFixture<RequestReviewStatusBoxComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ReqestReviewStatusBoxComponent]
+      declarations: [RequestReviewStatusBoxComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReqestReviewStatusBoxComponent);
+    fixture = TestBed.createComponent(RequestReviewStatusBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
