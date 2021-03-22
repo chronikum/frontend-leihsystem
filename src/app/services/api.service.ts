@@ -128,6 +128,18 @@ export class ApiService {
   }
 
   /**
+   * get user information for user id
+   * @param userId userId
+   * @returns GeneralServerResponse
+   */
+  getUserInformationForId$(userId: number): Observable<GeneralServerResponse> {
+    console.log("Looking up User: " + userId)
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getUserInformationForId', {
+      userId
+    });
+  }
+
+  /**
    * Get inventory list
    * @returns Item[] available
    */

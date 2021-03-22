@@ -12,7 +12,8 @@ export interface Request {
     subRequest?: SubRequest[], // Submitted subrequests - can be undefined
     deviceCount?: number, // Device count if request is simple request
     created?: number,
-    requestingUser?: User, // the user requesting the reservation. only available under certain circumstances
+    requestingUser?: number, // the user requesting the reservation. only available under certain circumstances
     modified?: number,
+    userCreated?: number,
     priority?: number,
 }

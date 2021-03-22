@@ -1,9 +1,21 @@
-<div mat-dialog-content style="text-align: center; width: 100%;">
-    <h3 mat-dialog-subtitle>Bitte überprüfen Sie die Anfrage</h3>
-    <button class="mat-raised-button" (click)="getSuggestion()">Test</button>
-    <div style="display: flex;"></div>
-    <app-review-request-selector-table *ngIf="suggestedItems" [dataEmitter]="suggestedItems"></app-review-request-selector-table>
-</div>
+<div>
+    <h3 mat-dialog-title>Bitte überprüfen Sie die Anfrage</h3>
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" mat-dialog-content *ngIf="!(suggestions ? suggestions.length == 0 : false)">
+            <div fxFlex="1 1 auto">
+                <app-request-info-box [request]="reservationRequest"></app-request-info-box>
+                <app-reqest-review-status-box [request]="reservationRequest"></app-reqest-review-status-box>
+            </div>
+            <div fxFlex="1 1 auto">
+                <app-review-request-selector-table *ngIf="suggestedItems" [dataEmitter]="suggestedItems"></app-review-request-selector-table>
+            </div>
+    </div>
+    <div *ngIf="suggestions ? suggestions.length == 0 : false">
+        <mat-card>
+        <p class="mat-display-1">Keine Geräte verfügbar.</p>
+        <p class="mat-title">In diesem Zeitraum sind keine Geräte verfügbar. Wie es scheint, sind alle Geräte zu dem gewünschten Zeitpunkt momentan ausgebucht.</p>
+        </mat-card>
+    </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-raised-button" (click)="closeAction()">Schließen</button>
 </mat-dialog-actions>
+</div>

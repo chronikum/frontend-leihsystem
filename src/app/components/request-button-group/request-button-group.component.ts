@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-request-button-group',
@@ -11,6 +11,11 @@ export class RequestButtonGroupComponent implements OnInit {
    * The request accept and reservation create button action
    */
   @Output() reviewReservation = new EventEmitter<any>();
+
+  /**
+   * Determines if buttons are enabled
+   */
+  @Input() enableButtons: boolean = false;
 
   /**
    * The request decline button action

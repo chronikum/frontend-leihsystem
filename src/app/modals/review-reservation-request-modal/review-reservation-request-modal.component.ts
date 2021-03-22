@@ -18,6 +18,11 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   reservationRequest: Request;
 
   /**
+   * The suggested item data
+   */
+  suggestions: Item[]
+
+  /**
    * Suggested items
    */
   suggestedItems = new EventEmitter<Item[]>();
@@ -39,6 +44,7 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   getSuggestion() {
     this.apiService.getDevicesForTimespan$(this.reservationRequest).subscribe(response => {
       let items = response.items;
+      this.suggestions = response.items;
       this.suggestedItems.next(items);
     })
   }

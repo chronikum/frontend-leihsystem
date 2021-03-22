@@ -1,0 +1,9 @@
+<div style="max-width: 600px;">
+    <!-- INFORMATION ABOUT THE REQUESTING USER -->
+    <mat-card *ngIf="requestingUser">
+        <p class="mat-title">Anfragende Person:</p>
+        <p><b>Username:</b> {{requestingUser.username}}</p>
+        <p><b>Anfragende Person:</b> {{requestingUser.firstName}} {{requestingUser.surname}}</p>
+        <p><b>Kontakt E-Mail:</b> {{requestingUser.email}}</p>
+    </mat-card>
+</div>
