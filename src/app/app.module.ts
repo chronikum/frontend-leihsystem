@@ -96,6 +96,7 @@ import { ConditionHeaderComponent } from './components/condition-header/conditio
 import { ReservationDetailModalComponent } from './modals/reservation-detail-modal/reservation-detail-modal.component';
 import { ReservationInformationComponent } from './components/reservation-information/reservation-information.component';
 import { ReservationItemInformationComponent } from './components/reservation-item-information/reservation-item-information.component';
+import { FinishReservationModalComponent } from './modals/finish-reservation-modal/finish-reservation-modal.component';
 
 
 @NgModule({
@@ -156,6 +157,7 @@ import { ReservationItemInformationComponent } from './components/reservation-it
     ReservationDetailModalComponent,
     ReservationInformationComponent,
     ReservationItemInformationComponent,
+    FinishReservationModalComponent,
   ],
   imports: [
     FlexLayoutModule,

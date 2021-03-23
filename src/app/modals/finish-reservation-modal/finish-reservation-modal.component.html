@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+    <h3 mat-dialog-title>Reservierungsstatus ändern</h3>
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+        <p>Markieren Sie die Reservierung als erfolgreich beendet.<br>Dies kann auch schon früher geschehen - sollten die Geräte noch einwandfrei zurückgegeben worden sein, bitte nicht als beendet markieren.</p>
+        <p>Dieser Prozess ist nicht umkehrbar. Die Geräte der Reservierung werden danach wieder für das Ausleihsystem verfügbar sein.</p>
+    </div>
+</div>
+<div mat-dialog-actions style="float: right">
+    <button mat-raised-button (click)="cancel()">Abbrechen</button>
+    <button mat-raised-button (click)="finishReservation()" color="primary">Reservierung beenden</button>
+</div>

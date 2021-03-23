@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { FinishReservationModalComponent } from 'src/app/modals/finish-reservation-modal/finish-reservation-modal.component';
 import { ReservationDetailModalComponent } from 'src/app/modals/reservation-detail-modal/reservation-detail-modal.component';
 import { Reservation } from 'src/app/models/Reservation';
 
@@ -55,7 +56,14 @@ export class ReservationPageComponent implements OnInit {
    * End the reservation and mark it as finished
    */
   endReservation() {
+    const dialogRef = this.dialog.open(FinishReservationModalComponent, {
+      width: '650px',
+      data: { reservation: this.selection.selected[0] }
+    });
 
+    dialogRef.afterClosed().subscribe(async result => {
+
+    });
   }
 
 }

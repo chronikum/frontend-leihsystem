@@ -205,6 +205,17 @@ export class ApiService {
   }
 
   /**
+   * Set reservation as finished
+   * @param reservation Reservation
+   * @param items Items
+   */
+  finishReservation$(reservation: Reservation): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'finishReservation', {
+      reservation: reservation,
+    });
+  }
+
+  /**
    * Get all reservations from the system
    * 
    * @returns reservations
