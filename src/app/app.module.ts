@@ -94,6 +94,7 @@ import { RequestReviewStatusBoxComponent } from './components/request-review-sta
 import { ConditionViewComponent } from './components/condition-view/condition-view.component';
 import { ConditionHeaderComponent } from './components/condition-header/condition-header.component';
 import { ReservationDetailModalComponent } from './modals/reservation-detail-modal/reservation-detail-modal.component';
+import { ReservationInformationComponent } from './components/reservation-information/reservation-information.component';
 
 
 @NgModule({
@@ -152,6 +153,7 @@ import { ReservationDetailModalComponent } from './modals/reservation-detail-mod
     ConditionViewComponent,
     ConditionHeaderComponent,
     ReservationDetailModalComponent,
+    ReservationInformationComponent,
   ],
   imports: [
     FlexLayoutModule,

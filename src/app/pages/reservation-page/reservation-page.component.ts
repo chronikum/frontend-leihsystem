@@ -1,5 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ReservationDetailModalComponent } from 'src/app/modals/reservation-detail-modal/reservation-detail-modal.component';
 import { Reservation } from 'src/app/models/Reservation';
 
 @Component({
@@ -19,7 +21,9 @@ export class ReservationPageComponent implements OnInit {
    */
   refreshActionStream = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -37,7 +41,14 @@ export class ReservationPageComponent implements OnInit {
    * Show reservation details
    */
   showReservationsDetail() {
+    const dialogRef = this.dialog.open(ReservationDetailModalComponent, {
+      width: '650px',
+      data: { reservation: this.selection.selected[0] }
+    });
 
+    dialogRef.afterClosed().subscribe(async result => {
+
+    });
   }
 
   /**
