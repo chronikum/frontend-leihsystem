@@ -40,7 +40,7 @@ export class DeviceModelPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: DeviceModel) => {
       console.log(result);
-      if (result.displayName) {
+      if (result?.displayName) {
         this.apiService.createModel$(result).subscribe(itemCreated => {
           if (itemCreated) {
             this.refreshActionStream.next(true)
@@ -64,7 +64,7 @@ export class DeviceModelPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: DeviceModel) => {
       console.log(result);
-      if (result.displayName) {
+      if (result?.displayName) {
         this.apiService.editModel$(result).subscribe(itemCreated => {
           if (itemCreated) {
             this.refreshActionStream.next(true)
