@@ -5,5 +5,9 @@
         <p><b>Username:</b> {{requestingUser.username}}</p>
         <p><b>Anfragende Person:</b> {{requestingUser.firstName}} {{requestingUser.surname}}</p>
         <p><b>Kontakt E-Mail:</b> {{requestingUser.email}}</p>
+        <p><b>Zeitspanne:</b><br>
+            {{parseDate(request.startDate)}} bis zum {{parseDate(request.plannedEndDate)}}
+        </p>
+        <p>Reservierung beginnt: {{timeUntilStart()}}</p>
     </mat-card>
 </div>

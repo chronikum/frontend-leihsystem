@@ -10,7 +10,7 @@ export interface Reservation {
     approvalRequired: boolean,
     approved?: boolean,
     responsible: string,
-    itemIds: Item[],
+    itemIds: number[],
     startDate: number,
     plannedEndDate: number,
     completed: boolean,

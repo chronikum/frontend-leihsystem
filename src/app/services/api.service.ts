@@ -225,6 +225,17 @@ export class ApiService {
   }
 
   /**
+   * Accept a request
+   * @param request to accept
+   * @returns 
+   */
+  acceptRequest$(request: Request): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'acceptRequest', {
+      request: request
+    });
+  }
+
+  /**
    * Gets a reservation suggestion for a reservation request
    * @param request to update
    */

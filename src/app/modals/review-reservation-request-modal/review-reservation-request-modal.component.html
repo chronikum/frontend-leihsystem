@@ -4,6 +4,10 @@
             <div fxFlex="1 auto auto">
                 <app-request-info-box [request]="reservationRequest"></app-request-info-box>
                 <app-request-review-status-box [conditionsPrefilledUpdater]="allConditionsPrefilled" [subrequestPrefilledUpdater]="subRequestConditionEmitter" [request]="reservationRequest"></app-request-review-status-box>
+                <mat-card>
+                    <p>Geben sie der Reservierung einen passenden Namen:</p>
+                    <input matInput placeholder="Reservierungsname (mind. 5 Zeichen)" [(ngModel)]="reservationName">
+                </mat-card>
             </div>
             <div fxFlex="1 1 auto">
                 <app-review-request-selector-table (selectionChanged)="updateSelection($event)" *ngIf="suggestedItems" [dataEmitter]="suggestedItems"></app-review-request-selector-table>
@@ -16,7 +20,8 @@
         </mat-card>
     </div>
 <mat-dialog-actions style="float: right">
+    <button mat-button color="warn" (click)="deleteRequest()">Anfrage ablehnen und löschen</button>
     <button class="mat-raised-button" (click)="closeAction()">Abbrechen</button>
-    <button class="mat-raised-button" mat-raised-button color="primary" [disabled]="!allConditionsArePrefilled">Reservierung bestätigen und speichern</button>
+    <button class="mat-raised-button" mat-raised-button color="primary" (click)="submitReservation()" [disabled]="!(allConditionsArePrefilled && checksIfReservationNameIsValid())">Reservierung bestätigen und speichern</button>
 </mat-dialog-actions>
 </div>

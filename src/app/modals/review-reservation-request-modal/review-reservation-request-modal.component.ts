@@ -3,6 +3,7 @@ import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Item } from 'src/app/models/Item';
 import { Request } from 'src/app/models/Request';
+import { Reservation } from 'src/app/models/Reservation';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -46,6 +47,11 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   allConditionsArePrefilled: boolean = false;
 
   /**
+   * Reservation name (min length 5 chars)
+   */
+  reservationName: string = ''
+
+  /**
    * Currently selected items in the table
    */
   selection = new SelectionModel<Item>(true, []);
@@ -86,7 +92,6 @@ export class ReviewReservationRequestModalComponent implements OnInit {
 
     // SIMPLE
     if (this.isSimple()) {
-      console.log("CHECK")
       conditionsarray[0] = (this.reservationRequest.deviceCount === this.selection.selected.length);
       console.log(conditionsarray[0])
     }
@@ -122,6 +127,34 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   }
 
   /**
+   * Deletes request
+   */
+  deleteRequest() {
+    this.dialog.close();
+  }
+
+  /**
+   * Submit reservation from the request
+   */
+  submitReservation() {
+    // Get all the item ids
+    const selectedItemIds = this.selection.selected.map(item => item.itemId);
+    // Create reservation
+    const reservation: Reservation = {
+      reservationName: this.reservationName,
+      itemIds: selectedItemIds,
+      startDate: this.reservationRequest.startDate,
+      plannedEndDate: this.reservationRequest.plannedEndDate,
+      responsible: this.reservationRequest.userCreated.toString(),
+    } as any;
+
+    this.dialog.close({
+      reservation,
+      items: this.selection.selected
+    })
+  }
+
+  /**
    * Simple request
    */
   isSimple() {
@@ -140,6 +173,13 @@ export class ReviewReservationRequestModalComponent implements OnInit {
    */
   getSimpleOrComplex() {
     return (this.reservationRequest?.subRequest[0] || false) ? 'Komplex' : 'Einfach';
+  }
+
+  /**
+   * Checks if reservation name is valid
+   */
+  checksIfReservationNameIsValid() {
+    return (this.reservationName.length > 4);
   }
 
 }

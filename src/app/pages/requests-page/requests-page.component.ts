@@ -2,6 +2,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ReviewReservationRequestModalComponent } from 'src/app/modals/review-reservation-request-modal/review-reservation-request-modal.component';
+import { Request } from 'src/app/models/Request';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-requests-page',
@@ -22,6 +24,7 @@ export class RequestsPageComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +46,15 @@ export class RequestsPageComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result)
+        if (result?.reservation && result.items) { // User accepted reservation, submit it now
+          this.apiService.createReservation$(result.reservation, result.items).subscribe(reservationCreated => {
+            console.log("Created reservation! Accpet request now.")
+            this.apiService.acceptRequest$(selectedReservationRequest).subscribe(ok => {
+              console.log("Accepted request. It will not be displayed afterwards");
+              this.refreshActionStream.next(true);
+            })
+          })
+        }
       });
     }
   }
