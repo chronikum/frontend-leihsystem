@@ -106,7 +106,17 @@ export class MenuBarComponent implements OnInit {
     },
   ]
 
+  /**
+   * The selected item
+   */
   activeItem?: string;
+
+  /**
+   * The user roles of the current user
+   * which will we use to check permissions
+   * of the authenticated user
+   */
+  userRoles: UserRoles[] = [];
 
   constructor(
     private router: Router,
@@ -114,12 +124,24 @@ export class MenuBarComponent implements OnInit {
     private changeDet: ChangeDetectorRef,
   ) { }
 
-
+  /**
+   * ngOnInit
+   * 
+   * - subscribes to the router events
+   * - subscribes to the user role updates from the api service
+   * - subscribes to the user updates from the api service
+   */
   ngOnInit(): void {
     this.router.events.subscribe(_ => {
       this.isAuthenticated = this.apiService.isAuthenticated;
       this.activeItem = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
       this.currentUser = this.apiService.currentUser;
+      this.apiService.groupRoleUpdater.subscribe(groupRole => {
+        this.userRoles = groupRole.userRoles;
+      })
+      this.apiService.userUpdater.subscribe(user => {
+        this.currentUser = user
+      });
     });
   }
 
@@ -160,7 +182,7 @@ export class MenuBarComponent implements OnInit {
    * @returns boolean
    * @param role provided from the item
    */
-  userHasPermissionToSeeItem(role: UserRoles): Boolean {
+  userHasPermissionToSeeItem(role: UserRoles): boolean {
     return this.checkPermission(role);
   }
 
@@ -168,9 +190,9 @@ export class MenuBarComponent implements OnInit {
    * Checks permission
    * @param role of the user
    */
-  checkPermission(role: UserRoles): Boolean {
+  checkPermission(role: UserRoles): boolean {
     if (this.currentUser) {
-      return (((this.currentUser?.role === role) || (this.currentUser?.groupRoles?.includes(role))) || this.currentUser.role === UserRoles.ADMIN);
+      return (((this.userRoles || [])?.includes(role)) || this.userRoles.includes(UserRoles.ADMIN))
     } else {
       return false;
     }

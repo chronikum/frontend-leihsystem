@@ -1,5 +1,5 @@
 import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { GeneralServerResponse } from '../models/GeneralServerResponse';
 import { tap } from 'rxjs/internal/operators/tap';
@@ -27,6 +27,16 @@ export class ApiService {
    * Endpoint
    */
   endpoint = environment.backend;
+
+  /**
+   * Group role updater
+   */
+  groupRoleUpdater = new EventEmitter<UserRoles[]>();
+
+  /**
+   * user updater
+   */
+  userUpdater = new EventEmitter<User>();
 
   /**
    * Refers to the authentication state
@@ -67,6 +77,10 @@ export class ApiService {
       tap(x => {
         if (x?.success) {
           this.isAuthenticated = true
+          this.getCurrentUserRoles$().subscribe(userRoles => {
+            this.groupRoleUpdater.next(userRoles);
+          })
+          this.userUpdater.next(x.user);
         } else {
           this.isAuthenticated = false
         }
@@ -97,6 +111,10 @@ export class ApiService {
       tap(x => {
         if (x?.success) {
           this.isAuthenticated = true
+          this.getCurrentUserRoles$().subscribe(userRoles => {
+            this.groupRoleUpdater.next(userRoles);
+          })
+          this.userUpdater.next(x.user);
         } else {
           this.isAuthenticated = false
         }
@@ -107,6 +125,14 @@ export class ApiService {
       },
       ),
     )
+  }
+
+  /**
+   * returns the user roles of the logged in user
+   * @returns User roles
+   */
+  getCurrentUserRoles$(): Observable<UserRoles[]> {
+    return this.httpClient.post<UserRoles[]>(this.endpoint + 'currentUserRoles', {});
   }
 
   /**
