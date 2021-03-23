@@ -54,14 +54,14 @@
           <ng-container matColumnDef="completed">
             <th mat-header-cell *matHeaderCellDef>Beendet</th>
             <td mat-cell *matCellDef="let element">
-              <span>{{element.completed || false}}</span>
+              <mat-icon *ngIf="element.completed">done</mat-icon>
             </td>
           </ng-container>
 
   
   
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'modified-cell': row.completed}"></tr>
   
   
         </table>

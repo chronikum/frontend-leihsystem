@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FinishReservationModalComponent } from 'src/app/modals/finish-reservation-modal/finish-reservation-modal.component';
 import { ReservationDetailModalComponent } from 'src/app/modals/reservation-detail-modal/reservation-detail-modal.component';
@@ -16,6 +16,21 @@ export class ReservationPageComponent implements OnInit {
    * Holds the current selection information
    */
   selection = new SelectionModel<Reservation>();
+
+  /**
+   * Determines if completed should be shown
+   */
+  @Input() showCompleted: boolean = false;
+
+  /**
+   * Determines if completed reservations should be shown
+   */
+  @Input() showCompletedReservationsEmitter = new EventEmitter<boolean>();
+
+  /**
+   * Show completed reservations model
+   */
+  showCompletedReservations: boolean = false;
 
   /**
    * Refresh action stream
@@ -64,6 +79,16 @@ export class ReservationPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async result => {
 
     });
+  }
+
+
+  /**
+   * Triggered if value of checkbox changes
+   * 
+   * - Determines if completed reservations should be shown
+   */
+  valueChange() {
+    this.showCompletedReservationsEmitter.next(this.showCompleted)
   }
 
 }

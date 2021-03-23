@@ -13,15 +13,21 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ReservationTableComponent implements OnInit {
 
+
   /**
-  * Columns displayed
-  */
+   * Columns displayed
+   */
   displayedColumns: string[] = ['select', 'reservationId', 'reservationName', 'description', 'startDate', 'plannedEndDate', 'completed'];
 
   /**
    * Datasource
    */
   dataSource: MatTableDataSource<Reservation> = [] as any;
+
+  /**
+   * Determines if completed reservations should be shown
+   */
+  @Input() showCompletedReservations: EventEmitter<boolean>;
 
   /**
    * Paginator
@@ -32,6 +38,11 @@ export class ReservationTableComponent implements OnInit {
    * Flag to reference loading state
    */
   loadingCompleted = false;
+
+  /**
+   * Show completed reservations toggle
+   */
+  showCompleted: boolean = false;
 
   /**
    * Selection Model
@@ -53,9 +64,9 @@ export class ReservationTableComponent implements OnInit {
   @Input() refreshTrigger: EventEmitter<any>;
 
   /**
-   * Show QR Code Emitter - emits the qr code content string
+   * reservations
    */
-  @Output() showQRCodeEmitter = new EventEmitter<Reservation>();
+  reservations: Reservation[];
 
   constructor(
     private apiService: ApiService,
@@ -63,12 +74,24 @@ export class ReservationTableComponent implements OnInit {
     this.loadData();
   }
 
+  /**
+   * ngOninit
+   * 
+   * - subscribe to selection change
+   * - subscribe to refresh trigger
+   * - subscribe to show completed reservations emitter
+   */
   ngOnInit(): void {
     /**
      * Will be fired if events change to stream the output to the parent component
      */
     this.selection.changed.subscribe(change => {
       this.selectionChanged.next(this.selection);
+    })
+
+    this.showCompletedReservations.subscribe(showCompletedReservationsValue => {
+      this.showCompleted = showCompletedReservationsValue;
+      this.loadData();
     })
 
     /**
@@ -82,11 +105,16 @@ export class ReservationTableComponent implements OnInit {
    */
   loadData(): void {
     this.apiService.getAllReservations$().subscribe(reservations => {
+      if (!this.showCompleted) {
+        reservations = reservations.filter(reservation => (!reservation.completed));
+      }
+
       this.loadingCompleted = false;
       console.log(reservations)
       this.dataSource = new MatTableDataSource<Reservation>([...reservations]);
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
+      this.reservations = reservations;
       this.deselectAll();
     });
   }

@@ -3,10 +3,11 @@
         <app-reservation-button-group [showBasicActions]="true" [enableReservation]="(selection.selected?.length === 1)" (showReservationDetail)="showReservationsDetail()" (endReservation)="endReservation()">
 
         </app-reservation-button-group>
-        <mat-icon style="padding: 20px"matTooltip="Sehen Sie aktuelle Reservierungen ein.">help</mat-icon>
+        <mat-checkbox style="padding: 20px" [(ngModel)]="showCompleted" (ngModelChange)="valueChange()">Abgeschlossene Reservierungen anzeigen</mat-checkbox><br>
+        <mat-icon style="padding: 20px" matTooltip="Sehen Sie aktuelle Reservierungen ein.">help</mat-icon>
     </div>
     <div fxFlex="2 1 auto">
-        <app-reservation-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream">
+        <app-reservation-table [showCompletedReservations]="showCompletedReservationsEmitter" (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream">
 
         </app-reservation-table>
     </div>
