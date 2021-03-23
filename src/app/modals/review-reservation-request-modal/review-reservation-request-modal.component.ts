@@ -36,6 +36,16 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   subRequestConditionEmitter = new EventEmitter<boolean[]>();
 
   /**
+   * Conditions prefilled emitter
+   */
+  allConditionsPrefilled = new EventEmitter<boolean[]>();
+
+  /**
+   * All conditions prefilled property
+   */
+  allConditionsArePrefilled: boolean = false;
+
+  /**
    * Currently selected items in the table
    */
   selection = new SelectionModel<Item>(true, []);
@@ -49,7 +59,13 @@ export class ReviewReservationRequestModalComponent implements OnInit {
     this.checkSelectionForConditions();
   }
 
+  /**
+   * ngOnInit
+   * 
+   * Will subscribe to the emitter which determines if all conditions are prefilled
+   */
   ngOnInit(): void {
+    this.allConditionsPrefilled.subscribe(prefilled => this.allConditionsArePrefilled = prefilled);
   }
 
   /**

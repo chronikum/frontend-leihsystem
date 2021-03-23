@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DeviceModel } from 'src/app/models/DeviceModel';
 import { Request } from 'src/app/models/Request';
 import { SubRequest } from 'src/app/models/SubRequest';
@@ -35,6 +35,16 @@ export class RequestReviewStatusBoxComponent implements OnInit {
    */
   allDeviceModels: DeviceModel[];
 
+  /**
+   * Conditions prefilled local property holder
+   */
+  conditionsPrefilled: boolean = false;
+
+  /**
+   * Will be true if all conditions are prefilled - will fire it to the parent modal
+   */
+  @Input() conditionsPrefilledUpdater: EventEmitter<boolean>;
+
   constructor(
     private apiService: ApiService,
   ) { }
@@ -49,7 +59,14 @@ export class RequestReviewStatusBoxComponent implements OnInit {
     this.loadDeviceModels();
     this.subrequestPrefilledUpdater.subscribe(updatedConditions => {
       this.subRequestPrefilled = updatedConditions
-      console.log("Update conditions")
+      this.conditionsPrefilled = true;
+      this.subRequestPrefilled.forEach(condition => {
+        // Is all conditions are prefilled conditionsPrefilled will never be changed to be false
+        if (!condition) {
+          this.conditionsPrefilled = condition;
+        }
+        this.conditionsPrefilledUpdater.next(this.conditionsPrefilled)
+      })
       this.conditionUpdater.next(updatedConditions);
     });
   }
