@@ -106,8 +106,8 @@ export class InventoryTableComponent implements OnInit {
    */
   getNameOfDeviceModel(device: Item): string {
     // Also load preselected item in model table if available
-    if (device?.modelIdentifier) {
-      const selectedDeviceModel: DeviceModel = this.allDeviceModels.filter(x => x.deviceModelId === device.modelIdentifier)[0];
+    if (device?.modelIdentifier && this.allDeviceModels) {
+      const selectedDeviceModel: DeviceModel = this.allDeviceModels.find(x => x.deviceModelId === device.modelIdentifier);
       if (selectedDeviceModel) {
         return selectedDeviceModel?.displayName;
       }
