@@ -31,7 +31,6 @@ export class RequestInfoBoxComponent implements OnInit {
   getRequestingUserInformation() {
     this.apiService.getUserInformationForId$(this.request.userCreated).subscribe(generalResponse => {
       this.requestingUser = generalResponse?.user;
-      console.log(this.requestingUser)
     })
   }
 

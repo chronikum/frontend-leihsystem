@@ -70,8 +70,6 @@ export class ReviewRequestSelectorTableComponent implements OnInit {
     this.loadDeviceModels();
     this.dataEmitter.subscribe(data => {
       this.data = data;
-      console.log("SUG2")
-      console.log(data)
       this.dataSource = new MatTableDataSource<any>([...this.data]);
       this.dataSource.paginator = this.paginator;
     })

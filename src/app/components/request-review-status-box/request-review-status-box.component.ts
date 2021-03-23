@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { DeviceModel } from 'src/app/models/DeviceModel';
 import { Request } from 'src/app/models/Request';
 import { SubRequest } from 'src/app/models/SubRequest';
@@ -22,6 +22,15 @@ export class RequestReviewStatusBoxComponent implements OnInit {
   subRequestPrefilled: boolean[] = [];
 
   /**
+   * Matches the index of the subrequests, if it is true, matching index is true too
+   */
+  @Input() subrequestPrefilledUpdater: EventEmitter<boolean[]>
+
+  /**
+   * Conditional updater. Mirror of subrequestPrefilledUpdater
+   */
+  conditionUpdater = new EventEmitter<boolean[]>();
+  /**
    * Device models
    */
   allDeviceModels: DeviceModel[];
@@ -30,8 +39,19 @@ export class RequestReviewStatusBoxComponent implements OnInit {
     private apiService: ApiService,
   ) { }
 
+  /**
+   * ngOnInit 
+   * - Loads all device models
+   * - Also subscribes to condition updater (which determines if a certain condition is being displayed as true or not)
+   */
   ngOnInit(): void {
+    this.conditionUpdater.next([])
     this.loadDeviceModels();
+    this.subrequestPrefilledUpdater.subscribe(updatedConditions => {
+      this.subRequestPrefilled = updatedConditions
+      console.log("Update conditions")
+      this.conditionUpdater.next(updatedConditions);
+    });
   }
 
   /**
@@ -82,7 +102,6 @@ export class RequestReviewStatusBoxComponent implements OnInit {
    */
   loadDeviceModels() {
     this.apiService.getAllModels$().subscribe(response => {
-      console.log(response);
       this.allDeviceModels = response.deviceModels;
     })
   }

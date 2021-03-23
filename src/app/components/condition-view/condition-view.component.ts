@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-condition-view',
@@ -10,7 +10,17 @@ export class ConditionViewComponent implements OnInit {
   /**
    * Determines if the condition is prefilled
    */
-  @Input() fulfilled: boolean = false;
+  @Input() fulfilledUpdater: EventEmitter<boolean[]>;
+
+  /**
+   * Determines if the condition is prefilled
+   */
+  fulFilled: boolean = false;
+
+  /**
+   * Indexer
+   */
+  @Input() indexer: number = -1;
 
   /**
    * The text to display in the condition view
@@ -20,6 +30,11 @@ export class ConditionViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // Set updater to get a special index from the boolean condition array
+    this.fulfilledUpdater.subscribe(fulFilled => {
+      console.log("Update!");
+      this.fulFilled = (fulFilled[this.indexer] || false)
+    })
   }
 
 }

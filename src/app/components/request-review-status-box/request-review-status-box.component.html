@@ -13,12 +13,12 @@
                 <!-- SIMPLE REQUEST -->
                 <div *ngIf="isSimple()">
                     <app-condition-header></app-condition-header><br>
-                    <app-condition-view [text]="devicesNeeded()"></app-condition-view>
+                    <app-condition-view [fulfilledUpdater]="conditionUpdater" [indexer]="0" [text]="devicesNeeded()"></app-condition-view>
                 </div>
                 <div *ngIf="isComplex() && allDeviceModels">
                     <app-condition-header></app-condition-header><br>
-                    <div *ngFor="let subRequest of request.subRequest">
-                        <app-condition-view [text]="singleDeviceCategoryNeeded(subRequest)"></app-condition-view><br>
+                    <div *ngFor="let subRequest of request.subRequest; let i = index" [attr.data-index]="i">
+                        <app-condition-view [fulfilledUpdater]="conditionUpdater" [indexer]="i" [text]="singleDeviceCategoryNeeded(subRequest)"></app-condition-view><br>
                     </div>
                 </div>
             </mat-card>

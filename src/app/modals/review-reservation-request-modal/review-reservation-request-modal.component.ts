@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Item } from 'src/app/models/Item';
@@ -27,16 +28,64 @@ export class ReviewReservationRequestModalComponent implements OnInit {
    */
   suggestedItems = new EventEmitter<Item[]>();
 
+
+  /**
+   * EventEmitter to fire subrequest condition updates to subcomponent review status box and active single checkmarks
+   * The indexes of the boolean array should match the indexes of the given subrequests.
+   */
+  subRequestConditionEmitter = new EventEmitter<boolean[]>();
+
+  /**
+   * Currently selected items in the table
+   */
+  selection = new SelectionModel<Item>(true, []);
+
   constructor(
     private dialog: MatDialogRef<ReviewReservationRequestModalComponent>,
     private apiService: ApiService,
     @Inject(MAT_DIALOG_DATA) public data: { request: Request }) {
     this.reservationRequest = data?.request;
     this.getSuggestion();
+    this.checkSelectionForConditions();
   }
 
   ngOnInit(): void {
   }
+
+  /**
+   * Will be called if the review requests table updates the selection
+   */
+  updateSelection(selection: any) {
+    this.selection = selection;
+    this.checkSelectionForConditions();
+  }
+
+  /**
+   * Check the selection for the given conditions
+   */
+  checkSelectionForConditions() {
+    let selectedItems = this.selection.selected || [];
+
+    let conditionsarray: boolean[] = [];
+
+    // SIMPLE
+    if (this.isSimple()) {
+      console.log("CHECK")
+      conditionsarray[0] = (this.reservationRequest.deviceCount === this.selection.selected.length);
+      console.log(conditionsarray[0])
+    }
+
+    // COMPLEX
+    if (this.isComplex()) {
+      selectedItems.forEach(item => {
+
+      })
+    }
+
+    this.subRequestConditionEmitter.next(conditionsarray);
+  }
+
+
 
   /**
    * Gets a suggestion from the server and fire a subscriber pointing to the table
@@ -54,6 +103,27 @@ export class ReviewReservationRequestModalComponent implements OnInit {
    */
   closeAction() {
     this.dialog.close();
+  }
+
+  /**
+   * Simple request
+   */
+  isSimple() {
+    return (this.getSimpleOrComplex() === 'Einfach')
+  }
+
+  /**
+   * Complex request
+   */
+  isComplex() {
+    return (this.getSimpleOrComplex() === 'Komplex')
+  }
+
+  /**
+   * Will return Komplex string if the request has subrequests
+   */
+  getSimpleOrComplex() {
+    return (this.reservationRequest?.subRequest[0] || false) ? 'Komplex' : 'Einfach';
   }
 
 }
