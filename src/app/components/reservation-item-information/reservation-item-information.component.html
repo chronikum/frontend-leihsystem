@@ -1,1 +1,3 @@
-<p>reservation-item-information works!</p>
+<mat-card *ngIf="items">
+    <app-info-table [data]="items" [displayedColumns]="['name']"></app-info-table>
+</mat-card>

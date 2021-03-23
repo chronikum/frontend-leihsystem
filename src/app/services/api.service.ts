@@ -183,6 +183,15 @@ export class ApiService {
   }
 
   /**
+   * Delete items
+   */
+  getItemsforIds$(itemIds: number[]): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getItemsforIds', {
+      itemIds: itemIds
+    });
+  }
+
+  /**
    * Create reservation with items
    * 
    * @param reservation Reservation
