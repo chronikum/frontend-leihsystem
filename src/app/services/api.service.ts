@@ -78,7 +78,7 @@ export class ApiService {
         if (x?.success) {
           this.isAuthenticated = true
           this.getCurrentUserRoles$().subscribe(userRoles => {
-            this.groupRoleUpdater.next(userRoles);
+            this.groupRoleUpdater.next(userRoles.userRoles);
           })
           this.userUpdater.next(x.user);
         } else {
@@ -112,7 +112,7 @@ export class ApiService {
         if (x?.success) {
           this.isAuthenticated = true
           this.getCurrentUserRoles$().subscribe(userRoles => {
-            this.groupRoleUpdater.next(userRoles);
+            this.groupRoleUpdater.next(userRoles.userRoles);
           })
           this.userUpdater.next(x.user);
         } else {
@@ -131,8 +131,8 @@ export class ApiService {
    * returns the user roles of the logged in user
    * @returns User roles
    */
-  getCurrentUserRoles$(): Observable<UserRoles[]> {
-    return this.httpClient.post<UserRoles[]>(this.endpoint + 'currentUserRoles', {});
+  getCurrentUserRoles$(): Observable<any> {
+    return this.httpClient.post<any>(this.endpoint + 'currentUserRoles', {});
   }
 
   /**

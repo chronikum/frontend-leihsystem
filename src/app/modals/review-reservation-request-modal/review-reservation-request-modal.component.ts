@@ -39,7 +39,7 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   /**
    * Conditions prefilled emitter
    */
-  allConditionsPrefilled = new EventEmitter<boolean[]>();
+  allConditionsPrefilled = new EventEmitter<boolean>();
 
   /**
    * All conditions prefilled property

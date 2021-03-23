@@ -137,7 +137,7 @@ export class MenuBarComponent implements OnInit {
       this.activeItem = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
       this.currentUser = this.apiService.currentUser;
       this.apiService.groupRoleUpdater.subscribe(groupRole => {
-        this.userRoles = groupRole.userRoles;
+        this.userRoles = groupRole;
       })
       this.apiService.userUpdater.subscribe(user => {
         this.currentUser = user
