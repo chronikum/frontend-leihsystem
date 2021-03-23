@@ -1,1 +1,8 @@
-<app-reservation-information [reservation]="reservation"></app-reservation-information>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+    <div fxFlex="1 1 auto">
+        <app-reservation-information [reservation]="reservation"></app-reservation-information>
+    </div>
+    <div fxFlex="2 1 auto">
+        <app-reservation-item-information [reservation]="reservation"></app-reservation-item-information>
+    </div>
+</div>

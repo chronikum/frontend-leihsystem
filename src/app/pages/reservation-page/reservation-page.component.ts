@@ -42,7 +42,7 @@ export class ReservationPageComponent implements OnInit {
    */
   showReservationsDetail() {
     const dialogRef = this.dialog.open(ReservationDetailModalComponent, {
-      width: '650px',
+      width: '950px',
       data: { reservation: this.selection.selected[0] }
     });
 

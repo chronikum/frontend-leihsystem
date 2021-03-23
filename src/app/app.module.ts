@@ -95,6 +95,7 @@ import { ConditionViewComponent } from './components/condition-view/condition-vi
 import { ConditionHeaderComponent } from './components/condition-header/condition-header.component';
 import { ReservationDetailModalComponent } from './modals/reservation-detail-modal/reservation-detail-modal.component';
 import { ReservationInformationComponent } from './components/reservation-information/reservation-information.component';
+import { ReservationItemInformationComponent } from './components/reservation-item-information/reservation-item-information.component';
 
 
 @NgModule({
@@ -154,6 +155,7 @@ import { ReservationInformationComponent } from './components/reservation-inform
     ConditionHeaderComponent,
     ReservationDetailModalComponent,
     ReservationInformationComponent,
+    ReservationItemInformationComponent,
   ],
   imports: [
     FlexLayoutModule,
