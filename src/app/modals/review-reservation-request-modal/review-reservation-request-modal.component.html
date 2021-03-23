@@ -1,7 +1,7 @@
 <div>
     <h3 mat-dialog-title>Bitte überprüfen Sie die Anfrage</h3>
     <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" mat-dialog-content *ngIf="!(suggestions ? suggestions.length == 0 : false)">
-            <div fxFlex="1 1 auto">
+            <div fxFlex="1 auto auto">
                 <app-request-info-box [request]="reservationRequest"></app-request-info-box>
                 <app-request-review-status-box [request]="reservationRequest"></app-request-review-status-box>
             </div>
@@ -11,8 +11,8 @@
     </div>
     <div *ngIf="suggestions ? suggestions.length == 0 : false">
         <mat-card>
-        <p class="mat-display-1">Keine Geräte verfügbar.</p>
-        <p class="mat-title">In diesem Zeitraum sind keine Geräte verfügbar. Wie es scheint, sind alle Geräte zu dem gewünschten Zeitpunkt momentan ausgebucht.</p>
+            <p class="mat-display-1">Keine Geräte verfügbar.</p>
+            <p class="mat-title">In diesem Zeitraum sind keine Geräte verfügbar. Wie es scheint, sind alle Geräte zu dem gewünschten Zeitpunkt momentan ausgebucht.</p>
         </mat-card>
     </div>
 <mat-dialog-actions style="float: right">

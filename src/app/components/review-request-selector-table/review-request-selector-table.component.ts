@@ -16,7 +16,7 @@ export class ReviewRequestSelectorTableComponent implements OnInit {
   /**
    * The columns which should be displayed
    */
-  displayedColumns: string[] = ['select', 'itemId', 'name', 'type', 'description', 'available', 'ownership', 'qrcode'];
+  displayedColumns: string[] = ['select', 'itemId', 'name', 'type', 'description'];
 
   /**
    * The datasource (item[]) you want to show

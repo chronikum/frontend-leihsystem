@@ -92,6 +92,7 @@ import { ReviewRequestSelectorTableComponent } from './components/review-request
 import { RequestInfoBoxComponent } from './components/request-info-box/request-info-box.component';
 import { RequestReviewStatusBoxComponent } from './components/request-review-status-box/request-review-status-box.component';
 import { ConditionViewComponent } from './components/condition-view/condition-view.component';
+import { ConditionHeaderComponent } from './components/condition-header/condition-header.component';
 
 
 @NgModule({
@@ -148,6 +149,7 @@ import { ConditionViewComponent } from './components/condition-view/condition-vi
     RequestInfoBoxComponent,
     RequestReviewStatusBoxComponent,
     ConditionViewComponent,
+    ConditionHeaderComponent,
   ],
   imports: [
     FlexLayoutModule,
