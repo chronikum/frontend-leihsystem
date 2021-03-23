@@ -10,12 +10,12 @@ export class ReservationButtonGroupComponent implements OnInit {
   /**
    * Allocate reservation
    */
-  @Output() allocateReservation = new EventEmitter<any>();
+  @Output() showReservationDetail = new EventEmitter<any>();
 
   /**
    * Deny reservation
    */
-  @Output() denyReservation = new EventEmitter<any>();
+  @Output() endReservation = new EventEmitter<any>();
 
   /**
    * Add comment to reservation

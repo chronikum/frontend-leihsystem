@@ -33,4 +33,18 @@ export class ReservationPageComponent implements OnInit {
     this.selection = selection;
   }
 
+  /**
+   * Show reservation details
+   */
+  showReservationsDetail() {
+
+  }
+
+  /**
+   * End the reservation and mark it as finished
+   */
+  endReservation() {
+
+  }
+
 }
