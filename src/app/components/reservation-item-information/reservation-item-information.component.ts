@@ -31,8 +31,6 @@ export class ReservationItemInformationComponent implements OnInit {
   loadItemsForItemIds() {
     this.apiService.getItemsforIds$(this.reservation.itemIds).subscribe(response => {
       let items = response.items || [];
-      console.log("Received")
-      console.log(items)
       this.items = items;
     })
   }

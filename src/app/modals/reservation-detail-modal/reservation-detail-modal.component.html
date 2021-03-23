@@ -1,8 +1,12 @@
-<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+<h3 mat-dialog-title>Details zu der Reservierung {{reservation.reservationName}}</h3>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" mat-dialog-content>
     <div fxFlex="1 1 auto">
         <app-reservation-information [reservation]="reservation"></app-reservation-information>
     </div>
     <div fxFlex="2 1 auto">
         <app-reservation-item-information [reservation]="reservation"></app-reservation-item-information>
     </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button (click)="cancel()">Schließen</button>
 </div>

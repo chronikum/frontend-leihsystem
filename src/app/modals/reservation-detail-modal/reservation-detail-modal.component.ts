@@ -21,6 +21,13 @@ export class ReservationDetailModalComponent implements OnInit {
     this.reservation = data.reservation;
   }
 
+  /**
+   * Cancel dialog
+   */
+  cancel() {
+    this.dialogRef.close();
+  }
+
   ngOnInit(): void {
   }
 

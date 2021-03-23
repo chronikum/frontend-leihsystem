@@ -1,3 +1,1 @@
-<mat-card *ngIf="items">
-    <app-info-table [data]="items" [displayedColumns]="['name']"></app-info-table>
-</mat-card>
+<app-info-table *ngIf="items" [data]="items" [displayedColumns]="['itemId','name','description']"></app-info-table>
