@@ -31,8 +31,8 @@ export class ReserveModalComponent implements OnInit {
       reservationName: ['', Validators.required],
       start: [null, Validators.required],
       end: [null, Validators.required],
-      startDateTime: ['', Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)],
-      endDateTime: ['', Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)],
+      startDateTime: ['', [Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/), Validators.required]],
+      endDateTime: ['', [Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/), Validators.required]],
     });
   }
 
@@ -43,15 +43,24 @@ export class ReserveModalComponent implements OnInit {
    * Get Reservation
    */
   getReservation(): Reservation {
+
     // Item Ids to fill in
     const itemIds = this.items.map((item) => item.itemId);
-    let reservation: Reservation = {
-      itemIds: itemIds,
-      reservationName: this.simpleReservationForm.get('reservationName').value,
-      startDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('start').value))), this.simpleReservationForm.get('startDateTime').value),
-      plannedEndDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('end').value))), this.simpleReservationForm.get('endDateTime').value),
-    } as any
-    return reservation
+    if (itemIds &&
+      (this.simpleReservationForm.get('reservationName').value.length > 4) &&
+      this.simpleReservationForm.get('startDateTime').valid &&
+      this.simpleReservationForm.get('endDateTime').valid
+    ) {
+      let reservation: Reservation = {
+        itemIds: itemIds,
+        reservationName: this.simpleReservationForm.get('reservationName').value,
+        startDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('start').value))), this.simpleReservationForm.get('startDateTime').value),
+        plannedEndDate: this.createDatetimeOfDayTime((Date.parse((this.simpleReservationForm.get('end').value))), this.simpleReservationForm.get('endDateTime').value),
+      } as any
+      return reservation
+    } else {
+      return false as any;
+    }
   }
 
 
@@ -88,6 +97,15 @@ export class ReserveModalComponent implements OnInit {
   createReservation() {
     let reservation: Reservation = this.getReservation();
     this.dialogRef.close(reservation);
+  }
+
+  /**
+   * Validates reservation
+   */
+  reservationValid(): boolean {
+    return ((this.simpleReservationForm.get('reservationName').value.length > 4) &&
+      this.simpleReservationForm.get('startDateTime').valid &&
+      this.simpleReservationForm.get('endDateTime').valid);
   }
 
   /**

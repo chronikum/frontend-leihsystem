@@ -35,5 +35,5 @@
 </div>
 <mat-dialog-actions style="float: right">
   <button class="mat-button" (click)="cancelModal()">Abbrechen</button>
-  <button class="mat-raised-button" (click)="createReservation()">Reservieren Sie {{items?.length || 0}} Gerät(e)</button>
+  <button mat-raised-button color="primary" [disabled]="!reservationValid()" (click)="createReservation()">Reservieren Sie {{items?.length || 0}} Gerät(e)</button>
 </mat-dialog-actions>

@@ -1,5 +1,5 @@
 <div [formGroup]="searchForm">
-    <mat-form-field style="min-width: 100%" appearance="outline">
+    <mat-form-field style="min-width: 99%; margin: 5px" appearance="outline">
         <input [formControlName]="'searchInput'" matInput #searchInput [type]="'search'" (keyup)="onSearchStringChange($event.target.value)" [placeholder]="placeholder">
         <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
