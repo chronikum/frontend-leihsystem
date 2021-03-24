@@ -5,40 +5,39 @@ fxLayout="column"
 fxLayout.xs="column" 
 fxFlexFill
 fxLayoutAlign="center center">
-    <mat-card>
+    <mat-card style="width: 250px;">
         <mat-card-header>
             <img mat-card-image src="assets/logo_zfm_small.png" alt="ZFM Logo">
         </mat-card-header>
-        <mat-card-title>ZFM Ausleihsystem</mat-card-title>
-        <mat-card-subtitle>Authentifizierung erforderlich</mat-card-subtitle>
         <form 
         [formGroup]="loginForm" 
-        style="flex-direction: row;" 
+        style="flex-direction: row; text-align: center;" 
         (submit)="performLogin()"
         (keydown.enter)="performLogin()"
         fxLayout="column"
-        fxLayout.xs="column" 
+        fxLayout.xs="center" 
         fxLayoutAlign="center stretch"
         >
-            <mat-form-field style="display: flex;">
+            <mat-form-field style="display: flex;" class="login-input" [appearance]="'outline'">
                 <input [formControlName]="'username'" matInput placeholder="Username">
                 <mat-error>
                     Erforderlich
                 </mat-error>
-            </mat-form-field>
-            <mat-form-field  style="flex-direction: row;">
-                <input [formControlName]="'password'" matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort">
-                <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <span mat-icon-button matSuffix [attr.aria-label]="'Username'" [attr.aria-pressed]="hide">
+                    <mat-icon>person</mat-icon>
                 </span>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;" class="login-input" [appearance]="'outline'">
+                <input [formControlName]="'password'" matInput [type]="hide ? 'password' : 'text'" placeholder="Passwort">
                 <mat-error>
                     Erforderlich
                 </mat-error>
+                <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </span>
             </mat-form-field>
         </form>
-        <button #submitForm [disabled]="!loginForm.valid" mat-raised-button (click)="performLogin()">Login</button>
-        <mat-card-footer style="padding: 5px">
-            <p style="padding: 5px">ACHTUNG: DIES IST EIN TEST-SYSTEM!</p>
-        </mat-card-footer>
+        <button #submitForm style="float: right;" [disabled]="!loginForm.valid" mat-raised-button (click)="performLogin()">Login</button>
+        <button #submitForm style="float: left;" mat-button [matTooltip]="'Dieses Feature ist bald verfügbar.'" (click)="forgetPassword()">Passwort vergessen?</button>
     </mat-card>
 </div>

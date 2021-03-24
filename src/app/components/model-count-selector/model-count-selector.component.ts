@@ -61,6 +61,8 @@ export class ModelCountSelectorComponent implements OnInit {
   /**
    * Adds a subrequest to the subRequests collection
    * Will updated total devices selected afterwards
+   * 
+   * - will duplicate entrys (subrequests with same deviceModelIdentifier)
    */
   addSubRequest(deviceModel: DeviceModel, count: number) {
     const subRequest: SubRequest = {
@@ -68,6 +70,8 @@ export class ModelCountSelectorComponent implements OnInit {
       count, deviceModel,
     };
 
+    // Remove duplicate entry
+    this.subRequests = this.subRequests.filter(sub => sub.deviceModelIdentifier !== subRequest.deviceModelIdentifier);
     this.subRequests.push(subRequest);
     this.updateTotalDevicesSelected();
   }

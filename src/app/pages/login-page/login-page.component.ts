@@ -59,4 +59,11 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Forget password
+   */
+  forgetPassword() {
+
+  }
+
 }

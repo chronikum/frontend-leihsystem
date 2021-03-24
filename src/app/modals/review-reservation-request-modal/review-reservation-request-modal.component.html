@@ -19,7 +19,8 @@
             <p class="mat-title">In diesem Zeitraum sind keine Geräte verfügbar. Wie es scheint, sind alle Geräte zu dem gewünschten Zeitpunkt momentan ausgebucht.</p>
         </mat-card>
     </div>
-<mat-dialog-actions style="float: right">
+<p *ngIf="!showUnusedEntries" style="float: right" mat-card-subtitle>Es gibt ausgewählte Geräte, die keiner Anforderung zugeordnet werden können. Wählen Sie diese ab, um fortfahren zu können.</p>
+<mat-dialog-actions *ngIf="showUnusedEntries" style="float: right">
     <button mat-button color="warn" (click)="deleteRequest()">Anfrage ablehnen und löschen</button>
     <button class="mat-raised-button" (click)="closeAction()">Abbrechen</button>
     <button class="mat-raised-button" mat-raised-button color="primary" (click)="submitReservation()" [disabled]="!(allConditionsArePrefilled && checksIfReservationNameIsValid())">Reservierung bestätigen und speichern</button>

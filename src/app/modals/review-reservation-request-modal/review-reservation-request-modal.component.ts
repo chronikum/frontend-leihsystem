@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Item } from 'src/app/models/Item';
 import { Request } from 'src/app/models/Request';
 import { Reservation } from 'src/app/models/Reservation';
+import { SubRequest } from 'src/app/models/SubRequest';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -52,6 +53,16 @@ export class ReviewReservationRequestModalComponent implements OnInit {
   reservationName: string = ''
 
   /**
+   * Determines if the unused entries indicator should be shown
+   */
+  showUnusedEntries: boolean = false;
+
+  /**
+   * Control array of items to see unused items in item selection during a complex request
+   */
+  controlArray: Item[] = [];
+
+  /**
    * Currently selected items in the table
    */
   selection = new SelectionModel<Item>(true, []);
@@ -98,12 +109,44 @@ export class ReviewReservationRequestModalComponent implements OnInit {
 
     // COMPLEX
     if (this.isComplex()) {
-      selectedItems.forEach(item => {
-
+      // This array represents all items selected, if there are too many selected
+      // for the given conditions, this can be seen through the array here
+      this.controlArray = [];
+      this.reservationRequest.subRequest.forEach(subRequest => {
+        const is_satisfied = this.subRequestSatisfied(subRequest, selectedItems);
+        conditionsarray.push(is_satisfied);
       })
+      this.checkForUnusedEntries();
     }
 
     this.subRequestConditionEmitter.next(conditionsarray);
+  }
+
+  /**
+   * Check for unused entries
+   */
+  checkForUnusedEntries(): boolean {
+    this.showUnusedEntries = (this.selection.selected.length === this.controlArray.length);
+    return (this.selection.selected.length === this.controlArray.length);
+  }
+
+  /**
+   * Checks if a given subrequest is satisfied with a set of elements
+   * - adds only required elements to the control array
+   * - returns true if subrequest is being satisfied
+   */
+  subRequestSatisfied(subRequest: SubRequest, items: Item[]): boolean {
+    let count_of_device_models = 0;
+    items.forEach(item => {
+      if (item.modelIdentifier === subRequest.deviceModelIdentifier) {
+        count_of_device_models++;
+        this.controlArray.push(item);
+      }
+    })
+    console.log("Requested " + subRequest.count + " of " + subRequest.deviceModelIdentifier);
+    console.log("Given " + count_of_device_models + " of " + subRequest.deviceModelIdentifier);
+
+    return (subRequest.count === count_of_device_models);
   }
 
 
