@@ -52,6 +52,11 @@ export class GroupTableComponent implements OnInit {
    */
   @Input() refreshTrigger: EventEmitter<any>;
 
+  /**
+   * Toggle permission array
+   */
+  togglePermissionArray: boolean[];
+
   constructor(
     private apiService: ApiService,
   ) {
@@ -77,16 +82,27 @@ export class GroupTableComponent implements OnInit {
    */
   loadData(): void {
     // TODO: Load groups instead
+    this.togglePermissionArray = [];
     this.apiService.getAllGroups$().subscribe(response => {
       if (response?.success && response.groups) {
         this.loadingCompleted = false;
-        console.log(response)
+        response.groups.forEach(group => {
+          this.togglePermissionArray.push(false);
+        })
         this.dataSource = new MatTableDataSource<Group>([...response.groups || []]);
         this.dataSource.paginator = this.paginator;
         this.loadingCompleted = true;
         this.deselectAll();
       }
     });
+  }
+
+  /**
+   * Toggles if permissions should be shown or not
+   */
+  togglePermissions(row: number) {
+    console.log(row)
+    this.togglePermissionArray[row] = !this.togglePermissionArray[row];
   }
 
   /**

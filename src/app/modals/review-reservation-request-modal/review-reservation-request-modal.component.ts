@@ -103,6 +103,7 @@ export class ReviewReservationRequestModalComponent implements OnInit {
 
     // SIMPLE
     if (this.isSimple()) {
+      this.showUnusedEntries = true;
       conditionsarray[0] = (this.reservationRequest.deviceCount === this.selection.selected.length);
       console.log(conditionsarray[0])
     }
