@@ -1,7 +1,7 @@
 <div mat-dialog-content>
     <div style="padding: 5px">
+        <p *ngIf="!(members?.length === 0)" mat-dialog-title>Mitglieder:</p>
         <mat-list *ngIf="!(members?.length === 0)" role="list" style="max-height: 400px;overflow:scroll;">
-            <p>Mitglieder:</p>
             <app-info-table [data]="members" [dataEmitter]="memberEmitter" [displayedColumns]="['firstname','surname','username']"></app-info-table>
         </mat-list>
         <div *ngIf="members?.length === 0" style="text-align: center;">
@@ -16,7 +16,7 @@
                 <input matInput style="width: 100%;" autocomplete="off" [matAutocomplete]="auto" placeholder="User suchen" (keyup)="getSuggestions($event)">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                     <mat-option *ngFor="let member of suggested" [value]="option">
-                        <mat-list-item>{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}} <button mat-button (click)="addMemberToGroup(member)">Zu Gruppe hinzufügen</button></mat-list-item>
+                        <mat-list-item (click)="addMemberToGroup(member)"><span class="mat-subtitle">{{member.firstname || ''}} {{member.surname || ''}} - {{member.username || ''}} | </span> <span mat-button (click)="addMemberToGroup(member)"><b>Klicken, um hinzuzufügen</b></span></mat-list-item>
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
