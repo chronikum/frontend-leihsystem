@@ -62,7 +62,7 @@
   
   
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'modified-cell': row.completed}"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'modified-cell': row.completed}" (click)="$event ? selection.toggle(row) : null"></tr>
   
   
         </table>
