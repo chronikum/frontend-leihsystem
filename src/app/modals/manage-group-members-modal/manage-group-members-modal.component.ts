@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Result } from '@zxing/library';
@@ -34,6 +34,11 @@ export class ManageGroupMembersModalComponent implements OnInit {
   suggested: User[];
 
   /**
+   * Emits member update events
+   */
+  memberEmitter = new EventEmitter<User[]>();
+
+  /**
    * Constructs new instance of ManageGroupMembersModalComponent
    * @param dialogRef 
    * @param data 
@@ -45,10 +50,28 @@ export class ManageGroupMembersModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: { group: Group, members: User[] }
   ) {
     this.managedGroup = this.data?.group;
-    this.members = this.data?.members;
   }
 
+  /**
+   * ngOnInit
+   * 
+   * - loads the group members on init
+   */
   ngOnInit(): void {
+    this.loadMembers();
+  }
+
+  /**
+   * Load group members
+   */
+  loadMembers() {
+    // Opens the modal if the group members have been loaded.
+    this.apiService.getGroupMembers$(this.managedGroup).subscribe(response => {
+      if (response.success) {
+        this.members = response.users;
+        this.memberEmitter.next(this.members);
+      }
+    })
   }
 
   /**
@@ -79,6 +102,7 @@ export class ManageGroupMembersModalComponent implements OnInit {
     this.apiService.addUserToGroup$(user, this.managedGroup).subscribe(result => {
       if (result.success) {
         console.log("Updated group!")
+        this.loadMembers();
       }
     })
   }

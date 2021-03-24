@@ -69,19 +69,14 @@ export class GroupsPageComponent implements OnInit {
    * TODO: Cleanup
    */
   editMembers() {
-    // Opens the modal if the group members have been loaded.
-    this.apiService.getGroupMembers$(this.selection.selected[0]).subscribe(response => {
-      if (response.success) {
-        const dialogRef = this.dialog.open(ManageGroupMembersModalComponent, {
-          width: '750px',
-          data: { group: this.selection.selected[0], members: response.users }
-        });
+    const dialogRef = this.dialog.open(ManageGroupMembersModalComponent, {
+      width: '750px',
+      data: { group: this.selection.selected[0] }
+    });
 
-        dialogRef.afterClosed().subscribe(_ => {
-          console.log("Closed");
-        });
-      }
-    })
+    dialogRef.afterClosed().subscribe(_ => {
+      console.log("Closed");
+    });
   }
 
   /**

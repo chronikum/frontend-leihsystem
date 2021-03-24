@@ -1,12 +1,12 @@
 <div mat-dialog-content>
     <div style="padding: 5px">
-        <mat-list role="list" style="max-height: 400px;overflow:scroll;">
+        <mat-list *ngIf="!(members?.length === 0)" role="list" style="max-height: 400px;overflow:scroll;">
             <p>Mitglieder:</p>
-            <app-info-table [data]="members" [displayedColumns]="['firstname','surname','username']"></app-info-table>
-            <div *ngIf="members?.length === 0">
-                <span>Diese Gruppe hat noch keine Mitglieder</span>
-            </div>
+            <app-info-table [data]="members" [dataEmitter]="memberEmitter" [displayedColumns]="['firstname','surname','username']"></app-info-table>
         </mat-list>
+        <div *ngIf="members?.length === 0" style="text-align: center;">
+            <span style="text-align: center;" class="mat-title">Diese Gruppe hat noch keine Mitglieder</span>
+        </div>
     </div>
     <mat-card>
         <br>
@@ -20,7 +20,6 @@
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <label>Bitte Suchen Sie NUR nach Vorname, Nachname oder Username.</label>
         </div>
     </mat-card>
 </div>

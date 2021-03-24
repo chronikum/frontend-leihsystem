@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -20,6 +20,11 @@ export class InfoTableComponent implements OnInit {
   @Input() data: any[];
 
   /**
+   * Refresh data via event emitter
+   */
+  @Input() dataEmitter?: EventEmitter<any[]>;
+
+  /**
    * Datasource
    */
   dataSource: MatTableDataSource<any> = [] as any;
@@ -35,6 +40,13 @@ export class InfoTableComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<any>([...this.data]);
     this.dataSource.paginator = this.paginator;
+    if (this.dataEmitter) {
+      this.dataEmitter.subscribe(data => {
+        this.data = data;
+        this.dataSource = new MatTableDataSource<any>([...this.data]);
+        this.dataSource.paginator = this.paginator;
+      })
+    }
   }
 
 }
