@@ -11,11 +11,11 @@ fxLayoutAlign="center center">
         </mat-card-header>
         <form 
         [formGroup]="loginForm" 
-        style="flex-direction: row; text-align: center;" 
+        style="flex-direction: column; text-align: center;" 
         (submit)="performLogin()"
         (keydown.enter)="performLogin()"
         fxLayout="column"
-        fxLayout.xs="center" 
+        fxLayout.xs="column" 
         fxLayoutAlign="center stretch"
         >
             <mat-form-field style="display: flex;" class="login-input" [appearance]="'outline'">
