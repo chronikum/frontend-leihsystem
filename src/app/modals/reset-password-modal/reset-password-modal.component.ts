@@ -34,7 +34,9 @@ export class ResetPasswordModalComponent implements OnInit {
    */
   sendPasswortReset() {
     if (this.email?.includes('@')) {
-      this.apiService.resetPasswordChallenge(this.email).subscribe();
+      this.apiService.resetPasswordChallenge(this.email).subscribe(x => {
+        this.cancel();
+      });
     }
   }
 
