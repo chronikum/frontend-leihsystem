@@ -42,23 +42,6 @@ export class CreationModalComponent implements OnInit {
   submitButtonText = '';
 
   /**
-   * Available ownerships
-   */
-  ownerships: ItemOwnership[] = [
-    ItemOwnership.GROUP,
-    ItemOwnership.USER,
-    ItemOwnership.UNKNOWN
-  ];
-
-  /**
-   * Allowed to reserve
-   */
-  allowedToReserve: UserRoles[] = [
-    UserRoles.ADMIN,
-    UserRoles.USER
-  ];
-
-  /**
    * The device model of the current element
    */
   currentDeviceModel: DeviceModel;
@@ -104,7 +87,6 @@ export class CreationModalComponent implements OnInit {
         internalName: [data.item.internalName, Validators.required],
         description: [data.item.description || ''],
         caIdentifier: [data.item.caIdentifier || '', Validators.required],
-        allowedToReserve: [data.item.requiredRolesToReserve[0], Validators.required], // TODO: Multiple roles can be allowed thanks to technical implementation
         managed: [data.item.managed || false]
       });
 
@@ -115,7 +97,6 @@ export class CreationModalComponent implements OnInit {
         internalName: ['', Validators.required],
         description: [''],
         caIdentifier: ['', Validators.required],
-        allowedToReserve: ['', Validators.required],
         managed: [false],
       });
 
@@ -158,8 +139,6 @@ export class CreationModalComponent implements OnInit {
       name: this.simpleCreationForm.get('name').value || '',
       internalName: this.simpleCreationForm.get('internalName').value || '',
       description: this.simpleCreationForm.get('description').value || '',
-      requiredRolesToReserve: [this.simpleCreationForm.get('allowedToReserve').value] || ['ADMIN'],
-      ownership: this.simpleCreationForm.get('allowedToReserve').value || '',
       caIdentifier: this.simpleCreationForm.get('caIdentifier').value || '',
       managed: this.simpleCreationForm.get('managed').value || false,
     } as any

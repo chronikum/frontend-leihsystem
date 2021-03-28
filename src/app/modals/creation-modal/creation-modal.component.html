@@ -25,14 +25,6 @@
                     Erforderlich
                 </mat-error>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Minimale Nutzerberechtigungen für eine Reservierung</mat-label>
-                <mat-select [formControlName]="'allowedToReserve'" [placeholder]="'Select role'">
-                    <mat-option *ngFor="let role of allowedToReserve" [value]="role">
-                        {{role}}
-                      </mat-option>
-                </mat-select>
-            </mat-form-field>
             <br>
             <label>ist das Gerät ein managed device?</label><br>
             <mat-checkbox [formControlName]="'managed'">Managed device</mat-checkbox>

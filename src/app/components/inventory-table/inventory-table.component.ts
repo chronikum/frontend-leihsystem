@@ -17,7 +17,7 @@ export class InventoryTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['select', 'itemId', 'name', 'type', 'description', 'available', 'reservationCount', 'ownership', 'qrcode'];
+  displayedColumns: string[] = ['select', 'itemId', 'name', 'type', 'description', 'available', 'reservationCount', 'qrcode'];
 
   /**
    * Datasource

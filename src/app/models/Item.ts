@@ -11,8 +11,6 @@ export interface Item {
     name: string, // Device name
     internalName?: string,
     serialNumber?: string,
-    ownership: ItemOwnership,
-    ownershipIdentifier: string,
     creationDate: number,
     modificationDate?: number,
     description?: string,
@@ -23,7 +21,6 @@ export interface Item {
     available: boolean,
     plannedReservationsIds?: number[],
     itemId: number,
-    requiredRolesToReserve: string[],
     currentReservationId?: string,
     rowPosition?: number,
     generatedUniqueIdentifier?: string,

@@ -17,7 +17,6 @@ export class CsvExporterService {
       data += this.getSingleRowOfDataset(columns, dataset);
       data += '\n';
     })
-
     return data
   }
 
