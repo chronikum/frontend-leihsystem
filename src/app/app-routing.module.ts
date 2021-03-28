@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
+import { ResetPasswordValidatingGuard } from './guards/reset-password-validating.guard';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
@@ -12,6 +13,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { RequestionPageComponent } from './pages/requestion-page/requestion-page.component';
 import { RequestsPageComponent } from './pages/requests-page/requests-page.component';
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
+import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 
@@ -62,6 +64,12 @@ const routes: Routes = [
     path: 'scanner',
     component: ScannerPageComponent,
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'resetPassword/:email/:token',
+    component: ResetPasswordPageComponent,
+    canActivate: [ResetPasswordValidatingGuard],
+    pathMatch: 'full',
   },
   {
     path: 'requests',

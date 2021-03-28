@@ -97,6 +97,8 @@ import { ReservationDetailModalComponent } from './modals/reservation-detail-mod
 import { ReservationInformationComponent } from './components/reservation-information/reservation-information.component';
 import { ReservationItemInformationComponent } from './components/reservation-item-information/reservation-item-information.component';
 import { FinishReservationModalComponent } from './modals/finish-reservation-modal/finish-reservation-modal.component';
+import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
+import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset-password-modal.component';
 
 
 @NgModule({
@@ -158,6 +160,8 @@ import { FinishReservationModalComponent } from './modals/finish-reservation-mod
     ReservationInformationComponent,
     ReservationItemInformationComponent,
     FinishReservationModalComponent,
+    ResetPasswordPageComponent,
+    ResetPasswordModalComponent,
   ],
   imports: [
     FlexLayoutModule,

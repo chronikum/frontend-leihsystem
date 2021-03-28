@@ -38,6 +38,6 @@ fxLayoutAlign="center center">
             </mat-form-field>
         </form>
         <button #submitForm style="float: right;" [disabled]="!loginForm.valid" mat-raised-button (click)="performLogin()">Login</button>
-        <button #submitForm style="float: left;" mat-button [matTooltip]="'Dieses Feature ist bald verfügbar.'" (click)="forgetPassword()">Passwort vergessen?</button>
+        <button #submitForm style="float: left;" mat-button (click)="openPasswortResetModal()">Passwort vergessen?</button>
     </mat-card>
 </div>

@@ -48,6 +48,13 @@ export class ApiService {
    */
   currentUser: User;
 
+
+  /**
+   * Returns new instance of api service
+   * @param httpClient 
+   * @param router 
+   * @param snackBar 
+   */
   constructor(
     private httpClient: HttpClient,
     private router: Router,
@@ -125,6 +132,33 @@ export class ApiService {
       },
       ),
     )
+  }
+
+  /**
+   * Reset password validator
+   */
+  resetPasswordValidator(token: string, email: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'validateResetToken', {
+      token, email
+    });
+  }
+
+  /**
+   * Send reset password with email
+   */
+  resetPasswordChallenge(email: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'resetPassword', {
+      email
+    });
+  }
+
+  /**
+   * Change password via token reset
+   */
+  changePasswordViaToken(token: string, password: string, email: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'changePasswordViaToken', {
+      token, password, email
+    });
   }
 
   /**

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ResetPasswordModalComponent } from 'src/app/modals/reset-password-modal/reset-password-modal.component';
 import { GeneralServerResponse } from 'src/app/models/GeneralServerResponse';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -27,6 +29,7 @@ export class LoginPageComponent implements OnInit {
     private apiService: ApiService,
     private snackBar: MatSnackBar,
     private router: Router,
+    private dialog: MatDialog,
   ) {
     this.loginForm = formBuilder.group({
       username: ['', Validators.required],
@@ -54,6 +57,16 @@ export class LoginPageComponent implements OnInit {
         });
       });
     }
+  }
+
+  /**
+   * Opens the password reset modaöl
+   */
+  openPasswortResetModal() {
+    const dialogRef = this.dialog.open(ResetPasswordModalComponent, {
+      width: '650px',
+    });
+    dialogRef.afterClosed().subscribe();
   }
 
   ngOnInit(): void {
