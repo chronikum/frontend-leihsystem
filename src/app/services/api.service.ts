@@ -398,6 +398,16 @@ export class ApiService {
   }
 
   /**
+   * Delete group given
+   * 
+   * @param group to delete
+   * @returns 
+   */
+  deleteGroup$(group: Group): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteGroup', group);
+  }
+
+  /**
    * Create a new group with given permission
    * @param group 
    */

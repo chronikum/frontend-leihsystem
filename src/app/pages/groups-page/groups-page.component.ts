@@ -86,11 +86,14 @@ export class GroupsPageComponent implements OnInit {
     let groupToDelete: Group = this.selection.selected[0];
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       width: '650px',
-      data: { message: "Die ausgewählten Gruppen werden unwiderruflich gelöscht.", critical: true }
+      data: { message: "Die ausgewählte Gruppe wird unwiderruflich gelöscht. Dies ist eine gefährliche Aktion und sollte nur unter unbedingten Umstände in Erwägung gezogen werden.", critical: true }
     });
 
-    dialogRef.afterClosed().subscribe(_ => {
-      console.log("Closed");
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log("WILL DELETE")
+        this.apiService.deleteGroup$(groupToDelete).subscribe(_ => { });
+      }
     });
   }
 
