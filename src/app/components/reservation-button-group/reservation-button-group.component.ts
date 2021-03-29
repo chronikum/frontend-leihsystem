@@ -18,6 +18,11 @@ export class ReservationButtonGroupComponent implements OnInit {
   @Output() endReservation = new EventEmitter<any>();
 
   /**
+   * 
+   */
+  @Input() showReservationEnd: boolean = false;
+
+  /**
    * Add comment to reservation
    */
   @Output() addCommentToReservation = new EventEmitter<any>();

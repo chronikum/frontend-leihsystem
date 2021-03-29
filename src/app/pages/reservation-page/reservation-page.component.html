@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
     <div fxFlex="1 1 auto">
-        <app-reservation-button-group [showBasicActions]="true" [enableReservation]="(selection.selected?.length === 1)" (showReservationDetail)="showReservationsDetail()" (endReservation)="endReservation()">
+        <app-reservation-button-group [showReservationEnd]="((selection.selected?.length === 1) && ((!this.selection?.selected[0].completed) || false))" [showBasicActions]="true" [enableReservation]="(selection.selected?.length === 1)" (showReservationDetail)="showReservationsDetail()" (endReservation)="endReservation()">
 
         </app-reservation-button-group>
         <mat-checkbox style="padding: 20px" [(ngModel)]="showCompleted" (ngModelChange)="valueChange()">Abgeschlossene Reservierungen anzeigen</mat-checkbox><br>

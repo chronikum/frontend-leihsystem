@@ -1,4 +1,4 @@
 <div fxLayout="column" fxLayoutAlign="space-between" style="margin: 20px;">
     <button class="accept-button" mat-flat-button *ngIf="showBasicActions" (click)="showReservationDetail.next(true)" [disabled]="!enableReservation">Reservierungsdetails anzeigen</button>
-    <button class="finish-button" mat-flat-button *ngIf="showBasicActions" (click)="endReservation.next(true)" [disabled]="!enableReservation">Reservierung beenden</button>
+    <button class="finish-button" mat-flat-button *ngIf="showBasicActions" (click)="endReservation.next(true)" [disabled]="!showReservationEnd">Reservierung beenden</button>
 </div>
