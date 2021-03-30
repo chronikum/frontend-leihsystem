@@ -56,7 +56,7 @@ export class GroupsPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: Group) => {
       console.log(result);
-      if (result.displayName && result.role) {
+      if (result?.displayName && result?.role) {
         this.apiService.createGroup$(result).subscribe(group => {
           this.refreshActionStream.next(true);
         })
