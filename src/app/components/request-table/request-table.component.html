@@ -18,22 +18,22 @@
             </td>
           </ng-container>
           
-          <ng-container matColumnDef="reservationId" sticky>
+          <ng-container matColumnDef="requestIdId" sticky>
             <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let element"> {{element.reservationId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.requestId}} </td>
           </ng-container>
   
-          <ng-container matColumnDef="reservationName">
-            <th mat-header-cell *matHeaderCellDef>Reservierungsname</th>
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef>Nutzername</th>
             <td mat-cell *matCellDef="let element">
-              <span>{{element.reservationName}}</span>
+              <span>{{getUserInformation(element)?.username || '-'}}</span>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef>Beschreibung</th>
             <td mat-cell *matCellDef="let element">
-              <span>{{element.description}}</span>
+              <span>{{element.description || '-'}}</span>
             </td>
           </ng-container>
 

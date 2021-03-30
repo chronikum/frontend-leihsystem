@@ -59,9 +59,9 @@ export class InventoryPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: Item) => {
       console.log(result);
-      if (result.name) {
+      if (result?.name) {
         this.apiService.createItem$(result).subscribe(itemCreated => {
-          if (itemCreated.success) {
+          if (itemCreated?.success) {
             this.refreshActionStream.next(true)
           }
         })
@@ -83,7 +83,7 @@ export class InventoryPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: Item) => {
       console.log(result);
-      if (result.name) {
+      if (result?.name) {
         this.apiService.updateItem$(result).subscribe(itemCreated => {
           this.refreshActionStream.next(true)
         })
@@ -140,7 +140,7 @@ export class InventoryPageComponent implements OnInit {
       if (result) {
         let itemsToDelete = Array.from(this.selection.selected || []) as Item[];
         this.apiService.deleteItems$(itemsToDelete).subscribe(response => {
-          if (response.success) {
+          if (response?.success) {
             console.log("Deleted items");
             this.apiService.debugSnackBar("ITEMS DELETED");
             this.refreshActionStream.next(true)

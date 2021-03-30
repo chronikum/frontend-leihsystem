@@ -25,4 +25,5 @@ export interface Item {
     rowPosition?: number,
     generatedUniqueIdentifier?: string,
     modelIdentifier?: number, // the associated device model id
+    deviceModelName?: string, // only used in tables to enable the filter functionalty
 }

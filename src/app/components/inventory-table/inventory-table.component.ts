@@ -66,11 +66,11 @@ export class InventoryTableComponent implements OnInit {
   constructor(
     private apiService: ApiService,
   ) {
+    this.loadDeviceModels();
     this.loadData();
   }
 
   ngOnInit(): void {
-    this.loadDeviceModels();
     /**
      * Will be fired if events change to stream the output to the parent component
      */
@@ -93,7 +93,6 @@ export class InventoryTableComponent implements OnInit {
    */
   loadDeviceModels() {
     this.apiService.getAllModels$().subscribe(response => {
-      console.log(response);
       this.allDeviceModels = response.deviceModels;
     })
   }
@@ -120,6 +119,9 @@ export class InventoryTableComponent implements OnInit {
   loadData(): void {
     this.apiService.getInventory$().subscribe(items => {
       this.loadingCompleted = false;
+      items.forEach(item => {
+        item.deviceModelName = this.getNameOfDeviceModel(item);
+      })
       this.dataSource = new MatTableDataSource<Item>([...items]);
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;

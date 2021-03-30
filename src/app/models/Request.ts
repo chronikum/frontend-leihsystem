@@ -16,4 +16,5 @@ export interface Request {
     modified?: number,
     userCreated?: number,
     priority?: number,
+    requestingUserFull?: User,
 }

@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Request } from 'src/app/models/Request';
+import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 
 
@@ -17,7 +18,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class RequestTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['select', 'reservationId', 'reservationName', 'description', 'startDate', 'plannedEndDate'];
+  displayedColumns: string[] = ['select', 'requestIdId', 'username', 'description', 'startDate', 'plannedEndDate'];
 
   /**
    * Datasource
@@ -58,6 +59,11 @@ export class RequestTableComponent implements OnInit {
    */
   @Output() showQRCodeEmitter = new EventEmitter<Request>();
 
+  /**
+   * User information table
+   */
+  userInformation: User[] = [];
+
   constructor(
     private apiService: ApiService,
   ) {
@@ -89,8 +95,32 @@ export class RequestTableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();
-      console.log(requests)
+      // Preload user profiles
+      this.userInformation = [];
+      requests.forEach(async request => {
+        if (request?.userCreated) {
+          this.apiService.getUserInformationForId$(request.userCreated).subscribe(userResponse => {
+            if (userResponse?.user) {
+              this.userInformation.push(userResponse.user);
+            }
+          });
+        }
+      })
     });
+  }
+
+  /**
+   * Returns user information about the requesting user when the request is given
+   * 
+   * @param Request
+   * @return user
+   */
+  getUserInformation(request: Request): User {
+    const user = this.userInformation.find(user => (user.userId === request.userCreated.toString()));
+    if (user) {
+      return user;
+    }
+    return null;
   }
 
   /**

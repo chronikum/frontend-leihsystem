@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -100,6 +100,8 @@ import { FinishReservationModalComponent } from './modals/finish-reservation-mod
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset-password-modal.component';
 
+import * as Sentry from "@sentry/angular";
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -199,6 +201,22 @@ import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset
     MatAutocompleteModule
   ],
   providers: [
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: true,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => { },
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
     // Http Interceptor(s) -  adds with Client Credentials
     [
       { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },

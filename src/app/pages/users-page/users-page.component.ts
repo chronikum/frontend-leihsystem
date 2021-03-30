@@ -76,7 +76,7 @@ export class UsersPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: any) => {
       console.log(result);
-      if (result.newPassword && result.newPasswordConfirmation) {
+      if (result?.newPassword && result?.newPasswordConfirmation) {
         this.apiService.changePassword$(userToChangePasswordFrom[0], result.newPassword).subscribe((result: any) => {
           if (result.success) {
             this.refreshActionStream.next(true)
@@ -98,7 +98,7 @@ export class UsersPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: User) => {
       console.log(result);
-      if (result.email && result.password) {
+      if (result?.email && result?.password) {
         this.apiService.createUser$(result).subscribe(result => {
           if (result.success) {
             this.refreshActionStream.next(true)
@@ -122,7 +122,7 @@ export class UsersPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(async (result: User) => {
       console.log(result);
-      if (result.email && result.password) {
+      if (result?.email && result?.password) {
         this.apiService.createUser$(result).subscribe(result => {
           if (result.success) {
             this.refreshActionStream.next(true)
@@ -130,7 +130,7 @@ export class UsersPageComponent implements OnInit {
         })
       } else {
         console.log("UPDATE 1")
-        if (result.email && !result.password) {
+        if (result?.email && !result?.password) {
           this.apiService.updateUser$(result).subscribe(result => {
             console.log("UPDATE 2")
             if (result.success) {

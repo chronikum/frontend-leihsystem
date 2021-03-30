@@ -25,6 +25,8 @@
     "@angular/platform-browser": "~11.2.6",
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
+    "@sentry/angular": "^6.2.3",
+    "@sentry/tracing": "^6.2.3",
     "@swimlane/ngx-charts": "^16.0.0",
     "@zxing/browser": "0.0.5",
     "@zxing/library": "^0.18.3",

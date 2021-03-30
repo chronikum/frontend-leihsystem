@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { DeviceModel } from 'src/app/models/DeviceModel';
 import { Item } from 'src/app/models/Item';
 
 @Component({

@@ -64,7 +64,6 @@ export class ApiService {
       if (e instanceof NavigationEnd) {
         const page = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
         if (page !== 'error') {
-          this.backendAvailable$();
         }
       }
     });

@@ -12,6 +12,7 @@ export class SearchBarComponent implements OnInit {
    * A placeholder
    */
   @Input() placeholder: string;
+
   /**
    * Emits the string when string changes
    */

@@ -83,11 +83,11 @@ export class CreationModalComponent implements OnInit {
       this.itemBeingEdited = data?.item;
       console.log(this.itemBeingEdited)
       this.simpleCreationForm = this.formBuilder.group({
-        name: [data.item.name, Validators.required],
-        internalName: [data.item.internalName, Validators.required],
-        description: [data.item.description || ''],
-        caIdentifier: [data.item.caIdentifier || '', Validators.required],
-        managed: [data.item.managed || false]
+        name: [data.item?.name, Validators.required],
+        internalName: [data.item?.internalName, Validators.required],
+        description: [data.item?.description || ''],
+        caIdentifier: [data.item?.caIdentifier || '', Validators.required],
+        managed: [data.item?.managed || false]
       });
 
       this.submitButtonText = "Update"
@@ -113,12 +113,12 @@ export class CreationModalComponent implements OnInit {
   loadDeviceModels() {
     this.apiService.getAllModels$().subscribe(response => {
       console.log(response);
-      this.allDeviceModels = response.deviceModels;
+      this.allDeviceModels = response?.deviceModels;
       // Also load preselected item in model table if available
-      if (this.data.item?.modelIdentifier) {
+      if (this.data?.item?.modelIdentifier) {
         const selectedDeviceModel: DeviceModel = this.allDeviceModels.filter(x => x.deviceModelId === this.data.item.modelIdentifier)[0];
         this.currentDeviceModel = selectedDeviceModel;
-        console.log("Aktuelles Modell: " + this.currentDeviceModel.displayName)
+        console.log("Aktuelles Modell: " + this.currentDeviceModel?.displayName)
       }
     })
   }
