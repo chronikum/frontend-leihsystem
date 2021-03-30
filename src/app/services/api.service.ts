@@ -315,6 +315,15 @@ export class ApiService {
   }
 
   /**
+   * Cancel a request
+   */
+  cancelRequest$(request: Request): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'cancelRequest', {
+      request: request
+    });
+  }
+
+  /**
    * Gets a reservation suggestion for a reservation request
    * @param request to update
    */

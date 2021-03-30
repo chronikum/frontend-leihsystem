@@ -1,6 +1,6 @@
 <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
     <div fxFlex="1 1 auto">
-      <app-request-button-group [enableButtons]="(selection?.selected.length === 1)" (reviewReservation)="reviewReservationRequest()"></app-request-button-group>
+      <app-request-button-group [enableButtons]="(selection?.selected.length === 1)" (reviewReservation)="reviewReservationRequest()" (declineAction)="cancelRequest()"></app-request-button-group>
     </div>
     <div fxFlex="2 1 auto">
       <app-request-table (selectionChanged)="selectionChange($event)" [refreshTrigger]="refreshActionStream"></app-request-table>

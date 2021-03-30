@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
 import { ReviewReservationRequestModalComponent } from 'src/app/modals/review-reservation-request-modal/review-reservation-request-modal.component';
 import { Request } from 'src/app/models/Request';
 import { ApiService } from 'src/app/services/api.service';
@@ -53,6 +54,27 @@ export class RequestsPageComponent implements OnInit {
               console.log("Accepted request. It will not be displayed afterwards");
               this.refreshActionStream.next(true);
             })
+          })
+        }
+      });
+    }
+  }
+
+  /**
+   * This will DELETE and cancel the reservation request
+   */
+  cancelRequest() {
+    const selectedReservationRequest = this.selection.selected[0];
+    if (selectedReservationRequest) {
+      const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+        width: '80%',
+        data: { message: "Die ausgewählte Reservierungsanfrage wird unwiderruflich gelöscht. Der betroffene User wird benachrichtigt, dass die Anfrage abgelehnt wurde.", critical: true }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.apiService.cancelRequest$(selectedReservationRequest).subscribe(ok => {
+            console.log(ok);
           })
         }
       });
