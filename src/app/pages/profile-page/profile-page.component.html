@@ -8,28 +8,27 @@
         <span class="mat-subtitle"><b>Dein Username:</b> {{currentUser.username}}</span>
     </div>
 </mat-card>
-<mat-card>
-    <p>Allgemein</p>
+<mat-card [formGroup]="userForm">
     <div style="width: 100%;">
         <mat-form-field  style="width: 100%;" [appearance]="'outline'">
-            <input matInput placeholder="E-Mail" [(ngModel)]="currentUser.email">
+            <input matInput placeholder="E-Mail" [(ngModel)]="currentUser.email" [formControlName]="'email'">
             <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
     </div>
-</mat-card>
-<mat-card>
-    <p>Erweitert</p>
     <div style="width: 100%;">
         <mat-form-field  style="width: 100%;" [appearance]="'outline'">
-            <input matInput placeholder="Telefonnummer" [(ngModel)]="currentUser.phone">
+            <input matInput placeholder="Telefonnummer" [(ngModel)]="currentUser.phone" [formControlName]="'phone'">
             <mat-icon matSuffix>phone</mat-icon>
+            <mat-error>
+                <span>Telefonnummer bitte mit Vorwahl +49 angeben.</span>
+            </mat-error>
         </mat-form-field>
         <mat-form-field  style="width: 100%;" [appearance]="'outline'">
-            <input matInput placeholder="Matrikelnummer" [(ngModel)]="currentUser.matrikelnumber">
+            <input matInput placeholder="Matrikelnummer" [(ngModel)]="currentUser.matrikelnumber" [formControlName]="'matrikelnumber'">
             <mat-icon matSuffix>credit_card</mat-icon>
         </mat-form-field>
     </div>
 </mat-card>
 <mat-card style="height: 50px;">
-    <button mat-raised-button (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
+    <button mat-raised-button [disabled]="!userForm.valid" (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
 </mat-card>
