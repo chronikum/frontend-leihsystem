@@ -103,6 +103,7 @@ import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset
 import * as Sentry from "@sentry/angular";
 import { Router } from '@angular/router';
 import { CsvExporterComponent } from './components/csv-exporter/csv-exporter.component';
+import { LoggedInCardComponent } from './components/logged-in-card/logged-in-card.component';
 
 @NgModule({
   declarations: [
@@ -166,6 +167,7 @@ import { CsvExporterComponent } from './components/csv-exporter/csv-exporter.com
     ResetPasswordPageComponent,
     ResetPasswordModalComponent,
     CsvExporterComponent,
+    LoggedInCardComponent,
   ],
   imports: [
     FlexLayoutModule,

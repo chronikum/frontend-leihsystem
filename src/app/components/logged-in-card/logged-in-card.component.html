@@ -1,0 +1,9 @@
+
+<mat-card style="padding: 12px; text-align: center;">
+    <span>{{greeting()}}, {{user.firstname}} {{user.surname}}</span><br>
+    <p>Sie sind eingeloggt.</p>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
+      <button style="background-color: gray; color: white; width: 100%; margin: 3px;" (click)="gotoProfile()" mat-button>Mein Profil <mat-icon style="margin: auto;">person</mat-icon></button>
+      <button style="background-color: red; color: white; width: 100%; margin: 3px;" (click)="logout()" mat-button>Ausloggen</button>
+    </div>
+</mat-card>
