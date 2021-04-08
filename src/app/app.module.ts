@@ -102,6 +102,7 @@ import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset
 
 import * as Sentry from "@sentry/angular";
 import { Router } from '@angular/router';
+import { CsvExporterComponent } from './components/csv-exporter/csv-exporter.component';
 
 @NgModule({
   declarations: [
@@ -164,6 +165,7 @@ import { Router } from '@angular/router';
     FinishReservationModalComponent,
     ResetPasswordPageComponent,
     ResetPasswordModalComponent,
+    CsvExporterComponent,
   ],
   imports: [
     FlexLayoutModule,
