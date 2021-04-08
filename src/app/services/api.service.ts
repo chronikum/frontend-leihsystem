@@ -402,6 +402,14 @@ export class ApiService {
   }
 
   /**
+   * Updates a user information (only certain values)
+   * @param user to create
+   */
+  updateUserInformation$(user: User): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'updateUserInformation', { user: user });
+  }
+
+  /**
    * Deletes the users provided with
    * 
    * @param users to delete

@@ -1,0 +1,35 @@
+<mat-card>
+    <h1 class="mat-title">Mein Profil</h1>
+</mat-card>
+<mat-card>
+    <div style="width: 100%;">
+        <span class="mat-display-3">{{currentUser.firstname || '-'}} {{currentUser.surname || '-'}}</span>
+        <br>
+        <span class="mat-subtitle"><b>Dein Username:</b> {{currentUser.username}}</span>
+    </div>
+</mat-card>
+<mat-card>
+    <p>Allgemein</p>
+    <div style="width: 100%;">
+        <mat-form-field  style="width: 100%;" [appearance]="'outline'">
+            <input matInput placeholder="E-Mail" [(ngModel)]="currentUser.email">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+    </div>
+</mat-card>
+<mat-card>
+    <p>Erweitert</p>
+    <div style="width: 100%;">
+        <mat-form-field  style="width: 100%;" [appearance]="'outline'">
+            <input matInput placeholder="Telefonnummer" [(ngModel)]="currentUser.phone">
+            <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+        <mat-form-field  style="width: 100%;" [appearance]="'outline'">
+            <input matInput placeholder="Matrikelnummer" [(ngModel)]="currentUser.matrikelnumber">
+            <mat-icon matSuffix>credit_card</mat-icon>
+        </mat-form-field>
+    </div>
+</mat-card>
+<mat-card style="height: 50px;">
+    <button mat-raised-button (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
+</mat-card>
