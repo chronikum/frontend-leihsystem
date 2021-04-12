@@ -52,7 +52,8 @@ export class UserCreationModalComponent implements OnInit {
         firstname: [data.user.firstname,],
         surname: [data.user.surname,],
         email: [data.user.email, Validators.required],
-        role: [data.user.role, Validators.required],
+        matrikelnumber: [data.user.matrikelnumber || ''],
+        phone: [data.user.phone || ''],
       });
     } else {
       this.userCreationForm = this.formBuilder.group({
@@ -61,7 +62,8 @@ export class UserCreationModalComponent implements OnInit {
         surname: ['',],
         email: ['', Validators.required],
         password: ['', Validators.required],
-        role: ['', Validators.required],
+        matrikelnumber: [''],
+        phone: [''],
       });
     }
   }
@@ -81,7 +83,8 @@ export class UserCreationModalComponent implements OnInit {
       surname: this.userCreationForm.get('surname').value || '',
       email: this.userCreationForm.get('email').value || '',
       password: this.userCreationForm.get('password')?.value || undefined,
-      role: this.userCreationForm.get('role').value as any || UserRoles.USER,
+      matrikelnumber: this.userCreationForm.get('matrikelnumber')?.value || undefined,
+      phone: this.userCreationForm.get('phone')?.value || undefined,
     }
 
     return user;

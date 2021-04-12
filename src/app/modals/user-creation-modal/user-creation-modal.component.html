@@ -32,7 +32,15 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'matrikelnumber'" matInput placeholder="Matrikelnummer">
+            </mat-form-field>
+
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'phone'" matInput placeholder="Telefon/Handy-Nummer">
+            </mat-form-field>
+
+            <!-- <mat-form-field>
                 <mat-label>Zugewiesene Userrolle</mat-label>
                 <mat-select [formControlName]="'role'" [placeholder]="'Select role'">
                     <mat-option *ngFor="let role of rolesAvailable" [value]="role">
@@ -42,7 +50,7 @@
                 <mat-error>
                     Erforderlich
                 </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
         </div>
     </ul>
 </div>
