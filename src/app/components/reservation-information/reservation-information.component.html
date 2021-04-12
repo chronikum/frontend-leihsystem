@@ -2,6 +2,8 @@
     <p class="mat-title">Generelle Informationen:</p>
     <p><b>Username:</b> {{reservationUser.username}}</p>
     <p><b>Anfragende Person:</b> {{reservationUser.firstname}} {{reservationUser.surname}}</p>
+    <p *ngIf="reservationUser.matrikelnumber"><b>Matrikelnummer: </b> {{reservationUser.matrikelnumber}}</p>
+    <p *ngIf="reservationUser.phone"><b>Telefonnummer: </b> {{reservationUser.phone}}</p>
     <p><b>Kontakt E-Mail:</b> {{reservationUser.email}}</p>
     <p><b>Zeitspanne:</b><br>
         {{parseDate(reservation.startDate)}} bis zum {{parseDate(reservation.plannedEndDate)}}

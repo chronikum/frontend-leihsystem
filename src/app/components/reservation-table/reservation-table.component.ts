@@ -161,4 +161,16 @@ export class ReservationTableComponent implements OnInit {
     return '-'
   }
 
+
+  /**
+   *  Will return true if the given reservation is overdue/delayed
+   * - will use endDate as indicator and compares it to the current date
+   * 
+   * @param reservation
+   */
+  isDue(reservation: Reservation) {
+    let dateNow = Date.now();
+    return (dateNow > reservation.plannedEndDate)
+  }
+
 }
