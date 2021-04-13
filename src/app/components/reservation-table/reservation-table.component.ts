@@ -102,15 +102,21 @@ export class ReservationTableComponent implements OnInit {
 
   /**
    * Loads the table with data
+   * 
+   * sorts it - the most recent should be on top
    */
   loadData(): void {
     this.apiService.getAllReservations$().subscribe(reservations => {
+      // Sort after newest end date
+      reservations.sort((a, b) => {
+        return (b.plannedEndDate - a.plannedEndDate)
+      });
+      // Check if completed should be displayed
       if (!this.showCompleted) {
         reservations = reservations.filter(reservation => (!reservation.completed));
       }
 
       this.loadingCompleted = false;
-      console.log(reservations)
       this.dataSource = new MatTableDataSource<Reservation>([...reservations]);
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;

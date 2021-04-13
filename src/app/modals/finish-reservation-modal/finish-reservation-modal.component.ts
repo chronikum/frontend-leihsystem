@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Reservation } from 'src/app/models/Reservation';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -17,6 +17,7 @@ export class FinishReservationModalComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private dialogRef: MatDialogRef<FinishReservationModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { reservation: Reservation }
   ) {
     this.reservation = data.reservation;
@@ -34,6 +35,7 @@ export class FinishReservationModalComponent implements OnInit {
     updatedReservation.completed = true;
     this.apiService.finishReservation$(updatedReservation).subscribe(result => {
       console.log(result);
+      this.dialogRef.close();
     })
   }
 
@@ -41,7 +43,7 @@ export class FinishReservationModalComponent implements OnInit {
    * Cancel
    */
   cancel() {
-
+    this.dialogRef.close();
   }
 
 }

@@ -63,7 +63,7 @@ export class ReservationPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-
+      this.refreshActionStream.next(true);
     });
   }
 
@@ -77,7 +77,7 @@ export class ReservationPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-
+      this.refreshActionStream.next(true);
     });
   }
 
