@@ -3,7 +3,10 @@
 </mat-card>
 <mat-card fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
     <div fxFlex="1 1">
-        <img *ngIf="showProfilePicture" style="max-height: 30em;" src={{profileImageUri}}>
+        <div *ngIf="!showProfilePicture" style="height: 20em; width: 15em; text-align: center; background-color: hsla(0, 37%, 69%, 0.22)">
+            <p style="margin: 0; width: 15em; padding-top: 8em;">Kein Profilbild hochgeladen</p>
+        </div>
+        <img *ngIf="showProfilePicture" style="max-height: 20em;" src={{profileImageUri}} (error)="noProfilePictureFound()">
         <app-file-uploader [trigger]="profileImageUploadTriggerer"></app-file-uploader>
     </div>
     <div fxFlex="1 1 auto">
