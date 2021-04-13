@@ -16,12 +16,21 @@ export class LoggedInCardComponent implements OnInit {
    */
   @Input() user: User;
 
+  /**
+   * The uri to the profile picture
+   */
+  profilePictureUri: string = '';
+
   constructor(
     private router: Router,
-    private apiService: ApiService
+    public apiService: ApiService
   ) { }
 
   ngOnInit(): void {
+    this.setProfilePicture();
+    this.apiService.refreshProfilePicture.subscribe(refresh => {
+      this.setProfilePicture();
+    })
   }
 
   /**
@@ -36,6 +45,13 @@ export class LoggedInCardComponent implements OnInit {
    */
   gotoProfile() {
     this.router.navigate(['profile']);
+  }
+
+  /**
+   * set profilepicture link - small hack to refresh the img tag
+   */
+  setProfilePicture() {
+    this.profilePictureUri = this.apiService.endpoint + 'profilePicture?' + Math.random();
   }
 
   /**

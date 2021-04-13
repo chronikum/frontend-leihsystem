@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="space-between" style="margin: 20px;">
+<mat-card fxLayout="column" fxLayoutAlign="space-between" style="margin: 20px;">
     <button class="create-button" mat-flat-button *ngIf="showCreateButton" (click)="createAction.next(true)">Erstellen</button>
     <button class="delete-button"  mat-flat-button [disabled]="disableDeleteButton" (click)="deleteAction.next(true)">Löschen</button>
     <button class="reserve-button"  mat-flat-button [disabled]="disableReserveButton" *ngIf="showReserveButton" (click)="reserveAction.next(true)">Reservierung erstellen</button>
@@ -6,4 +6,4 @@
     <button class="edit-profile-button"  mat-flat-button [disabled]="disableUserPageButtons" *ngIf="showUserPageButtons" (click)="editUserProfile.next(true)">Account bearbeiten</button>
     <button class="edit-item-button"  mat-flat-button [disabled]="enableEditButton" *ngIf="showReserveButton" (click)="editItemButtonAction.next(true)">Geräteinfo bearbeiten</button>
     <button class="edit-group-button"  mat-flat-button [disabled]="enableEditButton" *ngIf="showGroupButtons" (click)="editGroupMembers.next(true)">Mitglieder bearbeiten</button>
-</div>
+</mat-card>

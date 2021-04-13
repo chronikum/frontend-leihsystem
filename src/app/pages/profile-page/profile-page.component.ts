@@ -67,11 +67,15 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit(): void {
     this.getUserInformation();
     this.getProfilePicture()
+
+    // Profil picture was changed, refresh!
     this.profileImageUploadTriggerer.subscribe(update => {
-      this.router.navigate(['profile']);
+      // Reload size
       this.getProfilePicture()
-      // this.router.navigateByUrl('/not-found', { skipLocationChange: true }).then(() => {
-      // });
+
+      // Tell apiservice profil picture was changed and fire global listener
+      this.apiService.refreshProfilePicture.next(true);
+
     })
   }
 

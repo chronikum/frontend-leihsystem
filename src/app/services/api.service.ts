@@ -50,6 +50,11 @@ export class ApiService {
    */
   currentUser: User;
 
+  /**
+   * "Profile picture was updated and should be refreshed" - trigger
+   */
+  refreshProfilePicture = new EventEmitter<boolean>();
+
 
   /**
    * Returns new instance of api service
