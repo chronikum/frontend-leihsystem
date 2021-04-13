@@ -2,7 +2,7 @@
     <div class="mat-elevation-z8">
       <app-search-bar (searchString)="applyFilter($event)" [placeholder]="'User suchen'"></app-search-bar>
       <div [ngClass]="{'table-holder': !displayMode, 'table-holder-display': !displayMode}">
-        <table *ngIf="loadingCompleted" mat-table [dataSource]="dataSource">
+        <table [hidden]="!loadingCompleted" mat-table [dataSource]="dataSource" matSort>
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
               <mat-checkbox (change)="$event ? masterToggle() : null"
@@ -19,49 +19,42 @@
           </ng-container>
           
           <ng-container matColumnDef="userId" sticky>
-            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
             <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
           </ng-container>
 
           <ng-container matColumnDef="username">
-            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.username}}</span>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="firstname">
-            <th mat-header-cell *matHeaderCellDef>Vorname</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Vorname</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.firstname}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="surname">
-            <th mat-header-cell *matHeaderCellDef>Nachname</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nachname</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.surname}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef>E-Mail</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>E-Mail</th>
             <td mat-cell *matCellDef="let element">
               <span>{{element.email}}</span>
             </td>
           </ng-container>
   
           <ng-container matColumnDef="lastLogin">
-            <th mat-header-cell *matHeaderCellDef>Letzter Login</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Letzter Login</th>
             <td mat-cell *matCellDef="let element">
               <span>{{parseDate(element.lastLogin)}}</span>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="role">
-            <th mat-header-cell *matHeaderCellDef>Userrolle</th>
-            <td mat-cell *matCellDef="let element">
-              <span>{{element.role}}</span>
             </td>
           </ng-container>
   
@@ -72,7 +65,7 @@
   
         </table>
       </div>
-      <mat-paginator [pageSizeOptions]="[5, 10, 100]" showFirstLastButtons></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[15, 10, 100]" showFirstLastButtons></mat-paginator>
     </div>
   </div>
   

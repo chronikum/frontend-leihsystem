@@ -17,6 +17,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSortModule } from '@angular/material/sort';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -192,6 +193,7 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
     MatPaginatorModule,
     MatTableModule,
     MatCheckboxModule,
+    MatSortModule,
     MatDialogModule,
     MatSelectModule,
     MatDatepickerModule,
@@ -206,7 +208,7 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
     MatBadgeModule,
     MatStepperModule,
     MatRadioModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     {

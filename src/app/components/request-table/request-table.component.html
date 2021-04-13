@@ -2,7 +2,7 @@
     <div class="mat-elevation-z8">
       <app-search-bar (searchString)="applyFilter($event)" [placeholder]="'Reservierung suchen'"></app-search-bar>
       <div class="table-holder">
-        <table *ngIf="loadingCompleted" mat-table [dataSource]="dataSource">
+        <table [hidden]="!loadingCompleted" mat-table [dataSource]="dataSource">
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
               <mat-checkbox (change)="$event ? masterToggle() : null"

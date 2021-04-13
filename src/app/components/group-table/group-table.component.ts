@@ -90,6 +90,7 @@ export class GroupTableComponent implements OnInit {
           this.togglePermissionArray.push(false);
         })
         this.dataSource = new MatTableDataSource<Group>([...response.groups || []]);
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.loadingCompleted = true;
         this.deselectAll();

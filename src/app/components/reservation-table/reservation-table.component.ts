@@ -119,6 +119,7 @@ export class ReservationTableComponent implements OnInit {
       this.loadingCompleted = false;
       this.dataSource = new MatTableDataSource<Reservation>([...reservations]);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.loadingCompleted = true;
       this.reservations = reservations;
       this.deselectAll();

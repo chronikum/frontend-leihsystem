@@ -41,8 +41,6 @@ export class InventoryTableComponent implements OnInit {
 
   @ViewChild('searchInput') searchInput: ElementRef;
 
-  @ViewChild(MatSort) sort: MatSort;
-
   /**
    * All device models
    */
@@ -63,11 +61,23 @@ export class InventoryTableComponent implements OnInit {
    */
   @Output() showQRCodeEmitter = new EventEmitter<Item>();
 
+  /**
+   * MatSort - ViewChild
+   */
+  @ViewChild(MatSort) sort: MatSort;
+
   constructor(
     private apiService: ApiService,
   ) {
     this.loadDeviceModels();
     this.loadData();
+  }
+
+  /**
+   * Assign the ViewChild to the matSort
+   */
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
@@ -123,6 +133,7 @@ export class InventoryTableComponent implements OnInit {
         item.deviceModelName = this.getNameOfDeviceModel(item);
       })
       this.dataSource = new MatTableDataSource<Item>([...items]);
+      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();

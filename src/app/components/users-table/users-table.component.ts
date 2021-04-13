@@ -16,7 +16,7 @@ export class UsersTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['select', 'userId', 'username', 'firstname', 'surname', 'email', 'lastLogin', 'role'];
+  displayedColumns: string[] = ['select', 'userId', 'username', 'firstname', 'surname', 'email', 'lastLogin'];
 
   /**
    * Datasource
@@ -95,6 +95,7 @@ export class UsersTableComponent implements OnInit {
       this.apiService.getAllUsers$().subscribe(users => {
         this.loadingCompleted = false;
         this.dataSource = new MatTableDataSource<User>([...users]);
+        this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
         this.loadingCompleted = true;
         this.deselectAll();
@@ -102,6 +103,7 @@ export class UsersTableComponent implements OnInit {
     } else { // Display mode is active
       this.loadingCompleted = false;
       this.dataSource = new MatTableDataSource<User>([...this.preloadedUsers]);
+      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();

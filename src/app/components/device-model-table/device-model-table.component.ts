@@ -86,6 +86,7 @@ export class DeviceModelTableComponent implements OnInit {
       console.log(models)
       this.loadingCompleted = false;
       this.dataSource = new MatTableDataSource<DeviceModel>([...models]);
+      this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.loadingCompleted = true;
       this.deselectAll();
