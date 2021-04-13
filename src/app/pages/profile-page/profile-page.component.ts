@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { InfoModalComponent } from 'src/app/modals/info-modal/info-modal.component';
 import { User } from 'src/app/models/User';
 import { ApiService } from 'src/app/services/api.service';
 import { phoneNumber } from 'src/app/validators/PhoneValidator';
@@ -11,6 +13,11 @@ import { phoneNumber } from 'src/app/validators/PhoneValidator';
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
+
+  /**
+   * If account is ldap account, certain information is not editable
+   */
+  isLDAP: boolean = false
 
   /**
    * User information of logged in user
@@ -43,7 +50,8 @@ export class ProfilePageComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
   ) {
     this.userForm = this.formBuilder.group({
       phone: ['', [Validators.required, phoneNumber()]],
@@ -89,12 +97,24 @@ export class ProfilePageComponent implements OnInit {
    * - changes an ignored part of the uri to trigger angulars engine and refresh the image
    */
   getProfilePicture() {
+    this.showProfilePicture = true;
     this.profileImageUri = this.apiService.endpoint + 'profilePicture' + '?' + Math.random(); // <- This is genius
   }
 
 
   noProfilePictureFound() {
     this.showProfilePicture = false;
+  }
+
+  /**
+   * Change password for the user
+   */
+  changePasswordForUser() {
+    const dialogRef = this.dialog.open(InfoModalComponent, {
+      width: '650px',
+      data: { message: "Eine E-Mail zum Password-Reset wurde soeben verschickt." }
+    });
+    this.apiService.resetPasswordChallenge(this.apiService.currentUser.email).subscribe();
   }
 
 }

@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>Information</h3>
+    <ul>
+        {{message}}
+    </ul>
+</div>
+<mat-dialog-actions style="float: right">
+    <button mat-raised-button [color]="'primary'" (click)="closeModal()">Schließen</button>
+</mat-dialog-actions>

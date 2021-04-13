@@ -17,13 +17,11 @@
         </div>
     </div>
     <div [formGroup]="userForm" fxFlex="1 1 auto">
-        <div style="width: 100%;">
+        <div>
             <mat-form-field  style="width: 100%;" [appearance]="'outline'">
                 <input matInput placeholder="E-Mail" [(ngModel)]="currentUser.email" [formControlName]="'email'">
                 <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
-        </div>
-        <div style="width: 100%;">
             <mat-form-field  style="width: 100%;" [appearance]="'outline'">
                 <input matInput placeholder="Telefonnummer" [(ngModel)]="currentUser.phone" [formControlName]="'phone'">
                 <mat-icon matSuffix>phone</mat-icon>
@@ -35,8 +33,12 @@
                 <input matInput placeholder="Matrikelnummer" [(ngModel)]="currentUser.matrikelnumber" [formControlName]="'matrikelnumber'">
                 <mat-icon matSuffix>credit_card</mat-icon>
             </mat-form-field>
+            <div>
+                <button mat-flat-button (click)="changePasswordForUser()" [color]="'primary'">Passwort ändern</button>
+            <span> Ändern das Passworts ist nur über einen Passwort-Reset möglich. Sie erhalten dann einen Link, über welchen Sie ein neues Passwort setzen können.</span>
+            </div>
         </div>
-        <div style="height: 50px;">
+        <div>
             <button mat-raised-button [disabled]="!userForm.valid" (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
         </div>
     </div>
