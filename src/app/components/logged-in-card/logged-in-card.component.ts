@@ -21,6 +21,17 @@ export class LoggedInCardComponent implements OnInit {
    */
   profilePictureUri: string = '';
 
+  /**
+   * Determines if profile picture is being shown
+   */
+  showProfilePicture: boolean = true;
+
+  /**
+   * Create a new instance of LoggedInCardComponent
+   * - add the refreshProfilePicture Listener
+   * @param router 
+   * @param apiService 
+   */
   constructor(
     private router: Router,
     public apiService: ApiService
@@ -29,6 +40,7 @@ export class LoggedInCardComponent implements OnInit {
   ngOnInit(): void {
     this.setProfilePicture();
     this.apiService.refreshProfilePicture.subscribe(refresh => {
+      this.showProfilePicture = true
       this.setProfilePicture();
     })
   }
@@ -71,6 +83,13 @@ export class LoggedInCardComponent implements OnInit {
       greeting = "Guten Morgen";
     }
     return greeting
+  }
+
+  /**
+   * This will be called when the profile picture could not be loaded to hide it.
+   */
+  hideProfilePicture() {
+    this.showProfilePicture = false
   }
 
 }
