@@ -3,12 +3,13 @@
             <app-menu-bar></app-menu-bar>
         </mat-drawer>
         <!-- OPEN SIDEBAR BUTTON -->
-        <div style="width: 100%;" fxLayoutAlign="space-between start">
+        <div style="width: 100%; background-color: #a0ce4e; color: black" fxLayoutAlign="space-between center">
             <button *ngIf="isAuthenticated" class="sidebar-button" type="button" mat-button (click)="drawer.toggle()">
                 <mat-icon>menu</mat-icon>
                 <span *ngIf="drawer.opened">Menü schließen</span>
                 <span *ngIf="!drawer.opened">Menü öffnen</span>
             </button>
+            <button style="margin-right: 5px; color: black" mat-stroked-button>Version: Alpha</button>
         </div>
         <router-outlet>
         </router-outlet>

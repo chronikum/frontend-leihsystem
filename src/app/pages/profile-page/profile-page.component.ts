@@ -92,7 +92,10 @@ export class ProfilePageComponent implements OnInit {
   updateUserInformation() {
     console.log(this.currentUser)
     this.apiService.updateUserInformation$(this.currentUser).subscribe(updatedUser => {
-      console.log(updatedUser)
+      const dialogRef = this.dialog.open(InfoModalComponent, {
+        width: '650px',
+        data: { message: "Die Profilinformationen wurden gespeichert" }
+      });
     });
   }
 
