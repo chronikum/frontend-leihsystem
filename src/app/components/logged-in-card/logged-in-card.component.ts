@@ -64,7 +64,7 @@ export class LoggedInCardComponent implements OnInit {
     var currentHour = parseFloat(moment().format("HH"));
 
     if (currentHour >= split_afternoon && currentHour <= split_evening) {
-      greeting = "Guten Vormittag";
+      greeting = "Guten Nachmittag";
     } else if (currentHour >= split_evening) {
       greeting = "Guten Abend";
     } else {
