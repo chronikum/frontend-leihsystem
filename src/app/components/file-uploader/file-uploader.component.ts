@@ -13,6 +13,12 @@ export class FileUploaderComponent implements OnInit {
    */
   @Input() trigger: EventEmitter<boolean>;
 
+  /**
+   * The text provided on the uploader
+   */
+  @Input() text: string = "Datei hochladen"
+
+
   constructor(
     private apiService: ApiService,
   ) { }

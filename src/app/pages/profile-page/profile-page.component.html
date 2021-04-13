@@ -2,42 +2,42 @@
     <h1 class="mat-title">Mein Profil</h1>
 </mat-card>
 <mat-card fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
-    <div fxFlex="1 1">
-        <div *ngIf="!showProfilePicture" style="height: 20em; width: 15em; text-align: center; background-color: hsla(0, 37%, 69%, 0.22)">
-            <p style="margin: 0; width: 15em; padding-top: 8em;">Kein Profilbild hochgeladen</p>
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" fxFlex="1 1">
+        <div fxFlex="1 1">
+            <div *ngIf="!showProfilePicture" style="height: 20em; width: 15em; text-align: center; background-color: hsla(0, 37%, 69%, 0.22)">
+                <p style="margin: 0; width: 15em; padding-top: 8em;">Kein Profilbild hochgeladen</p>
+            </div>
+            <img *ngIf="showProfilePicture" style="max-height: 20em;" src={{profileImageUri}} (error)="noProfilePictureFound()">
+            <app-file-uploader [trigger]="profileImageUploadTriggerer" [text]="'Profilbild hochladen'"></app-file-uploader>
         </div>
-        <img *ngIf="showProfilePicture" style="max-height: 20em;" src={{profileImageUri}} (error)="noProfilePictureFound()">
-        <app-file-uploader [trigger]="profileImageUploadTriggerer"></app-file-uploader>
+        <div fxFlex="1 1 auto">
+            <span class="mat-display-3">{{currentUser.firstname || '-'}} {{currentUser.surname || '-'}}</span>
+            <br>
+            <span class="mat-subtitle"><b>Dein Username:</b> {{currentUser.username}}</span>
+        </div>
     </div>
-    <div fxFlex="1 1 auto">
-        <span class="mat-display-3">{{currentUser.firstname || '-'}} {{currentUser.surname || '-'}}</span>
-        <br>
-        <span class="mat-subtitle"><b>Dein Username:</b> {{currentUser.username}}</span>
+    <div [formGroup]="userForm" fxFlex="1 1 auto">
+        <div style="width: 100%;">
+            <mat-form-field  style="width: 100%;" [appearance]="'outline'">
+                <input matInput placeholder="E-Mail" [(ngModel)]="currentUser.email" [formControlName]="'email'">
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+        </div>
+        <div style="width: 100%;">
+            <mat-form-field  style="width: 100%;" [appearance]="'outline'">
+                <input matInput placeholder="Telefonnummer" [(ngModel)]="currentUser.phone" [formControlName]="'phone'">
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error>
+                    <span>Telefonnummer bitte mit Vorwahl +49 angeben.</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="width: 100%;" [appearance]="'outline'">
+                <input matInput placeholder="Matrikelnummer" [(ngModel)]="currentUser.matrikelnumber" [formControlName]="'matrikelnumber'">
+                <mat-icon matSuffix>credit_card</mat-icon>
+            </mat-form-field>
+        </div>
+        <div style="height: 50px;">
+            <button mat-raised-button [disabled]="!userForm.valid" (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
+        </div>
     </div>
 </mat-card>
-<mat-card [formGroup]="userForm">
-    <div style="width: 100%;">
-        <mat-form-field  style="width: 100%;" [appearance]="'outline'">
-            <input matInput placeholder="E-Mail" [(ngModel)]="currentUser.email" [formControlName]="'email'">
-            <mat-icon matSuffix>email</mat-icon>
-        </mat-form-field>
-    </div>
-    <div style="width: 100%;">
-        <mat-form-field  style="width: 100%;" [appearance]="'outline'">
-            <input matInput placeholder="Telefonnummer" [(ngModel)]="currentUser.phone" [formControlName]="'phone'">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error>
-                <span>Telefonnummer bitte mit Vorwahl +49 angeben.</span>
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field  style="width: 100%;" [appearance]="'outline'">
-            <input matInput placeholder="Matrikelnummer" [(ngModel)]="currentUser.matrikelnumber" [formControlName]="'matrikelnumber'">
-            <mat-icon matSuffix>credit_card</mat-icon>
-        </mat-form-field>
-    </div>
-</mat-card>
-<mat-card style="height: 50px;">
-    <button mat-raised-button [disabled]="!userForm.valid" (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
-</mat-card>
-
-  
