@@ -104,6 +104,7 @@ import * as Sentry from "@sentry/angular";
 import { Router } from '@angular/router';
 import { CsvExporterComponent } from './components/csv-exporter/csv-exporter.component';
 import { LoggedInCardComponent } from './components/logged-in-card/logged-in-card.component';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 
 @NgModule({
   declarations: [
@@ -168,6 +169,7 @@ import { LoggedInCardComponent } from './components/logged-in-card/logged-in-car
     ResetPasswordModalComponent,
     CsvExporterComponent,
     LoggedInCardComponent,
+    FileUploaderComponent,
   ],
   imports: [
     FlexLayoutModule,

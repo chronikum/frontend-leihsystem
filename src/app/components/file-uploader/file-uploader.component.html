@@ -1,0 +1,6 @@
+<div class="form-group">
+    <input type="file"
+           id="file"
+           (onDrag)="onDragOverFile($event)"
+           (change)="uploadFile($event.target.files)">
+</div>

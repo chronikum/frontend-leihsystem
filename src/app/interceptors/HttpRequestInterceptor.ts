@@ -18,7 +18,17 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler):
         Observable<HttpEvent<any>> {
 
-        // console.log("interceptor: " + req.url);
+        if (req.url.includes('upload')) {
+            console.log("UPLOAD!")
+            req = req.clone({
+                withCredentials: true
+            });
+            return next.handle(req).pipe(tap(x => {
+                if ((x as any).body?.success === false && (x as any).body?.errorCode === -1) {
+                    this.router.navigate(['error']);
+                }
+            }));
+        }
         req = req.clone({
             withCredentials: true
         });

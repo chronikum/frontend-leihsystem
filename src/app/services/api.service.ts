@@ -1,4 +1,4 @@
-import { HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEventType, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { GeneralServerResponse } from '../models/GeneralServerResponse';
@@ -14,6 +14,8 @@ import { GroupCreationModalComponent } from '../modals/group-creation-modal/grou
 import { Group } from '../models/Group';
 import { UserRoles } from '../models/UserRoles';
 import { DeviceModel } from '../models/DeviceModel';
+import { UploadService } from './upload.service';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +61,7 @@ export class ApiService {
     private httpClient: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
+    private uploadService: UploadService,
   ) {
     this.router.events.subscribe(e => {
       if (e instanceof NavigationEnd) {
@@ -521,6 +524,40 @@ export class ApiService {
       user: user,
       newPassword: newPassword,
     });
+  }
+
+  /**
+   * Upload
+   */
+
+  /**
+   * Upload profile picture
+   */
+  uploadProfilePicture$(file: any, user: User) {
+    const formData = new FormData();
+    const endpoint = this.endpoint + 'uploadProfilePicture'
+    console.log(file)
+    formData.append('file', file);
+    // formData.append('user', JSON.stringify(this.currentUser))
+
+    this.uploadService.upload(formData, endpoint).pipe(
+      map(event => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            file.progress = Math.round(event.loaded * 100 / event.total);
+            break;
+          case HttpEventType.Response:
+            return event;
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        file.inProgress = false;
+        return of(`${file.data.name} upload failed.`);
+      })).subscribe((event: any) => {
+        if (typeof (event) === 'object') {
+          console.log(event.body);
+        }
+      });
   }
 
   /**
