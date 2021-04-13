@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -7,6 +7,11 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./file-uploader.component.scss']
 })
 export class FileUploaderComponent implements OnInit {
+
+  /**
+   * Trigger wwhen profile image was updated
+   */
+  @Input() trigger: EventEmitter<boolean>;
 
   constructor(
     private apiService: ApiService,
@@ -45,7 +50,13 @@ export class FileUploaderComponent implements OnInit {
     let file: File = files[0];
     console.log(file)
 
-    this.apiService.uploadProfilePicture$(file, this.apiService.currentUser);
+    this.apiService.uploadProfilePicture$(file, this.apiService.currentUser).subscribe((event: any) => {
+      if (typeof (event) === 'object') {
+        console.log(event.body);
+        console.log("File upload completed")
+        this.trigger.next(true)
+      }
+    });
   }
 
 }

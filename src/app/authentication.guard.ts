@@ -24,19 +24,19 @@ export class AuthenticationGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     const authState = this.apiService.checkAuth$().pipe(tap(success => {
-      if (!success.success) {
+      if (!success?.success) {
         this.router.navigate(['login']);
       }
     }))
     const result = new Promise<boolean>(function (resolve, reject) {
       authState.subscribe(x => {
-        if (x.success) {
+        if (x?.success) {
           resolve(true);
         } else {
           resolve(false);
         }
       })
-    });
+    })
 
     return result;
   }

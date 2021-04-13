@@ -533,14 +533,12 @@ export class ApiService {
   /**
    * Upload profile picture
    */
-  uploadProfilePicture$(file: any, user: User) {
+  uploadProfilePicture$(file: any, user: User): Observable<any> {
     const formData = new FormData();
     const endpoint = this.endpoint + 'uploadProfilePicture'
     console.log(file)
     formData.append('file', file);
-    // formData.append('user', JSON.stringify(this.currentUser))
-
-    this.uploadService.upload(formData, endpoint).pipe(
+    return this.uploadService.upload(formData, endpoint).pipe(
       map(event => {
         switch (event.type) {
           case HttpEventType.UploadProgress:
@@ -553,11 +551,14 @@ export class ApiService {
       catchError((error: HttpErrorResponse) => {
         file.inProgress = false;
         return of(`${file.data.name} upload failed.`);
-      })).subscribe((event: any) => {
-        if (typeof (event) === 'object') {
-          console.log(event.body);
-        }
-      });
+      }))
+  }
+
+  /**
+   * Get the users profile picture
+   */
+  getProfilePicture$() {
+    return this.httpClient.get<any>(this.endpoint + 'profilePicture');
   }
 
   /**

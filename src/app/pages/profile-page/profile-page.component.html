@@ -1,13 +1,16 @@
 <mat-card>
     <h1 class="mat-title">Mein Profil</h1>
 </mat-card>
-<mat-card>
-    <div style="width: 100%;">
+<mat-card fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
+    <div fxFlex="1 1">
+        <img *ngIf="showProfilePicture" style="max-height: 30em;" src={{profileImageUri}}>
+        <app-file-uploader [trigger]="profileImageUploadTriggerer"></app-file-uploader>
+    </div>
+    <div fxFlex="1 1 auto">
         <span class="mat-display-3">{{currentUser.firstname || '-'}} {{currentUser.surname || '-'}}</span>
         <br>
         <span class="mat-subtitle"><b>Dein Username:</b> {{currentUser.username}}</span>
     </div>
-    <app-file-uploader></app-file-uploader>
 </mat-card>
 <mat-card [formGroup]="userForm">
     <div style="width: 100%;">
@@ -33,3 +36,5 @@
 <mat-card style="height: 50px;">
     <button mat-raised-button [disabled]="!userForm.valid" (click)="updateUserInformation()" [color]="'primary'" style="float: right;">Änderungen speichern</button>
 </mat-card>
+
+  
