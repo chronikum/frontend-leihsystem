@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Item } from 'src/app/models/Item';
 import { Reservation } from 'src/app/models/Reservation';
 import { ApiService } from 'src/app/services/api.service';
@@ -27,6 +28,7 @@ export class DashboardPageComponent implements OnInit {
   modelStatsEmitter = new EventEmitter<any>();
   reservationStatsEmitter = new EventEmitter<any>();
   groupStatsEmitter = new EventEmitter<any>();
+  userReservationStats = new EventEmitter<any>();
 
   /**
    * User count
@@ -40,6 +42,7 @@ export class DashboardPageComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private router: Router
   ) {
 
   }
@@ -92,8 +95,52 @@ export class DashboardPageComponent implements OnInit {
         this.groupStatsEmitter.next(chartData)
       })
 
+      this.apiService.reservationsProUser$().subscribe(chartData => {
+        this.userReservationStats.next(chartData)
+      })
+
       this.showCharts = true
     }, 100)
+  }
+
+
+  /**
+   * Button routes
+   */
+
+  /**
+   * Inventory route
+   */
+  gotoInventory() {
+    this.router.navigate(['inventory'])
+  }
+
+  /**
+   * Models route
+   */
+  gotoModels() {
+    this.router.navigate(['deviceModels'])
+  }
+
+  /**
+   * Reservations route
+   */
+  gotoReservations() {
+    this.router.navigate(['reservations'])
+  }
+
+  /**
+   * Groups route
+   */
+  gotoGroups() {
+    this.router.navigate(['groups'])
+  }
+
+  /**
+   * Groups route
+   */
+  gotoReservationsRequest() {
+    this.router.navigate(['requests'])
   }
 
 }

@@ -1,23 +1,55 @@
+<!-- TODO: Users without admin should see nothing on the dashboard -->
 <div fxLayout="column wrap" fxLayoutGap="32px" fxLayoutAlign="left" style="padding-top: 20px;">
-        <div  *ngIf="showCharts" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayoutAlign="space-around center">
-                <div fxLayout="row" fxLayout.sm="column">
-                        <div fxFlex="1 1">
-                                <app-chart-available-devices [availableStats]="availableStatsEmitter"></app-chart-available-devices>
+        <div  *ngIf="showCharts" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px">
+                <mat-card>
+                        <mat-card-title>Schnellübersicht</mat-card-title>
+                        <div fxLayout="row" fxLayout.sm="column">
+                                <div fxFlex="1 1">
+                                        <app-chart-available-devices [availableStats]="availableStatsEmitter"></app-chart-available-devices>
+                                </div>
+                                <div fxFlex="1 1">
+                                        <app-chart-device-models [modelStats]="modelStatsEmitter"></app-chart-device-models>
+                                </div>
+                                <div fxFlex="1 1">
+                                        <app-chart-reservations [reservationStats]="reservationStatsEmitter"></app-chart-reservations>
+                                </div>
                         </div>
-                        <div fxFlex="1 1">
-                                <app-chart-device-models [modelStats]="modelStatsEmitter"></app-chart-device-models>
+                        <br>
+                        <div fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-around center" class="zfm-background">
+                                <div fxFlex="1 1" fxLayoutAlign="space-around center">
+                                        <button mat-button (click)="gotoInventory()" class="zfm-button">Zu den Geräten</button>
+                                </div>
+                                <div fxFlex="1 1" fxLayoutAlign="space-around center">
+                                        <button mat-button (click)="gotoModels()" class="zfm-button">Zu den Gerätemodellen</button>
+                                </div>
+                                <div fxFlex="1 1" fxLayoutAlign="space-around center">
+                                        <button mat-button (click)="gotoReservations()" class="zfm-button">Zu den Reservierungen</button>
+                                </div>
                         </div>
-                        <div fxFlex="1 1">
-                                <app-chart-reservations [reservationStats]="reservationStatsEmitter"></app-chart-reservations>
-                        </div>
-                </div>
-                <div fxLayout="row" fxLayout.sm="column">
-                        <div fxFlex="1 auto auto">
-                                <app-chart-user-groups [groupStats]="groupStatsEmitter"></app-chart-user-groups>
-                        </div>
+                </mat-card>
+                <div fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-between center">
+                        <mat-card>
+                                <div fxLayout="row" fxLayout.sm="column">
+                                        <div fxFlex="1 auto auto">
+                                                <app-chart-user-groups [groupStats]="groupStatsEmitter"></app-chart-user-groups>
+                                        </div>
+                                        <div fxFlex="1 auto auto">
+                                                <app-chart-reservation-user [userReservationStats]="userReservationStats"></app-chart-reservation-user>
+                                        </div>
+                                </div>
+                                <br>
+                                <div fxLayout="row" fxLayout.sm="column" fxLayoutAlign="space-around center" class="zfm-background">
+                                        <div fxFlex="1 1" fxLayoutAlign="space-around center">
+                                                <button mat-button (click)="gotoGroups()" class="zfm-button">Zu den Gruppen</button>
+                                        </div>
+                                        <div fxFlex="1 1" fxLayoutAlign="space-around center">
+                                                <button mat-button (click)="gotoReservationsRequest()" class="zfm-button">Zu den Reservierungsanfragen</button>
+                                        </div>
+                                </div>
+                        </mat-card>
                 </div>
         </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayout="row" fxLayoutAlign="space-around center">
+        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayout="row">
             <div  *ngIf="items && reservations && userCount">
                         <div fxFlex="1 1 auto">
                                 <h6>Reservierungen insgesamt</h6>

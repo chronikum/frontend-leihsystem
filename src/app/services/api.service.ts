@@ -607,4 +607,11 @@ export class ApiService {
   userAndGroups$() {
     return this.httpClient.post<any>(this.endpoint + 'charts/userGroup', {});
   }
+
+  /**
+   * Group data - charts
+   */
+  reservationsProUser$() {
+    return this.httpClient.post<any>(this.endpoint + 'charts/reservationsProUser', {});
+  }
 }

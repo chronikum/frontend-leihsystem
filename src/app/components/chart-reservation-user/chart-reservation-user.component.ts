@@ -3,16 +3,16 @@ import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsToolt
 import { ChartType, ChartOptions } from 'chart.js';
 
 @Component({
-  selector: 'app-chart-user-groups',
-  templateUrl: './chart-user-groups.component.html',
-  styleUrls: ['./chart-user-groups.component.scss']
+  selector: 'app-chart-reservation-user',
+  templateUrl: './chart-reservation-user.component.html',
+  styleUrls: ['./chart-reservation-user.component.scss']
 })
-export class ChartUserGroupsComponent implements OnInit {
+export class ChartReservationUserComponent implements OnInit {
 
   /**
    * Model stats emitter
    */
-  @Input() groupStats: EventEmitter<any>;
+  @Input() userReservationStats: EventEmitter<any>;
 
   pieChartOptions: ChartOptions = {
     responsive: true,
@@ -31,11 +31,12 @@ export class ChartUserGroupsComponent implements OnInit {
    * Read data and build graph
    */
   ngOnInit(): void {
-    this.groupStats.subscribe((data) => {
-      const userAndGroups: any = data.userAndGroups
-      if (userAndGroups) {
-        let names = userAndGroups.map((group) => group.displayName);
-        let amount = userAndGroups.map((group) => group.amount);
+    this.userReservationStats.subscribe((data) => {
+      const userReservations: any = data.userReservations
+      if (userReservations) {
+        console.log(userReservations)
+        let names = userReservations.map((group) => group.displayName);
+        let amount = userReservations.map((group) => group.amount);
 
         this.pieChartData = amount;
         this.pieChartLabels = names;

@@ -113,6 +113,7 @@ import { ChartAvailableDevicesComponent } from './components/chart-available-dev
 import { ChartDeviceModelsComponent } from './components/chart-device-models/chart-device-models.component';
 import { ChartReservationsComponent } from './components/chart-reservations/chart-reservations.component';
 import { ChartUserGroupsComponent } from './components/chart-user-groups/chart-user-groups.component';
+import { ChartReservationUserComponent } from './components/chart-reservation-user/chart-reservation-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -181,7 +182,8 @@ import { ChartUserGroupsComponent } from './components/chart-user-groups/chart-u
     ChartAvailableDevicesComponent,
     ChartDeviceModelsComponent,
     ChartReservationsComponent,
-    ChartUserGroupsComponent
+    ChartUserGroupsComponent,
+    ChartReservationUserComponent
   ],
   imports: [
     FlexLayoutModule,
