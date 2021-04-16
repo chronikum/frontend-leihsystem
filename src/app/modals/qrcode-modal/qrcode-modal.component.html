@@ -5,6 +5,6 @@
     </div>
 </div>
 <mat-dialog-actions style="float: right">
-    <button class="mat-raised-button"><a class="remove-text-decoration" [href]="downloadUrl" [download]="item.name + ' QRCode'">Download qr code</a></button>
-    <button class="mat-raised-button" (click)="closeAction()">Close</button>
+    <button mat-raised-button ><a class="remove-text-decoration" [href]="downloadUrl" [download]="item.name + ' QRCode'">Download qr code</a></button>
+    <button mat-raised-button (click)="closeAction()">Close</button>
 </mat-dialog-actions>

@@ -18,8 +18,8 @@ export class ChartAvailableDevicesComponent implements OnInit {
     responsive: true,
   };
 
-  public pieChartLabels: Label[] = ['Verfügbar', 'Belegt'];
-  public pieChartData: SingleDataSet = [100, 10];
+  public pieChartLabels: Label[];
+  public pieChartData: SingleDataSet = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -30,9 +30,13 @@ export class ChartAvailableDevicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.availableStats?.subscribe(data => {
-      this.pieChartData[0] = data.available || 0
-      this.pieChartData[1] = data.reserved || 0
+    this.availableStats.subscribe(chartData => {
+      let data = chartData.availableItemsStat;
+      this.pieChartData.push(data.available)
+      this.pieChartData.push(data.reserved)
+      this.pieChartLabels = ['Verfügbar', 'Belegt'];
+      monkeyPatchChartJsTooltip();
+      monkeyPatchChartJsLegend();
     })
   }
 

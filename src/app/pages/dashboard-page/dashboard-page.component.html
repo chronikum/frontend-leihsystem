@@ -2,7 +2,7 @@
         <div  *ngIf="showCharts" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayoutAlign="space-around center">
                 <div fxLayout="row" fxLayout.sm="column">
                         <div fxFlex="1 1">
-                                <app-chart-available-devices [availableStats]="availableStats"></app-chart-available-devices>
+                                <app-chart-available-devices [availableStats]="availableStatsEmitter"></app-chart-available-devices>
                         </div>
                         <div fxFlex="1 1">
                                 <app-chart-device-models [modelStats]="modelStatsEmitter"></app-chart-device-models>

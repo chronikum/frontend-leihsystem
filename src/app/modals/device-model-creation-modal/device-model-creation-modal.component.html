@@ -29,5 +29,5 @@
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
-    <button class="mat-raised-button" (click)="createAction()">{{deviceModelBeingEdited ? 'Erstellen' : 'Updaten'}}</button>
+    <button mat-raised-button [disabled]="!deviceModalForm.valid" (click)="createAction()">{{deviceModelBeingEdited ? 'Updaten' : 'Erstellen'}}</button>
 </mat-dialog-actions>

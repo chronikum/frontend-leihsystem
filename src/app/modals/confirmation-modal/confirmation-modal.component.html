@@ -5,6 +5,6 @@
     </ul>
 </div>
 <mat-dialog-actions style="float: right">
-    <button class="mat-raised-button"(click)="cancelAction()">Abbrechen</button>
-    <button class="mat-raised-button" [ngClass]="{'critical': dialogData.critical}" (click)="confirmAction()">BESTÄTIGEN</button>
+    <button mat-raised-button (click)="cancelAction()">Abbrechen</button>
+    <button mat-raised-button [ngClass]="{'critical': dialogData.critical}" (click)="confirmAction()">BESTÄTIGEN</button>
 </mat-dialog-actions>

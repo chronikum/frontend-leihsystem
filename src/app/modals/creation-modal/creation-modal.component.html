@@ -42,5 +42,5 @@
 </div>
 <mat-dialog-actions style="float: right">
     <button class="mat-button"(click)="cancelAction()">Abbrechen</button>
-    <button class="mat-raised-button" (click)="createAction()">{{submitButtonText}}</button>
+    <button mat-raised-button [disabled]="!simpleCreationForm.valid" (click)="createAction()">{{submitButtonText}}</button>
 </mat-dialog-actions>
