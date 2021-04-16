@@ -575,4 +575,22 @@ export class ApiService {
       duration: 3000
     });
   }
+
+  /**
+   * Chart dataendpoints
+   */
+
+  /**
+   * Available/Reserved devices - charts
+   */
+  chartsAvailable$() {
+    return this.httpClient.post<any>(this.endpoint + 'charts/available', {});
+  }
+
+  /**
+   * Models devices - charts
+   */
+  chartsModels$() {
+    return this.httpClient.post<any>(this.endpoint + 'charts/models', {});
+  }
 }

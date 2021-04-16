@@ -108,6 +108,9 @@ import { LoggedInCardComponent } from './components/logged-in-card/logged-in-car
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 import { InfoModalComponent } from './modals/info-modal/info-modal.component';
 
+import { ChartsModule } from 'ng2-charts';
+import { ChartAvailableDevicesComponent } from './components/chart-available-devices/chart-available-devices.component';
+import { ChartDeviceModelsComponent } from './components/chart-device-models/chart-device-models.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -173,6 +176,8 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
     LoggedInCardComponent,
     FileUploaderComponent,
     InfoModalComponent,
+    ChartAvailableDevicesComponent,
+    ChartDeviceModelsComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -209,6 +214,7 @@ import { InfoModalComponent } from './modals/info-modal/info-modal.component';
     MatStepperModule,
     MatRadioModule,
     MatAutocompleteModule,
+    ChartsModule
   ],
   providers: [
     {

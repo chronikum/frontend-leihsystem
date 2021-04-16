@@ -19,7 +19,15 @@
             <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
                 <h4>Hier wird es möglich sein, Schnellaktionen vorzunehmen und eine Übersicht der aktuellen Anfragen anzuzeigen.</h4>
             </div>
-        
+            <br>
+    </div>
+    <div  *ngIf="items && reservations && userCount" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
+        <div>
+                <app-chart-available-devices [availableStats]="availableStats"></app-chart-available-devices>
+        </div>
+        <div>
+                <app-chart-device-models [modelStats]="modelStatsEmitter"></app-chart-device-models>
+        </div>
     </div>
     <br>
     <div fxLayout="row" fxLayoutAlign="space-around center">

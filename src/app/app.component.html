@@ -3,8 +3,8 @@
             <app-menu-bar></app-menu-bar>
         </mat-drawer>
         <!-- OPEN SIDEBAR BUTTON -->
-        <div style="width: 100%; background-color: #a0ce4e; color: black" fxLayoutAlign="space-between center">
-            <button *ngIf="isAuthenticated" class="sidebar-button" type="button" mat-button (click)="drawer.toggle()">
+        <div *ngIf="isAuthenticated" style="width: 100%; background-color: #a0ce4e; color: black" fxLayoutAlign="space-between center">
+            <button class="sidebar-button" type="button" mat-button (click)="drawer.toggle()">
                 <mat-icon>menu</mat-icon>
                 <span *ngIf="drawer.opened">Menü schließen</span>
                 <span *ngIf="!drawer.opened">Menü öffnen</span>
