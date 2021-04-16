@@ -593,4 +593,18 @@ export class ApiService {
   chartsModels$() {
     return this.httpClient.post<any>(this.endpoint + 'charts/models', {});
   }
+
+  /**
+   * Models devices - charts
+   */
+  reservationsCompleted$() {
+    return this.httpClient.post<any>(this.endpoint + 'charts/completedReservation', {});
+  }
+
+  /**
+   * Group data - charts
+   */
+  userAndGroups$() {
+    return this.httpClient.post<any>(this.endpoint + 'charts/userGroup', {});
+  }
 }

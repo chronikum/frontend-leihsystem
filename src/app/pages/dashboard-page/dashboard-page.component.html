@@ -1,39 +1,36 @@
-<div style="padding: 12px; margin: 20px">
-    <p style="text-align: center;"><b>Detaillierte Informationen sind bald verfügbar</b></p>
-    <div fxLayout="row" fxLayoutAlign="space-around center">
-            <div  *ngIf="items && reservations && userCount" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
-                <div>
-                        <h6>Reservierungen insgesamt</h6>
-                        <h1>{{reservations.length}}</h1>
+<div fxLayout="column wrap" fxLayoutGap="32px" fxLayoutAlign="left" style="padding-top: 20px;">
+        <div  *ngIf="showCharts" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayoutAlign="space-around center">
+                <div fxLayout="row" fxLayout.sm="column">
+                        <div fxFlex="1 1">
+                                <app-chart-available-devices [availableStats]="availableStats"></app-chart-available-devices>
+                        </div>
+                        <div fxFlex="1 1">
+                                <app-chart-device-models [modelStats]="modelStatsEmitter"></app-chart-device-models>
+                        </div>
+                        <div fxFlex="1 1">
+                                <app-chart-reservations [reservationStats]="reservationStatsEmitter"></app-chart-reservations>
+                        </div>
                 </div>
-                <div>
-                        <h6>Geräte insgesamt</h6>
-                        <h1>{{items.length}}</h1>
+                <div fxLayout="row" fxLayout.sm="column">
+                        <div fxFlex="1 auto auto">
+                                <app-chart-user-groups [groupStats]="groupStatsEmitter"></app-chart-user-groups>
+                        </div>
                 </div>
-                <div>
-                        <h6>User gesamt</h6>
-                        <h1>{{userCount}}</h1>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayout="row" fxLayoutAlign="space-around center">
+            <div  *ngIf="items && reservations && userCount">
+                        <div fxFlex="1 1 auto">
+                                <h6>Reservierungen insgesamt</h6>
+                                <h1>{{reservations.length}}</h1>
+                        </div>
+                        <div fxFlex="1 1 auto">
+                                <h6>Geräte insgesamt</h6>
+                                <h1>{{items.length}}</h1>
+                        </div>
+                        <div fxFlex="1 1 auto">
+                                <h6>User gesamt</h6>
+                                <h1>{{userCount}}</h1>
+                        </div>
                 </div>
-            </div>
-            <br>
-            <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
-                <h4>Hier wird es möglich sein, Schnellaktionen vorzunehmen und eine Übersicht der aktuellen Anfragen anzuzeigen.</h4>
-            </div>
-            <br>
-    </div>
-    <div  *ngIf="items && reservations && userCount" fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
-        <div>
-                <app-chart-available-devices [availableStats]="availableStats"></app-chart-available-devices>
         </div>
-        <div>
-                <app-chart-device-models [modelStats]="modelStatsEmitter"></app-chart-device-models>
-        </div>
-    </div>
-    <br>
-    <div fxLayout="row" fxLayoutAlign="space-around center">
-        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="15px">
-            <h4>Hier werden Statistiken angezeigt und letzte Aktionen.</h4>
-        </div>
-    
-</div>
 </div>

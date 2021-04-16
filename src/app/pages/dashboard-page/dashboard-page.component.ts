@@ -16,14 +16,17 @@ export class DashboardPageComponent implements OnInit {
   items: Item[]
 
   /**
-   * Available/Reserved stats emitter for pie graph
+   * Determines if charts should be shown
    */
-  availableStatsEmitter = new EventEmitter<any>();
+  showCharts: boolean = false;
 
   /**
-   * Modle stats emitter for pie graph
+   * Emitters for the charts in the dashboard
    */
+  availableStatsEmitter = new EventEmitter<any>();
   modelStatsEmitter = new EventEmitter<any>();
+  reservationStatsEmitter = new EventEmitter<any>();
+  groupStatsEmitter = new EventEmitter<any>();
 
   /**
    * User count
@@ -70,17 +73,27 @@ export class DashboardPageComponent implements OnInit {
    * Load the chart datasets
    */
   loadChartInformation() {
-    /**
-     * Get chart information for available/reserved
-     */
-    this.apiService.chartsAvailable$().subscribe(chartData => {
-      this.availableStatsEmitter.next(chartData)
-    })
 
-    this.apiService.chartsModels$().subscribe(chartData => {
-      console.log("Data received")
-      this.modelStatsEmitter.next(chartData)
-    })
+    // Wait until dom is build before loading data
+    setTimeout(() => {
+      this.apiService.chartsAvailable$().subscribe(chartData => {
+        this.availableStatsEmitter.next(chartData)
+      })
+
+      this.apiService.chartsModels$().subscribe(chartData => {
+        this.modelStatsEmitter.next(chartData)
+      })
+
+      this.apiService.reservationsCompleted$().subscribe(chartData => {
+        this.reservationStatsEmitter.next(chartData)
+      })
+
+      this.apiService.userAndGroups$().subscribe(chartData => {
+        this.groupStatsEmitter.next(chartData)
+      })
+
+      this.showCharts = true
+    }, 100)
   }
 
 }

@@ -1,5 +1,5 @@
-<div style="display: block;">
-  <label>Geräteverfügbarkeit</label>
+<div style="display: block;" *ngIf="pieChartLabels">
+    <label>Nutzer-Gruppen Verteilung</label>
     <canvas baseChart 
       [data]="pieChartData" 
       [labels]="pieChartLabels" 

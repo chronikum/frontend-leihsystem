@@ -3,23 +3,23 @@ import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsToolt
 import { ChartType, ChartOptions } from 'chart.js';
 
 @Component({
-  selector: 'app-chart-device-models',
-  templateUrl: './chart-device-models.component.html',
-  styleUrls: ['./chart-device-models.component.scss']
+  selector: 'app-chart-user-groups',
+  templateUrl: './chart-user-groups.component.html',
+  styleUrls: ['./chart-user-groups.component.scss']
 })
-export class ChartDeviceModelsComponent implements OnInit {
+export class ChartUserGroupsComponent implements OnInit {
 
   /**
    * Model stats emitter
    */
-  @Input() modelStats: EventEmitter<any>;
+  @Input() groupStats: EventEmitter<any>;
 
   pieChartOptions: ChartOptions = {
     responsive: true,
   };
 
   public pieChartLabels: Label[];
-  public pieChartData: SingleDataSet;
+  public pieChartData: SingleDataSet = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -27,20 +27,23 @@ export class ChartDeviceModelsComponent implements OnInit {
   constructor() {
   }
 
+  /**
+   * Read data and build graph
+   */
   ngOnInit(): void {
-    this.modelStats.subscribe((data) => {
-      const modelAndAmount: any = data.modelAndAmount
-      console.log("Loading")
-      if (modelAndAmount) {
-        let names = modelAndAmount.map((model) => model.modelName);
-        let amount = modelAndAmount.map((model) => model.amount);
+    this.groupStats.subscribe((data) => {
+      const userAndGroups: any = data.userAndGroups
+      if (userAndGroups) {
+        console.log(userAndGroups)
+        let names = userAndGroups.map((group) => group.displayName);
+        let amount = userAndGroups.map((group) => group.amount);
 
         this.pieChartData = amount;
         this.pieChartLabels = names;
         monkeyPatchChartJsTooltip();
         monkeyPatchChartJsLegend();
-        console.log("Build!")
       }
     })
   }
+
 }
