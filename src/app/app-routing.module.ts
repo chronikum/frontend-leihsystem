@@ -80,7 +80,7 @@ const routes: Routes = [
   },
   {
     path: 'licenseInformation',
-    component: LicenseInformationPageComponent
+    component: LicenseInformationPageComponent,
   },
   {
     path: 'resetPassword/:email/:token',

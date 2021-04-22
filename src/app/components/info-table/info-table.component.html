@@ -1,6 +1,7 @@
 <div>
-    <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <app-search-bar [placeholder]="'Suchen...'" (searchString)="filter($event)"></app-search-bar>
+<div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" [ngStyle]="{'height': height}">
 
             <ng-container *ngFor='let disCol of displayedColumns; let i = index'>
                 <ng-container matColumnDef="{{disCol}}">
@@ -12,6 +13,6 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 100]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="previewElements" showFirstLastButtons></mat-paginator>
 </div>
 </div>

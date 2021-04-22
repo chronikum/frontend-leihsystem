@@ -1,0 +1,8 @@
+<div style="max-height: 90%;!important">
+    <mat-card>
+        <h1 class="mat-subtitle">Packages used in frontend and backend</h1>
+        <p>Open Source is awesome. This project is licensed under the GNU License. Feel free to use it at your institution and feel free to contribute to it. Thanks to all the contributers of following packages. </p>
+        <p>Note: The backend AND the frontend licenses are documented here. If they are not up to date, run the updateLicenses npm script.</p>
+    </mat-card>
+    <app-info-table [previewElements]="[20,100,150]" [dataEmitter]="licenseEventEmitter" [displayedColumns]="['version','url','publisher', 'repository', 'licenses', 'used']"></app-info-table>
+</div>

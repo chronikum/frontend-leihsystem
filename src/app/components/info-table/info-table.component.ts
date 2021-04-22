@@ -15,6 +15,16 @@ export class InfoTableComponent implements OnInit {
   @Input() displayedColumns: string[];
 
   /**
+   * Height
+   */
+  @Input() height: string = '300px';
+
+  /**
+   * Elements in the first selected paginator
+   */
+  @Input() previewElements: number[] = [5, 10, 15];
+
+  /**
    * The datasource (item[]) you want to show
    */
   @Input() data: any[] = [];
@@ -47,6 +57,13 @@ export class InfoTableComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
       })
     }
+  }
+
+  /**
+   * Filter for given string
+   */
+  filter(filterValue?: string): void {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
