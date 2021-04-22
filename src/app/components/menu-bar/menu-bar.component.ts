@@ -111,6 +111,13 @@ export class MenuBarComponent implements OnInit {
       userRole: UserRoles.ADMIN,
       icon: 'admin_panel_settings'
     },
+    {
+      title: 'Systemlogs',
+      link: ['systemlogs'],
+      category: 4,
+      userRole: UserRoles.ADMIN,
+      icon: 'sticky_note_2'
+    },
   ]
 
   /**

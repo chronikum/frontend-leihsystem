@@ -17,7 +17,7 @@ export class InfoTableComponent implements OnInit {
   /**
    * The datasource (item[]) you want to show
    */
-  @Input() data: any[];
+  @Input() data: any[] = [];
 
   /**
    * Refresh data via event emitter

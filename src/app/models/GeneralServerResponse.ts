@@ -2,6 +2,7 @@ import { DeviceModel } from './DeviceModel';
 import { Group } from './Group';
 import { Item } from './Item';
 import { Request } from './Request';
+import { SystemLog } from './SystemLog';
 import { User } from './User';
 import { UserRoles } from './UserRoles';
 
@@ -22,4 +23,5 @@ export interface GeneralServerResponse {
     roles: UserRoles[],
     users: User[],
     errorCode: number, // If -1 error connection error to database
+    systemlogs: SystemLog[],
 }

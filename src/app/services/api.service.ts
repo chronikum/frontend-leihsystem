@@ -149,6 +149,13 @@ export class ApiService {
   /**
    * Reset password validator
    */
+  systemlogs(): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'systemlogs', {});
+  }
+
+  /**
+   * Reset password validator
+   */
   resetPasswordValidator(token: string, email: string): Observable<GeneralServerResponse> {
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'validateResetToken', {
       token, email

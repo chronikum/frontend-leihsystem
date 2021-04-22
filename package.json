@@ -5,11 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "prod": "node --max-old-space-size=3500 ./node_modules/@angular/cli/bin/ng build --configuration=production",
+    "prod": "npx license-checker --json --out src/assets/licenses.json && node --max-old-space-size=3500 ./node_modules/@angular/cli/bin/ng build --configuration=production",
     "prod-dev": "node --max-old-space-size=3500 ./node_modules/@angular/cli/bin/ng build --configuration=production --optimization=false",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "updateLicenses": "npx license-checker --json --out src/assets/licenses.json"
   },
   "private": true,
   "dependencies": {

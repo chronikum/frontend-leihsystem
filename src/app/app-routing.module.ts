@@ -8,6 +8,7 @@ import { DeviceModelPageComponent } from './pages/device-model-page/device-model
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { GroupsPageComponent } from './pages/groups-page/groups-page.component';
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
+import { LicenseInformationPageComponent } from './pages/license-information-page/license-information-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
@@ -16,6 +17,7 @@ import { RequestsPageComponent } from './pages/requests-page/requests-page.compo
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
+import { SystemlogsPageComponent } from './pages/systemlogs-page/systemlogs-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 
 const routes: Routes = [
@@ -70,6 +72,15 @@ const routes: Routes = [
     path: 'administration',
     component: AdministrationPageComponent,
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'systemlogs',
+    component: SystemlogsPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'licenseInformation',
+    component: LicenseInformationPageComponent
   },
   {
     path: 'resetPassword/:email/:token',
