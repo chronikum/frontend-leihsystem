@@ -114,6 +114,8 @@ import { ChartDeviceModelsComponent } from './components/chart-device-models/cha
 import { ChartReservationsComponent } from './components/chart-reservations/chart-reservations.component';
 import { ChartUserGroupsComponent } from './components/chart-user-groups/chart-user-groups.component';
 import { ChartReservationUserComponent } from './components/chart-reservation-user/chart-reservation-user.component';
+import { AdministrationPageComponent } from './pages/administration-page/administration-page.component';
+import { SystemLogoComponent } from './components/system-logo/system-logo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -183,7 +185,9 @@ import { ChartReservationUserComponent } from './components/chart-reservation-us
     ChartDeviceModelsComponent,
     ChartReservationsComponent,
     ChartUserGroupsComponent,
-    ChartReservationUserComponent
+    ChartReservationUserComponent,
+    AdministrationPageComponent,
+    SystemLogoComponent
   ],
   imports: [
     FlexLayoutModule,

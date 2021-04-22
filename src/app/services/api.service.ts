@@ -55,6 +55,11 @@ export class ApiService {
    */
   refreshProfilePicture = new EventEmitter<boolean>();
 
+  /**
+   * System logo was updated. Refresh information
+   */
+  refreshSystemLogo = new EventEmitter<boolean>();
+
 
   /**
    * Returns new instance of api service
@@ -560,10 +565,38 @@ export class ApiService {
   }
 
   /**
-   * Get the users profile picture
+   * Configuration calls
    */
-  getProfilePicture$() {
-    return this.httpClient.get<any>(this.endpoint + 'profilePicture');
+
+  /**
+   * Uploads logo
+   */
+  uploadLogo$(file: any): Observable<any> {
+    const formData = new FormData();
+    const endpoint = this.endpoint + 'configuration/uploadLogo'
+    console.log(file)
+    formData.append('file', file);
+    return this.uploadService.upload(formData, endpoint).pipe(
+      map(event => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            file.progress = Math.round(event.loaded * 100 / event.total);
+            break;
+          case HttpEventType.Response:
+            return event;
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        file.inProgress = false;
+        return of(`${file.data.name} upload failed.`);
+      }))
+  }
+
+  /**
+   * Get logo
+   */
+  systemLogo(file: any): Observable<any> {
+    return this.httpClient.get<any>(this.endpoint + 'configuration/logo');
   }
 
   /**

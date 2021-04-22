@@ -104,6 +104,13 @@ export class MenuBarComponent implements OnInit {
       userRole: UserRoles.USER,
       icon: 'mail'
     },
+    {
+      title: 'Systemeinstellungen',
+      link: ['administration'],
+      category: 4,
+      userRole: UserRoles.ADMIN,
+      icon: 'admin_panel_settings'
+    },
   ]
 
   /**
@@ -120,7 +127,7 @@ export class MenuBarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private apiService: ApiService,
+    public apiService: ApiService,
     private changeDet: ChangeDetectorRef,
   ) { }
 
@@ -196,5 +203,13 @@ export class MenuBarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+
+  /**
+   * Checks if user is admin user
+   */
+  isAdminUser() {
+    return this.userRoles.includes(UserRoles.ADMIN);
   }
 }

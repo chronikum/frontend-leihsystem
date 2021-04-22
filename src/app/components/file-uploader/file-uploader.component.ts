@@ -18,6 +18,11 @@ export class FileUploaderComponent implements OnInit {
    */
   @Input() text: string = "Datei hochladen"
 
+  /**
+   * Defines the target of the upload
+   */
+  @Input() target: 'profile' | 'logo';
+
 
   constructor(
     private apiService: ApiService,
@@ -54,15 +59,26 @@ export class FileUploaderComponent implements OnInit {
 
     }
     let file: File = files[0];
-    console.log(file)
 
-    this.apiService.uploadProfilePicture$(file, this.apiService.currentUser).subscribe((event: any) => {
-      if (typeof (event) === 'object') {
-        console.log(event.body);
-        console.log("File upload completed")
-        this.trigger.next(true)
-      }
-    });
+    if (this.target === 'profile') {
+      this.apiService.uploadProfilePicture$(file, this.apiService.currentUser).subscribe((event: any) => {
+        if (typeof (event) === 'object') {
+          console.log(event.body);
+          console.log("File upload completed")
+          this.trigger.next(true)
+        }
+      });
+    }
+
+    if (this.target === 'logo') {
+      this.apiService.uploadLogo$(file).subscribe((event: any) => {
+        if (typeof (event) === 'object') {
+          console.log(event.body);
+          console.log("File upload completed")
+          this.trigger.next(true)
+        }
+      });
+    }
   }
 
 }

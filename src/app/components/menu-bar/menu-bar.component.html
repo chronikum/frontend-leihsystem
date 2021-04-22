@@ -3,8 +3,7 @@
     <!-- MOBILE MENU-->
     <div fxLayout="column" fxLayoutAlign="space-evenly start">
       <div>
-        <img src="./assets/logo_zfm_small.png">
-        <h3>Ausleihsystem: <b>ALPHA</b></h3>
+        <app-system-logo [width]="'200'"></app-system-logo>
       </div>
       <mat-accordion #menuSections [displayMode]="'flat'" [multi]="true">
         <mat-expansion-panel [expanded]="true">
@@ -40,6 +39,21 @@
           </div>
         </mat-expansion-panel>
 
+        <mat-expansion-panel [expanded]="true" *ngIf="isAdminUser()">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span class="menu-section">Admin</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div *ngFor="let item of getMenuItemsByCategory(4)">
+            <div *ngIf="userHasPermissionToSeeItem(item.userRole)">
+              <mat-icon matPrefix class="menu-page-icon" *ngIf="item.icon">{{item.icon}}</mat-icon>
+            <button [ngClass]="{'active': (activeItem === item.title.toLowerCase())}"
+              (click)="navigateToTargetLink(item.link)" mat-button>{{item.title}}</button>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -54,6 +68,7 @@
             </div>
           </div>
         </mat-expansion-panel>
+
       </mat-accordion>
     </div>
     <br>

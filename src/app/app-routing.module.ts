@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
 import { ResetPasswordValidatingGuard } from './guards/reset-password-validating.guard';
+import { AdministrationPageComponent } from './pages/administration-page/administration-page.component';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
@@ -63,6 +64,11 @@ const routes: Routes = [
   {
     path: 'scanner',
     component: ScannerPageComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'administration',
+    component: AdministrationPageComponent,
     canActivate: [AuthenticationGuard]
   },
   {
