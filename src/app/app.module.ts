@@ -116,6 +116,7 @@ import { ChartUserGroupsComponent } from './components/chart-user-groups/chart-u
 import { ChartReservationUserComponent } from './components/chart-reservation-user/chart-reservation-user.component';
 import { AdministrationPageComponent } from './pages/administration-page/administration-page.component';
 import { SystemLogoComponent } from './components/system-logo/system-logo.component';
+import { MailConfigurationModalComponent } from './components/mail-configuration-modal/mail-configuration-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -187,7 +188,8 @@ import { SystemLogoComponent } from './components/system-logo/system-logo.compon
     ChartUserGroupsComponent,
     ChartReservationUserComponent,
     AdministrationPageComponent,
-    SystemLogoComponent
+    SystemLogoComponent,
+    MailConfigurationModalComponent
   ],
   imports: [
     FlexLayoutModule,

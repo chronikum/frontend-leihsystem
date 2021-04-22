@@ -1,13 +1,28 @@
 <mat-card>
     <h1 class="mat-title">Systemeinstellungen</h1>
 </mat-card>
-<mat-card fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left">
-    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" fxFlex="1 1">
-        <div fxFlex="1 1">
-            <app-system-logo [width]="300"></app-system-logo>
-            <app-file-uploader [text]="'Systemlogo ändern'" [trigger]="refreshSystemLogoTrigger" [target]="'logo'"></app-file-uploader>
+<mat-card>
+    <h1 class="mat-title">Allgemeine Konfiguration</h1>
+    <div [fxLayout.lt-sm]="'column'" [fxLayout.lt-xl]="'row'" fxLayoutGap="32px">
+        <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="left" fxFlex="1 1" [fxLayoutAlign.lt-sm]="'space-evenly stretch'">
+            <div fxFlex="1 1">
+                <app-system-logo [width]="300"></app-system-logo>
+                <app-file-uploader [text]="'Systemlogo ändern'" [trigger]="refreshSystemLogoTrigger" [target]="'logo'"></app-file-uploader>
+            </div>
+            <div [fxLayout.lt-sm]="'row wrap'" [fxLayout.lt-xl]="'column wrap'" fxLayoutGap="32px" fxLayoutAlign="left" fxFlex="1 1 auto" [fxLayoutAlign.lt-sm]="'space-evenly stretch'">
+                <!-- EMAIL CONFIGURATION -->
+                <div fxFlex="1 1 auto">
+                    <button mat-raised-button (click)="configureEmail()">E-Mail Konfiguration setzen</button>
+                    <br>
+                    <label>Passen Sie die Einstellungen für die vom System genutzte E-Mail an. <br>Es ist nicht möglich, gesetzte Werte einzusehen. Sie können aber eine Test-Email senden.</label>
+                </div>
+                <!-- PLACEHOLDER -->
+                <div fxFlex="1 1 auto">
+                    <button mat-raised-button>Platzhalter</button>
+                    <br>
+                    <label>Das ist ein einfacher Platzhalter Text für zukünftige Optionsmöglichkeitne</label>
+                </div>
+            </div>
         </div>
-    </div>
-    <div fxFlex="1 1 auto">
     </div>
 </mat-card>
