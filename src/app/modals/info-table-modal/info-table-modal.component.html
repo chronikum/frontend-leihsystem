@@ -1,0 +1,13 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>{{title}}</h3>
+    <p>
+        {{message}}
+    </p>
+    <app-info-table *ngIf="tableEnabled" [displayedColumns]="displayColumns" [data]="tableData">
+
+    </app-info-table>
+</div>
+<mat-dialog-actions style="float: right">
+    <button mat-button [color]="'primary'" (click)="closeModal()">Schließen</button>
+    <button *ngIf="continueButtonDisplayed" mat-raised-button [color]="'primary'" (click)="continue()">Weiter</button>
+</mat-dialog-actions>

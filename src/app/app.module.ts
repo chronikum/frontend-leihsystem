@@ -120,6 +120,8 @@ import { MailConfigurationModalComponent } from './components/mail-configuration
 import { SystemlogsPageComponent } from './pages/systemlogs-page/systemlogs-page.component';
 import { LicenseInformationPageComponent } from './pages/license-information-page/license-information-page.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CsvFileSelectorComponent } from './components/csv-file-selector/csv-file-selector.component';
+import { InfoTableModalComponent } from './modals/info-table-modal/info-table-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -195,7 +197,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MailConfigurationModalComponent,
     SystemlogsPageComponent,
     LicenseInformationPageComponent,
-    FooterComponent
+    FooterComponent,
+    CsvFileSelectorComponent,
+    InfoTableModalComponent
   ],
   imports: [
     FlexLayoutModule,

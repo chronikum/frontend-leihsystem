@@ -18,7 +18,7 @@ export interface Item {
     model?: string,
     notes?: string,
     managed: boolean, // MDM
-    available: boolean,
+    available?: boolean,
     plannedReservationsIds?: number[],
     itemId: number,
     currentReservationId?: string,
