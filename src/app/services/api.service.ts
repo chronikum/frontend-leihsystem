@@ -389,6 +389,14 @@ export class ApiService {
   }
 
   /**
+   * Create multiple items
+   * @param items to create
+   */
+  createItems$(items: Item[]): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createItems', items);
+  }
+
+  /**
    * Update a single item
    * @param item to create
    */

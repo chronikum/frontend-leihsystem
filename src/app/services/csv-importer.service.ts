@@ -65,14 +65,16 @@ export class CsvImporterService {
       let deviceModelName = itemCandidate?.deviceModelName;
       let deviceModel = this.loadModelForDeviceModelDisplayName(deviceModelName);
       if (deviceModel) {
-        const createdItem: Item = {
-          name: itemCandidate?.name,
-          internalName: itemCandidate?.name,
-          caIdentifier: itemCandidate?.caIdentifier,
-          modelIdentifier: deviceModel?.deviceModelId ? deviceModel.deviceModelId : null,
-          notes: itemCandidate?.notes
-        } as Item
-        items.push(createdItem);
+        if (itemCandidate.name) {
+          const createdItem: Item = {
+            name: itemCandidate?.name,
+            internalName: itemCandidate?.name,
+            caIdentifier: itemCandidate?.caIdentifier,
+            modelIdentifier: deviceModel?.deviceModelId ? deviceModel.deviceModelId : null,
+            notes: itemCandidate?.notes
+          } as Item
+          items.push(createdItem);
+        }
       }
     })
     return items;

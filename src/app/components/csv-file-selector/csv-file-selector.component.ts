@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { concat, Observable } from 'rxjs';
+import { Item } from 'src/app/models/Item';
+import { ApiService } from 'src/app/services/api.service';
 import { CsvImporterService } from 'src/app/services/csv-importer.service';
 import { InfoTableService } from 'src/app/services/info-table.service';
 
@@ -12,6 +15,7 @@ export class CsvFileSelectorComponent implements OnInit {
   constructor(
     private csvImporterService: CsvImporterService,
     private infoTableService: InfoTableService,
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void { }
@@ -37,11 +41,27 @@ export class CsvFileSelectorComponent implements OnInit {
    * Parse csv data and show information about the items which would be added
    */
   private parseAndValidateCsvFile(string: any) {
-    this.csvImporterService.importDevices(string).then(items => {
+    this.csvImporterService.importDevices(string).then((items: Item[]) => {
+      // Show info table with the continue action displayed
       this.infoTableService.showInfoTableWithContinueAction("Importiert", "Diese Items werden importiert", ['name', 'internalName', 'caIdentifier', 'modelIdentifier', 'notes'], items).subscribe(result => {
-        console.log(result)
+        if (result) {
+          this.createItems(items); // Sequential creation
+        }
       });
     })
+  }
+
+  /**
+   * This will call the api and create the items needed
+   * - runs sequential
+   * - hacky
+   */
+  createItems(items: Item[]) {
+    let subs = []
+    items.forEach(item => {
+      subs.push(this.apiService.createItem$(item))
+    })
+    concat(...subs).subscribe(function (observableItems) { })
   }
 
 }
