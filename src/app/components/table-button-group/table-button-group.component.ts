@@ -46,6 +46,11 @@ export class TableButtonGroupComponent implements OnInit {
   @Input() showGroupButtons = false;
 
   /**
+   * enable group edit buttons
+   */
+  @Input() showPasswordForgetButton = false;
+
+  /**
    * The create button action
    */
   @Output() createAction = new EventEmitter<any>();

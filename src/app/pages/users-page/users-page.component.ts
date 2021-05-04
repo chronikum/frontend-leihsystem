@@ -142,4 +142,16 @@ export class UsersPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Returns true if selected user is an ldap user
+   */
+  isUserLdap() {
+    if (this.selection.selected[0] && this.selection.selected.length === 1) {
+      const selectedUser = this.selection.selected[0]
+      console.log(selectedUser.isLDAP ? true : false)
+      return (selectedUser.isLDAP ? true : false)
+    }
+    return false
+  }
+
 }

@@ -8,6 +8,7 @@
         (editUserProfile)="editDialog()"
         (changePasswordAction)="changeUserPasswordModal()"
         [disableDeleteButton]="selection?.isEmpty()"
+        [showPasswordForgetButton]="isUserLdap()"
         [disableUserPageButtons]="!(selection?.selected.length === 1)"
         [showUserPageButtons]="true">
       </app-table-button-group>
