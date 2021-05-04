@@ -1,0 +1,44 @@
+<div mat-dialog-content>
+    <h3 style="font-weight: bold" mat-dialog-title>LDAP-Konfiguration</h3>
+    <p>Im Folgenden haben Sie die Möglichkeit eine LDAP-Verbindung zu konfigurieren, über welche sich User anschließend anmelden können.</p>
+    <ul style="float: left;">
+        <div [formGroup]="ldapConfigurationForm">
+            <label class="mat-hint">Der Host-Eintrag benötigt ://ldap oder ://ldaps und einen zugewiesenen Port.</label>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'host'" matInput placeholder="Host">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'bindDN'" matInput placeholder="bindDN">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'bindCredentials'" matInput placeholder="bindCredentials">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'searchBase'" matInput placeholder="searchBase">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <label class="mat-hint">{{configurationHintSearchFilter()}}</label>
+            <mat-form-field  style="display: flex;">
+                <input [formControlName]="'searchFilter'" matInput placeholder="searchFilter">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </ul>
+</div>
+<mat-dialog-actions style="float: right">
+    <button class="mat-button" (click)="close()">Abbrechen</button>
+    <button mat-raised-button [disabled]="!ldapConfigurationForm.valid" (click)="createConfiguration()">Erstellen</button>
+</mat-dialog-actions>

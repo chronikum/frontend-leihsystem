@@ -113,6 +113,35 @@ export class ApiService {
   }
 
   /**
+   * LDAP User login
+   * 
+   * @param LDAP username 
+   * @param LDAP password 
+   */
+  LDAPlogin$(username: string, password: string): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'LDAPlogin', {
+      username, password,
+    }).pipe(
+      tap(x => {
+        if (x?.success) {
+          this.isAuthenticated = true
+          this.getCurrentUserRoles$().subscribe(userRoles => {
+            this.groupRoleUpdater.next(userRoles.userRoles);
+          })
+          this.userUpdater.next(x.user);
+        } else {
+          this.isAuthenticated = false
+        }
+
+        if (x?.user) {
+          this.currentUser = x.user;
+        }
+      },
+      ),
+    );
+  }
+
+  /**
    * Check Availability of backend
    */
   backendAvailable$() {

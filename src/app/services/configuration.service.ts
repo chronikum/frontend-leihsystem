@@ -4,6 +4,7 @@ import { EmailConfiguration } from '../models/configurations/EmailConfiguration'
 import { GeneralServerResponse } from '../models/GeneralServerResponse';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { LDAPConfiguration } from '../models/configurations/LDAPConfiguration';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,17 @@ export class ConfigurationService {
    */
   mailConfiguration$(configuration: EmailConfiguration): Observable<GeneralServerResponse> {
     return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'mailConfiguration', {
+      configuration
+    });
+  }
+
+  /**
+   * Update the ldap configuration
+   * @param configuration new ldap configuration
+   * @returns 
+   */
+  LDAPconfiguration$(configuration: LDAPConfiguration): Observable<GeneralServerResponse> {
+    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'LDAPConfiguration', {
       configuration
     });
   }

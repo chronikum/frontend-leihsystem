@@ -122,6 +122,7 @@ import { LicenseInformationPageComponent } from './pages/license-information-pag
 import { FooterComponent } from './components/footer/footer.component';
 import { CsvFileSelectorComponent } from './components/csv-file-selector/csv-file-selector.component';
 import { InfoTableModalComponent } from './modals/info-table-modal/info-table-modal.component';
+import { LdapConfigurationModalComponent } from './components/ldap-configuration-modal/ldap-configuration-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -199,7 +200,8 @@ import { InfoTableModalComponent } from './modals/info-table-modal/info-table-mo
     LicenseInformationPageComponent,
     FooterComponent,
     CsvFileSelectorComponent,
-    InfoTableModalComponent
+    InfoTableModalComponent,
+    LdapConfigurationModalComponent
   ],
   imports: [
     FlexLayoutModule,
