@@ -16,7 +16,7 @@ export class UsersTableComponent implements OnInit {
   /**
   * Columns displayed
   */
-  displayedColumns: string[] = ['select', 'userId', 'username', 'firstname', 'surname', 'email', 'lastLogin'];
+  displayedColumns: string[] = ['select', 'userId', 'username', 'firstname', 'surname', 'email', 'lastLogin', 'isLDAP'];
 
   /**
    * Datasource

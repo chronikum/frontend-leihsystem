@@ -2909,6 +2909,13 @@
     "path": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/csso",
     "licenseFile": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/csso/LICENSE"
   },
+  "csv-parser@3.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/mafintosh/csv-parser",
+    "publisher": "mafintosh",
+    "path": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/csv-parser",
+    "licenseFile": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/csv-parser/LICENSE"
+  },
   "custom-event@1.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/webmodules/custom-event",
@@ -8049,8 +8056,8 @@
     "repository": "https://github.com/webpack-contrib/schema-utils",
     "publisher": "webpack Contrib",
     "url": "https://github.com/webpack-contrib",
-    "path": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/webpack/node_modules/schema-utils",
-    "licenseFile": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/webpack/node_modules/schema-utils/LICENSE"
+    "path": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/webpack-dev-server/node_modules/schema-utils",
+    "licenseFile": "/Users/jonathanfritz/Documents/zfm/frontend/frontend/node_modules/webpack-dev-server/node_modules/schema-utils/LICENSE"
   },
   "schema-utils@2.7.1": {
     "licenses": "MIT",

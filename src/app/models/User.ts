@@ -15,4 +15,5 @@ export interface User {
     password?: string,
     lastLogin?: number,
     session?: string,
+    isLDAP?: boolean
 }

@@ -57,6 +57,13 @@
               <span>{{parseDate(element.lastLogin)}}</span>
             </td>
           </ng-container>
+
+          <ng-container matColumnDef="isLDAP">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>LDAP-User</th>
+            <td mat-cell *matCellDef="let element">
+              <app-available-not-available-indicator [available]="element?.isLDAP"></app-available-not-available-indicator>
+            </td>
+          </ng-container>
   
   
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
