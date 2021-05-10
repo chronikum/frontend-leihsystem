@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
 import { ResetPasswordValidatingGuard } from './guards/reset-password-validating.guard';
+import { SetupGuard } from './guards/setup.guard';
 import { AdministrationPageComponent } from './pages/administration-page/administration-page.component';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { DeviceModelPageComponent } from './pages/device-model-page/device-model-page.component';
@@ -17,6 +18,7 @@ import { RequestsPageComponent } from './pages/requests-page/requests-page.compo
 import { ReservationPageComponent } from './pages/reservation-page/reservation-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { ScannerPageComponent } from './pages/scanner-page/scanner-page.component';
+import { SetupPageComponent } from './pages/setup-page/setup-page.component';
 import { SystemlogsPageComponent } from './pages/systemlogs-page/systemlogs-page.component';
 import { UsersPageComponent } from './pages/users-page/users-page.component';
 
@@ -102,6 +104,11 @@ const routes: Routes = [
     path: 'requestion',
     component: RequestionPageComponent,
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'setup',
+    component: SetupPageComponent,
+    canActivate: [SetupGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full',

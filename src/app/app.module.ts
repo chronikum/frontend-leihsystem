@@ -123,6 +123,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CsvFileSelectorComponent } from './components/csv-file-selector/csv-file-selector.component';
 import { InfoTableModalComponent } from './modals/info-table-modal/info-table-modal.component';
 import { LdapConfigurationModalComponent } from './components/ldap-configuration-modal/ldap-configuration-modal.component';
+import { SetupPageComponent } from './pages/setup-page/setup-page.component';
+import { SetupStepperComponent } from './components/setup-stepper/setup-stepper.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -201,7 +203,9 @@ import { LdapConfigurationModalComponent } from './components/ldap-configuration
     FooterComponent,
     CsvFileSelectorComponent,
     InfoTableModalComponent,
-    LdapConfigurationModalComponent
+    LdapConfigurationModalComponent,
+    SetupPageComponent,
+    SetupStepperComponent
   ],
   imports: [
     FlexLayoutModule,
