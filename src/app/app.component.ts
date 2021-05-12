@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ApiService } from './services/api.service';
+import { SetupService } from './services/setup.service';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
+    private setupService: SetupService
   ) {
 
   }
@@ -45,6 +47,14 @@ export class AppComponent implements OnInit {
       this.isAuthenticated = this.apiService.isAuthenticated;
       this.activeSite = (this.router.url?.split('/')[this.router.url?.split('/').length - 1] || '').toLowerCase();
       this.sideNav.close();
+    });
+
+    this.setupService.setupStatus$().subscribe(status => {
+      console.log("APP MENU")
+      console.log(status)
+      if (!(status?.setup)) {
+        this.router.navigate(['setup'])
+      }
     });
   }
 
