@@ -25,6 +25,6 @@ export class LicenseInformationService {
    * Get all available license information for the backend
    */
   getLicenseInformationBackend$(): Observable<any> {
-    return this.httpClient.get<any>(this.apiService.endpoint + 'licenses');
+    return this.httpClient.get<any>(this.apiService.basicEndpoint + 'licenses');
   }
 }

@@ -25,6 +25,7 @@ export class AuthenticationGuard implements CanActivate {
 
     const authState = this.apiService.checkAuth$().pipe(tap(success => {
       if (!success?.success) {
+        console.log("NAVIGIERE LOGIn")
         this.router.navigate(['login']);
       }
     }))
