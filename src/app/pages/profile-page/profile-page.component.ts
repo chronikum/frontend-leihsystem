@@ -105,7 +105,7 @@ export class ProfilePageComponent implements OnInit {
    */
   getProfilePicture() {
     this.showProfilePicture = true;
-    this.profileImageUri = this.apiService.endpoint + 'profilePicture' + '?' + Math.random(); // <- This is genius
+    this.profileImageUri = this.apiService.basicEndpoint + 'profilePicture' + '?' + Math.random(); // <- This is genius
   }
 
 

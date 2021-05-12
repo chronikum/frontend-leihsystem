@@ -31,6 +31,21 @@ export class ApiService {
   endpoint = environment.backend;
 
   /**
+   * Endpoint
+   */
+  basicEndpoint = environment.backend + 'basic/';
+
+  /**
+   * Charts Endpoint
+   */
+  chartsEndpoint = environment.backend + 'charts/';
+
+  /**
+   * Configuration Endpoint
+   */
+  configurationEndpoint = environment.backend + 'configuration/';
+
+  /**
    * Group role updater
    */
   groupRoleUpdater = new EventEmitter<UserRoles[]>();
@@ -92,7 +107,7 @@ export class ApiService {
    * @param password 
    */
   login$(username: string, password: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'login', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'login', {
       username, password,
     }).pipe(
       tap(x => {
@@ -121,7 +136,7 @@ export class ApiService {
    * @param LDAP password 
    */
   LDAPlogin$(username: string, password: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'LDAPlogin', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'LDAPlogin', {
       username, password,
     }).pipe(
       tap(x => {
@@ -147,7 +162,7 @@ export class ApiService {
    * Check Availability of backend
    */
   backendAvailable$() {
-    this.httpClient.post<any>(this.endpoint + 'available', {}).subscribe();
+    this.httpClient.post<any>(this.basicEndpoint + 'available', {}).subscribe();
   }
 
 
@@ -157,7 +172,7 @@ export class ApiService {
    */
   checkAuth$(): Observable<GeneralServerResponse> {
     this.isAuthenticated = false;
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'checkAuth', {}).pipe(
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'checkAuth', {}).pipe(
       tap(x => {
         if (x?.success) {
           this.isAuthenticated = true
@@ -181,14 +196,14 @@ export class ApiService {
    * Reset password validator
    */
   systemlogs(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'systemlogs', {});
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'systemlogs', {});
   }
 
   /**
    * Reset password validator
    */
   resetPasswordValidator(token: string, email: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'validateResetToken', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'validateResetToken', {
       token, email
     });
   }
@@ -197,7 +212,7 @@ export class ApiService {
    * Send reset password with email
    */
   resetPasswordChallenge(email: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'resetPassword', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'resetPassword', {
       email
     });
   }
@@ -206,7 +221,7 @@ export class ApiService {
    * Change password via token reset
    */
   changePasswordViaToken(token: string, password: string, email: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'changePasswordViaToken', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'changePasswordViaToken', {
       token, password, email
     });
   }
@@ -216,7 +231,7 @@ export class ApiService {
    * @returns User roles
    */
   getCurrentUserRoles$(): Observable<any> {
-    return this.httpClient.post<any>(this.endpoint + 'currentUserRoles', {});
+    return this.httpClient.post<any>(this.basicEndpoint + 'currentUserRoles', {});
   }
 
   /**
@@ -231,7 +246,7 @@ export class ApiService {
    * Log the user out
    */
   logout$() {
-    this.httpClient.post<any>(this.endpoint + 'logout', {}).subscribe(x => {
+    this.httpClient.post<any>(this.basicEndpoint + 'logout', {}).subscribe(x => {
       this.isAuthenticated = false;
       this.router.navigate(['login']);
     });
@@ -244,7 +259,7 @@ export class ApiService {
    */
   getUserInformationForId$(userId: number): Observable<GeneralServerResponse> {
     console.log("Looking up User: " + userId)
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getUserInformationForId', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getUserInformationForId', {
       userId
     });
   }
@@ -254,14 +269,14 @@ export class ApiService {
    * @returns Item[] available
    */
   getInventory$(): Observable<Item[]> {
-    return this.httpClient.post<Item[]>(this.endpoint + 'getAvailableItems', {});
+    return this.httpClient.post<Item[]>(this.basicEndpoint + 'getAvailableItems', {});
   }
 
   /**
    * Delete items
    */
   deleteItems$(items: Item[]): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteItems', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'deleteItems', {
       items: items
     });
   }
@@ -270,7 +285,7 @@ export class ApiService {
    * Delete items
    */
   getItemsforIds$(itemIds: number[]): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getItemsforIds', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getItemsforIds', {
       itemIds: itemIds
     });
   }
@@ -282,7 +297,7 @@ export class ApiService {
    * @param items Items
    */
   createReservation$(reservation: Reservation, items: Item[]): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'reserveItems', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'reserveItems', {
       items: items,
       reservation: reservation,
     });
@@ -294,7 +309,7 @@ export class ApiService {
    * @param items Items
    */
   finishReservation$(reservation: Reservation): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'finishReservation', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'finishReservation', {
       reservation: reservation,
     });
   }
@@ -305,7 +320,7 @@ export class ApiService {
    * @returns reservations
    */
   getAllReservations$(): Observable<Reservation[]> {
-    return this.httpClient.post<Reservation[]>(this.endpoint + 'allReservations', {});
+    return this.httpClient.post<Reservation[]>(this.basicEndpoint + 'allReservations', {});
   }
 
   /**
@@ -316,7 +331,7 @@ export class ApiService {
    * @returns Item
    */
   getItembyUniqueIdentifier$(uniqueIdentifier: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getItemByUnique', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getItemByUnique', {
       uniqueGeneratedString: uniqueIdentifier
     })
   }
@@ -327,7 +342,7 @@ export class ApiService {
    * @returns user count : number
    */
   getUserCount$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getUserCount', {});
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getUserCount', {});
   }
 
   /**
@@ -339,7 +354,7 @@ export class ApiService {
    * @param request to create
    */
   createNewRequest$(request: Request): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createRequest', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'createRequest', {
       request: request
     });
   }
@@ -349,7 +364,7 @@ export class ApiService {
    * @param request to update
    */
   updateRequests$(request: Request): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'updateRequest', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'updateRequest', {
       request: request
     });
   }
@@ -360,7 +375,7 @@ export class ApiService {
    * @returns 
    */
   acceptRequest$(request: Request): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'acceptRequest', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'acceptRequest', {
       request: request
     });
   }
@@ -369,7 +384,7 @@ export class ApiService {
    * Cancel a request
    */
   cancelRequest$(request: Request): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'cancelRequest', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'cancelRequest', {
       request: request
     });
   }
@@ -379,7 +394,7 @@ export class ApiService {
    * @param request to update
    */
   getReservationSuggestion$(request: Request): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'suggestReservationForRequest', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'suggestReservationForRequest', {
       request: request
     });
   }
@@ -389,7 +404,7 @@ export class ApiService {
    * @param request to update
    */
   getDevicesForTimespan$(request: Request): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getItemsForTimespan', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getItemsForTimespan', {
       request: request
     });
   }
@@ -399,7 +414,7 @@ export class ApiService {
    * @returns all {@link Requests} available 
    */
   getAllRequests$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllRequests', {});
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getAllRequests', {});
   }
 
   /**
@@ -408,7 +423,7 @@ export class ApiService {
    * @returns users[]
    */
   getAllUsers$(): Observable<User[]> {
-    return this.httpClient.post<User[]>(this.endpoint + 'getAllUsers', {});
+    return this.httpClient.post<User[]>(this.basicEndpoint + 'getAllUsers', {});
   }
 
   /**
@@ -416,7 +431,7 @@ export class ApiService {
    * @param item to create
    */
   createItem$(item: Item): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createItem', item);
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'createItem', item);
   }
 
   /**
@@ -424,7 +439,7 @@ export class ApiService {
    * @param items to create
    */
   createItems$(items: Item[]): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createItems', items);
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'createItems', items);
   }
 
   /**
@@ -432,7 +447,7 @@ export class ApiService {
    * @param item to create
    */
   updateItem$(item: Item): Observable<Item> {
-    return this.httpClient.post<Item>(this.endpoint + 'updateItem', item);
+    return this.httpClient.post<Item>(this.basicEndpoint + 'updateItem', item);
   }
 
   /**
@@ -440,14 +455,14 @@ export class ApiService {
    * @param user to create
    */
   createUser$(user: User): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'createUser', user);
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'createUser', user);
   }
 
   /**
    * Suggest users
    */
   suggestUsers$(query: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'suggestUserNames', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'suggestUserNames', {
       query
     });
   }
@@ -457,7 +472,7 @@ export class ApiService {
    * @param user to create
    */
   updateUser$(user: User): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'updateUser', { user: user });
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'updateUser', { user: user });
   }
 
   /**
@@ -465,7 +480,7 @@ export class ApiService {
    * @param user to create
    */
   updateUserInformation$(user: User): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'updateUserInformation', { user: user });
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'updateUserInformation', { user: user });
   }
 
   /**
@@ -474,7 +489,7 @@ export class ApiService {
    * @param users to delete
    */
   deleteUsers$(users: User[]): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteUsers', users);
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'deleteUsers', users);
   }
 
   /**
@@ -485,7 +500,7 @@ export class ApiService {
    * Get all groups
    */
   getAllGroups$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllGroups', {});
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getAllGroups', {});
   }
 
   /**
@@ -493,7 +508,7 @@ export class ApiService {
    * @param group
    */
   getGroupMembers$(group: Group): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getGroupMembers', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getGroupMembers', {
       group
     });
   }
@@ -503,7 +518,7 @@ export class ApiService {
    * @param group 
    */
   createGroup$(group: Group): Observable<Group> {
-    return this.httpClient.post<Group>(this.endpoint + 'createGroup', group);
+    return this.httpClient.post<Group>(this.basicEndpoint + 'createGroup', group);
   }
 
   /**
@@ -513,7 +528,7 @@ export class ApiService {
    * @returns 
    */
   deleteGroup$(group: Group): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'deleteGroup', group);
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'deleteGroup', group);
   }
 
   /**
@@ -521,7 +536,7 @@ export class ApiService {
    * @param group 
    */
   addUserToGroup$(user: User, group: Group): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'addUserToGroup', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'addUserToGroup', {
       group, user
     });
   }
@@ -534,7 +549,7 @@ export class ApiService {
    * Create new device model
    */
   createModel$(model: DeviceModel): Observable<DeviceModel> {
-    return this.httpClient.post<DeviceModel>(this.endpoint + 'createModel', {
+    return this.httpClient.post<DeviceModel>(this.basicEndpoint + 'createModel', {
       deviceModel: model
     });
   }
@@ -543,7 +558,7 @@ export class ApiService {
    * Edit existing device model
    */
   editModel$(model: DeviceModel): Observable<DeviceModel> {
-    return this.httpClient.post<DeviceModel>(this.endpoint + 'editModel', {
+    return this.httpClient.post<DeviceModel>(this.basicEndpoint + 'editModel', {
       deviceModel: model
     });
   }
@@ -552,7 +567,7 @@ export class ApiService {
    * Get all available models
    */
   getAllModels$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'getAllModels', {});
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'getAllModels', {});
   }
 
   /**
@@ -564,7 +579,7 @@ export class ApiService {
   * @param group 
   */
   getAllRoles$(): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'rolesAvailable', {});
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'rolesAvailable', {});
   }
 
   /**
@@ -576,7 +591,7 @@ export class ApiService {
    * @returns GeneralServerResponse
    */
   changePassword$(user: User, newPassword: string): Observable<GeneralServerResponse> {
-    return this.httpClient.post<GeneralServerResponse>(this.endpoint + 'changePasswordForUser', {
+    return this.httpClient.post<GeneralServerResponse>(this.basicEndpoint + 'changePasswordForUser', {
       user: user,
       newPassword: newPassword,
     });
@@ -591,7 +606,7 @@ export class ApiService {
    */
   uploadProfilePicture$(file: any, user: User): Observable<any> {
     const formData = new FormData();
-    const endpoint = this.endpoint + 'uploadProfilePicture'
+    const endpoint = this.basicEndpoint + 'uploadProfilePicture'
     console.log(file)
     formData.append('file', file);
     return this.uploadService.upload(formData, endpoint).pipe(
@@ -619,10 +634,10 @@ export class ApiService {
    */
   uploadLogo$(file: any): Observable<any> {
     const formData = new FormData();
-    const endpoint = this.endpoint + 'configuration/uploadLogo'
+    const uploadEndpoint = this.configurationEndpoint + 'uploadLogo'
     console.log(file)
     formData.append('file', file);
-    return this.uploadService.upload(formData, endpoint).pipe(
+    return this.uploadService.upload(formData, uploadEndpoint).pipe(
       map(event => {
         switch (event.type) {
           case HttpEventType.UploadProgress:
@@ -642,7 +657,7 @@ export class ApiService {
    * Get logo
    */
   systemLogo(file: any): Observable<any> {
-    return this.httpClient.get<any>(this.endpoint + 'configuration/logo');
+    return this.httpClient.get<any>(this.configurationEndpoint + 'logo');
   }
 
   /**
@@ -663,34 +678,34 @@ export class ApiService {
    * Available/Reserved devices - charts
    */
   chartsAvailable$() {
-    return this.httpClient.post<any>(this.endpoint + 'charts/available', {});
+    return this.httpClient.post<any>(this.chartsEndpoint + 'available', {});
   }
 
   /**
    * Models devices - charts
    */
   chartsModels$() {
-    return this.httpClient.post<any>(this.endpoint + 'charts/models', {});
+    return this.httpClient.post<any>(this.chartsEndpoint + 'models', {});
   }
 
   /**
    * Models devices - charts
    */
   reservationsCompleted$() {
-    return this.httpClient.post<any>(this.endpoint + 'charts/completedReservation', {});
+    return this.httpClient.post<any>(this.chartsEndpoint + 'completedReservation', {});
   }
 
   /**
    * Group data - charts
    */
   userAndGroups$() {
-    return this.httpClient.post<any>(this.endpoint + 'charts/userGroup', {});
+    return this.httpClient.post<any>(this.chartsEndpoint + 'userGroup', {});
   }
 
   /**
    * Group data - charts
    */
   reservationsProUser$() {
-    return this.httpClient.post<any>(this.endpoint + 'charts/reservationsProUser', {});
+    return this.httpClient.post<any>(this.chartsEndpoint + 'reservationsProUser', {});
   }
 }

@@ -63,7 +63,7 @@ export class LoggedInCardComponent implements OnInit {
    * set profilepicture link - small hack to refresh the img tag
    */
   setProfilePicture() {
-    this.profilePictureUri = this.apiService.endpoint + 'profilePicture?' + Math.random();
+    this.profilePictureUri = this.apiService.basicEndpoint + 'profilePicture?' + Math.random();
   }
 
   /**
