@@ -18,11 +18,9 @@ export class SetupGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const authState = this.setupService.setupStatus$().pipe(tap(success => {
-      if (success?.success) {
-        const status = success.setup;
-        if (status && status?.created) { // System was already setup, no setup needed anymore
-          this.router.navigate(['login'])
-        }
+      if (!success?.success) {
+        console.log("DANGER")
+        this.router.navigate(['login'])
       }
     }));
     const result = new Promise<boolean>(function (resolve, reject) {

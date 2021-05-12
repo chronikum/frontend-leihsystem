@@ -125,6 +125,7 @@ import { InfoTableModalComponent } from './modals/info-table-modal/info-table-mo
 import { LdapConfigurationModalComponent } from './components/ldap-configuration-modal/ldap-configuration-modal.component';
 import { SetupPageComponent } from './pages/setup-page/setup-page.component';
 import { SetupStepperComponent } from './components/setup-stepper/setup-stepper.component';
+import { SetupCreateAdminUserComponent } from './components/setup-create-admin-user/setup-create-admin-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -205,7 +206,8 @@ import { SetupStepperComponent } from './components/setup-stepper/setup-stepper.
     InfoTableModalComponent,
     LdapConfigurationModalComponent,
     SetupPageComponent,
-    SetupStepperComponent
+    SetupStepperComponent,
+    SetupCreateAdminUserComponent
   ],
   imports: [
     FlexLayoutModule,

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { SetupStatus } from '../models/SetupStatus';
+import { User } from '../models/User';
 import { SetupStatusWrapper } from '../models/wrapper/SetupStatusWrapper';
 import { ApiService } from './api.service';
 
@@ -36,6 +37,15 @@ export class SetupService {
    */
   setupStatus$(): Observable<any> {
     return this.httpClient.post<any>(this.endpoint + 'status', {});
+  }
+
+  /**
+   * Create the initial admin user
+   * 
+   * @param user administrative user
+   */
+  createAdminUser$(user: User): Observable<any> {
+    return this.httpClient.post<any>(this.endpoint + 'createAdmin', { user });
   }
 
 }

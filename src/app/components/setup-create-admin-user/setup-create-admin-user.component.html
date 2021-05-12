@@ -1,0 +1,46 @@
+<div>
+    <div *ngIf="userCreated">
+        <h1>Administratordaten gesetzt.</h1>
+        <p>Wenn Sie nun auf weiter drücken, werden Sie zum Login weitergeleitet.</p>
+    </div>
+    <div [formGroup]="userForm" fxFlex fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" *ngIf="!userCreated">
+
+        <p>Username: Administrator</p>
+
+        <mat-form-field  fxFlex.gt-sm="100%">
+            <input [formControlName]="'firstname'" matInput placeholder="Vorname">
+        </mat-form-field>
+
+        <mat-form-field  fxFlex.gt-sm="100%">
+            <input [formControlName]="'surname'" matInput placeholder="Nachname">
+        </mat-form-field>
+
+        <mat-form-field  fxFlex.gt-sm="100%">
+            <input [formControlName]="'email'" matInput placeholder="email">
+            <mat-error>
+                Erforderlich
+            </mat-error>
+        </mat-form-field>
+
+        <mat-card>
+            <div>
+                <mat-card-title>Setzen Sie ein initiales Passwort</mat-card-title>
+            </div>
+            <mat-form-field>
+                <input [formControlName]="'password'" matInput placeholder="Passwort">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input [formControlName]="'passwordValidation'" matInput placeholder="Passwort bestätigen">
+                <mat-error>
+                    Erforderlich
+                </mat-error>
+            </mat-form-field>
+        </mat-card>
+    </div>
+</div>
+<mat-action-list *ngIf="!userCreated">
+    <button mat-raised-button [disabled]="!(userForm.valid && passwordsAreEqual())" (click)="createUser()">Adminuser erstellen</button>
+</mat-action-list>

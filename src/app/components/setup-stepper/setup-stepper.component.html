@@ -1,0 +1,30 @@
+<div class="snowflakes zfm-background" 
+style="padding: 12px;"
+fxLayout="column"
+fxLayout.xs="column" 
+fxFlexFill
+fxLayoutAlign="center center">
+    <h1>Installation</h1>
+    <mat-card style="height: 750px; width: 400px;">
+        <mat-card-title><h1>Willkommen zum ZfM Ausleihsystem!</h1></mat-card-title>
+        <mat-horizontal-stepper #stepper [linear]="true">
+            <mat-step>
+                <h1>Erste Schritte</h1>
+                <p>Willkommen zum ZfM Ausleihsystem. Dieses System macht das Ausleihen und Managen von Geräteinventaren einfach und komfortabel.</p>
+                <p>Im Folgenden werden wir das System aufsetzen und einen Adminuser erstellen, sodass Sie sofort loslegen können. </p>
+                <p>Bitte beachten Sie: Dieses System ist relativ neue Software und kann und wird Fehler enthalten. Sollten diese auftreten, melden Sie diese bitte. Wir werden uns darum kümmern.</p>
+                <p><b>Drücken Sie auf Weiter.</b></p>
+            </mat-step>
+            <mat-step style="text-align: center;">
+                <app-setup-create-admin-user [userEmitter]="userEmitter">
+                </app-setup-create-admin-user>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-card>
+    <mat-action-list style="float: right">
+        <button mat-raised-button (click)="goBack(stepper)">Zurück</button>
+        <button mat-raised-button [disabled]="!(stepper.selectedIndex == 1 ? getAdminUser() : true)" (click)="goForward(stepper)">Weiter</button>
+    </mat-action-list>
+    <br>
+    <app-footer></app-footer>
+</div>
