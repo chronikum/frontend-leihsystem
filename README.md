@@ -43,10 +43,9 @@ Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
 
 ## Installation auf dem WebUI
 
----
-Troubleshooting-Hinweis: Ein falsch konfigurierter nginx oder apache2 Server kann dazu führen, dass Routen nicht korrekt aufgerufen werden können.
-Beispiele für eine korrekte nginx Konfiguration finden sie in dem Ordner /nginx
----
+
+> Troubleshooting-Hinweis: Ein falsch konfigurierter nginx oder apache2 Server kann dazu führen, dass Routen nicht korrekt aufgerufen werden können.
+> Beispiele für eine korrekte nginx Konfiguration finden sie in dem Ordner /nginx
 
 1. Öffnen Sie nun die Website, welche Sie bei ``HOST`` angegeben haben.
 2. Erstellen Sie einen Admin-User. Er wird den Nutzernamen "Administrator" haben.
