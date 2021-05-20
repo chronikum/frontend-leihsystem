@@ -48,7 +48,7 @@ export class SetupStepperComponent implements OnInit {
   goForward(stepper: MatStepper) {
     stepper.next();
     if (stepper.selectedIndex === 3) {
-      this.router.navigate(['login']);
+      this.navigateToLogin();
     }
   }
 
@@ -58,7 +58,16 @@ export class SetupStepperComponent implements OnInit {
   setAdminUser(user: User) {
     console.log("SETTING ADMIN USER")
     this.adminUser = user;
-    this.setupService.createAdminUser$(user).subscribe();
+    this.setupService.createAdminUser$(user).subscribe(done => {
+      console.log("Admin user created!")
+    });
+  }
+
+  /**
+   * Navigates to login page
+   */
+  navigateToLogin() {
+    this.router.navigate(['login']);
   }
 
   /**
