@@ -54,7 +54,7 @@ Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
 1. Öffnen Sie nun die Website, welche Sie bei ``HOST`` angegeben haben.
 2. Erstellen Sie einen Admin-User. Er wird den Nutzernamen "Administrator" haben.
 3. Danach können Sie sich einloggen
-4. Viel Spaß udn Erfolg mit dem ZfM-Ausleihsystem der Pädagogischen Hochschule Schwäbisch Gmünd.
+4. Viel Spaß und Erfolg mit dem ZfM-Ausleihsystem der Pädagogischen Hochschule Schwäbisch Gmünd.
 
 ## Lizenzinformationen
 
