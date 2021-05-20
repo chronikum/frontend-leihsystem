@@ -58,4 +58,7 @@ Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
 ## Lizenzinformationen
 
 Dieses Projekt ist unter der GNU GENERAL PUBLIC LICENSE V3.0 lizenziert.
-Es wurde von Jonathan Fritz (Zentrum für Medienbildung (Leitung: Professor. Dr. Thomas Irion), Pädagogische Hochschule Schwäbisch Gmünd) entwickelt.
+Es wurde von Jonathan Fritz entwickelt.  
+
+(c) Zentrum für Medienbildung (Leitung: Professor. Dr. Thomas Irion)  
+Pädagogische Hochschule Schwäbisch Gmünd  
