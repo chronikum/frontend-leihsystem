@@ -1,10 +1,14 @@
-# Frontend
+# ZfM-Frontend
 
 *ZFM Ausleihsystem im Auftrag der pädagogischen Hochschule*
 
-Dieses System befindet sich in der frühen Beta und es kann zu Fehlern kommen, mal mehr und mal weniger schwerwiegend.
-Sollten Sie ein Problem haben, erstellen Sie gerne ein GitHub-Issue oder direkt eine Pull-Request mit einem Lösungsvorschlag.
-Geplant ist aktuell auch ein großes Refactoring von allem Code.
+Ausleihen und Managen von Geräteinventaren einfach und komfortabel.
+Benutzergruppenverwaltung, Reservierungsanfragen und Inventarmanagement mit Gerätemodellen für dynamische Umgebungen.
+ZfM Ausleihsystem.
+
+> Dieses System befindet sich in der frühen Beta und es kann zu Fehlern kommen, mal mehr und mal weniger schwerwiegend.
+> Sollten Sie ein Problem haben, erstellen Sie gerne ein GitHub-Issue oder direkt eine Pull-Request mit einem Lösungsvorschlag.
+> Geplant ist aktuell auch ein großes Refactoring von allem Code.
 
 ## Installation
 
