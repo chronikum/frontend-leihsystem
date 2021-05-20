@@ -18,9 +18,9 @@ Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
 
 
 ## Requirements
-- MongoDB (running)
-- npm
-- Empfohlen: pm2 (installierbar über `npm i pm2  -g`)
+- MongoDB (running)  
+- npm  
+- Empfohlen: pm2 (installierbar über `npm i pm2  -g`)  
 
 0. Klonen Sie beide Systeme auf Ihren Server
 ## Frontend
@@ -32,11 +32,11 @@ Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
 ## Backend
 1. Gehen Sie in das Backend-Verzeichnis
 2. ``npm i`` zum installieren der npm-Pakete
-3. Konfigurieren Sie das Backend mithilfe der .env-Datei (Sie müssen Sie erstellen)
-   Konfigurierbar sind aktuell:
-   ``DATABASE_PATH`` (Beispiel: mongodb://localhost:27017/datenbank)
-   ``HOST`` (Beispiel: https://zfmausleihsystem.de)
-   ``HOST_API`` (Beispiel: https://zfmausleihsystem.de/api) (WICHTIG: Kein trailing Slash)
+3. Konfigurieren Sie das Backend mithilfe der .env-Datei (Sie müssen Sie erstellen)  
+   Konfigurierbar sind aktuell:  
+   ``DATABASE_PATH`` (Beispiel: mongodb://localhost:27017/datenbank)  
+   ``HOST`` (Beispiel: https://zfmausleihsystem.de)  
+   ``HOST_API`` (Beispiel: https://zfmausleihsystem.de/api) (WICHTIG: Kein trailing Slash)  
    Werden diese Werte nicht ausgefüllt, fällt das System auf Development-Werte zurück.
    Sie können Mailserver und LDAP später direkt über die Weboberfläche konfigurieren.
 4. Stellen Sie sicher dass die benötigten Werte ausgefüllt sind
