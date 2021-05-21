@@ -11,7 +11,8 @@ ZfM Ausleihsystem.
 
 ## Installation
 
-Das ZfM-Ausleihsystem benötigt das *leihsystem-backend*.
+Das ZfM-Ausleihsystem benötigt das *leihsystem-backend*. Sie finden dieses hier:
+[leihsystem-Backend](https://github.com/chronikum/backend-leihsystem)
 
 Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
 
