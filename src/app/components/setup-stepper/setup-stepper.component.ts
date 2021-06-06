@@ -47,7 +47,6 @@ export class SetupStepperComponent implements OnInit {
    */
   goForward(stepper: MatStepper) {
     stepper.next();
-    console.log(stepper.selectedIndex)
     if (stepper.selectedIndex === 2) {
       this.navigateToLogin();
     }
