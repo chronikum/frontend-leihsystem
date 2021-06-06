@@ -2,7 +2,7 @@ FROM node:16-alpine AS builder
 WORKDIR /usr/app
 COPY . .
 RUN npm install
-RUN npm run prod-dev
+RUN npm run prod
 
 FROM nginx:1.21.0-alpine
 WORKDIR /usr/share/nginx/html

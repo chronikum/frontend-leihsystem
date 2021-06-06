@@ -11,25 +11,30 @@ ZfM Ausleihsystem.
 
 ## Installation
 
+Das ZfM-Ausleihsystem kann manuell oder über Docker installiert werden.  
+### Installation über Docker (einfach)
+
+Sie finden eine bereits fertige Docker-Compose-Datei in dem [zfm-docker](https://github.com/chronikum/zfm-docker)-Repository.
+Mit jedem Push in den main-branch werden neue Docker-Images bereitgestellt. (Imagetag:``auto``)  
+Folgen Sie dort den Installationshinweisen im Readme.
+
+### Manuelle Installation (komplex)
+
 Das ZfM-Ausleihsystem benötigt das *leihsystem-backend*. Sie finden dieses hier:
 [leihsystem-Backend](https://github.com/chronikum/backend-leihsystem)
-
-Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
-
-
-## Requirements
+### Requirements
 - MongoDB (running)  
 - npm  
 - Empfohlen: pm2 (installierbar über `npm i pm2  -g`)  
 
 0. Klonen Sie beide Systeme auf Ihren Server
-## Frontend
+#### Frontend
 1. Gehen Sie in das Frontend-Verzeichnis.
 2. ``npm i`` zum installieren der npm-Pakete
 3. Konfigurieren Sie das Frontend-System mit der environment.prod.ts-Datei
 4. Mit ``npm run-script prod`` bauen Sie das Angular-Projekt. Passen Sie Bau-Parameter an.
 5. Kopieren Sie die Inhalte des /dist Ordner an den entsprechenden Webroot.
-## Backend
+#### Backend
 1. Gehen Sie in das Backend-Verzeichnis
 2. ``npm i`` zum installieren der npm-Pakete
 3. Konfigurieren Sie das Backend mithilfe der .env-Datei (Sie müssen Sie erstellen)  
@@ -45,7 +50,8 @@ Hier finden Sie eine Anleitung, wie Sie beide Systeme aufsetzen.
    Starten Sie das Backend mit `npm run-script prod`
 
 
-## Installation auf dem WebUI
+Egal welche der Methoden Sie gewählt haben, die Installation kann auf dem WebUI abgeschlossen werden.  
+### Installation auf dem WebUI
 
 
 > Troubleshooting-Hinweis: Ein falsch konfigurierter nginx oder apache2 Server kann dazu führen, dass Routen nicht korrekt aufgerufen werden können.
