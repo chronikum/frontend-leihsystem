@@ -19,12 +19,11 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         Observable<HttpEvent<any>> {
 
         if (req.url.includes('upload')) {
-            console.log("UPLOAD!")
             req = req.clone({
                 withCredentials: true
             });
             return next.handle(req).pipe(tap(x => {
-                if ((x as any).body?.success === false && (x as any).body?.errorCode === -1) {
+                if ((x as any)?.body?.success === false && (x as any)?.body?.errorCode === -1) {
                     this.router.navigate(['error']);
                 }
             }));
@@ -34,7 +33,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
         });
 
         return next.handle(req).pipe(tap(x => {
-            if ((x as any).body?.success === false && (x as any).body?.errorCode === -1) {
+            if ((x as any)?.body?.success === false && (x as any)?.body?.errorCode === -1) {
                 this.router.navigate(['error']);
             }
         }));
