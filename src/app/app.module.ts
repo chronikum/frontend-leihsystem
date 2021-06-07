@@ -126,6 +126,7 @@ import { LdapConfigurationModalComponent } from './components/ldap-configuration
 import { SetupPageComponent } from './pages/setup-page/setup-page.component';
 import { SetupStepperComponent } from './components/setup-stepper/setup-stepper.component';
 import { SetupCreateAdminUserComponent } from './components/setup-create-admin-user/setup-create-admin-user.component';
+import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -250,7 +251,7 @@ import { SetupCreateAdminUserComponent } from './components/setup-create-admin-u
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler({
-        showDialog: true,
+        showDialog: false,
       }),
     },
     {
@@ -266,6 +267,7 @@ import { SetupCreateAdminUserComponent } from './components/setup-create-admin-u
     // Http Interceptor(s) -  adds with Client Credentials
     [
       { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
+      { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
       { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUTC: false } },
       { provide: MAT_DATE_LOCALE, useValue: 'de-DE' },
     ],

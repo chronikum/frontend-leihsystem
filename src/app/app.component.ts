@@ -50,7 +50,6 @@ export class AppComponent implements OnInit {
     });
 
     this.setupService.setupStatus$().subscribe(status => {
-      console.log(status)
       if (!(status?.setup)) {
         this.router.navigate(['setup'])
       }

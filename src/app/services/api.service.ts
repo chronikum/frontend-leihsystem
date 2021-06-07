@@ -657,7 +657,7 @@ export class ApiService {
    * Get logo
    */
   systemLogo(file: any): Observable<any> {
-    return this.httpClient.get<any>(this.configurationEndpoint + 'logo');
+    return this.httpClient.get<any>(this.configurationEndpoint + 'logo')
   }
 
   /**
