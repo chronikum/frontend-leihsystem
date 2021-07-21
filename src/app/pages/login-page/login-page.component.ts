@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ResetPasswordModalComponent } from 'src/app/modals/reset-password-modal/reset-password-modal.component';
 import { GeneralServerResponse } from 'src/app/models/GeneralServerResponse';
 import { ApiService } from 'src/app/services/api.service';
+import { InfoModalService } from 'src/app/services/info-modal.service';
 
 @Component({
   selector: 'app-login-page',
@@ -28,6 +29,7 @@ export class LoginPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private apiService: ApiService,
     private snackBar: MatSnackBar,
+    private infoModalService: InfoModalService,
     private router: Router,
     private dialog: MatDialog,
   ) {
@@ -37,6 +39,13 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Clears the login form
+   */
+  clearLoginForm() {
+    this.loginForm.get('username').setValue('');
+    this.loginForm.get('password').setValue('');
+  }
   /**
    * Collects form values and performs login, if successful, navigate to dashboard
    * - checks if form is valid
@@ -52,9 +61,8 @@ export class LoginPageComponent implements OnInit {
         }
       }, (error) => {
         console.log('ERROR!');
-        this.snackBar.open("Die Zugangsdaten sind nicht korrekt.", 'ERROR', {
-          duration: 3000
-        });
+        this.clearLoginForm();
+        this.infoModalService.showInformation("Die angegebenen Zugangsdaten sind nicht korrekt!")
       });
     }
   }
