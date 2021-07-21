@@ -22,20 +22,12 @@ export class HttpRequestInterceptor implements HttpInterceptor {
             req = req.clone({
                 withCredentials: true
             });
-            return next.handle(req).pipe(tap(x => {
-                if ((x as any)?.body?.success === false && (x as any)?.body?.errorCode === -1) {
-                    this.router.navigate(['error']);
-                }
-            }));
+            return next.handle(req);
         }
         req = req.clone({
             withCredentials: true
         });
 
-        return next.handle(req).pipe(tap(x => {
-            if ((x as any)?.body?.success === false && (x as any)?.body?.errorCode === -1) {
-                this.router.navigate(['error']);
-            }
-        }));
+        return next.handle(req);
     }
 }

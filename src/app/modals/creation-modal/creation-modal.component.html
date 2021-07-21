@@ -2,19 +2,19 @@
         <div fxFlex="1 1 auto" [formGroup]="simpleCreationForm">
             <h3 style="font-weight: bold" mat-dialog-title>Ein neues Gerät erstellen</h3>
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'name'" matInput placeholder="Name">
+                <input [formControlName]="'name'" matInput placeholder="Name*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'internalName'" matInput placeholder="Internal name">
+                <input [formControlName]="'internalName'" matInput placeholder="Internal name*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'caIdentifier'" matInput placeholder="CA number">
+                <input [formControlName]="'caIdentifier'" matInput placeholder="CA number*">
                 <mat-error>
                     Erforderlich
                 </mat-error>

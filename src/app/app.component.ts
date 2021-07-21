@@ -54,6 +54,12 @@ export class AppComponent implements OnInit {
         this.router.navigate(['setup'])
       }
     });
+
+    this.apiService.controlSideBar.subscribe(status => {
+      if (status) {
+        this.sideNav.open();
+      }
+    });
   }
 
 }

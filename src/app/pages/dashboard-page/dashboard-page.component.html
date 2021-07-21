@@ -1,6 +1,13 @@
 <!-- TODO: Users without admin should see nothing on the dashboard -->
 <div fxLayout="column wrap" fxLayoutGap="32px" fxLayoutAlign="center" style="padding-top: 20px;" fxLayoutAlign.sm="space-around fill">
-        <div  *ngIf="showCharts" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px">
+        <div *ngIf="!showCharts && pageReady" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px">
+                <mat-card>
+                        <h1>Willkommen beim ZfM Ausleihsystem!</h1>
+                        <p>Bitte nutze das Menü, um durch verschiedene Optionen zu navigieren.</p>
+                </mat-card>
+                <button mat-raised-button (click)="openMenu()">Menü öffnen</button>
+        </div>
+        <div  *ngIf="showCharts && pageReady" fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="32px">
                 <mat-card>
                         <mat-card-title>Schnellübersicht</mat-card-title>
                         <div fxLayout="row" fxLayout.sm="column">
@@ -48,21 +55,21 @@
                                 </div>
                         </mat-card>
                 </div>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayout="row">
-            <div  *ngIf="items && reservations && userCount">
-                        <div fxFlex="1 1 auto">
-                                <h6>Reservierungen insgesamt</h6>
-                                <h1>{{reservations.length}}</h1>
-                        </div>
-                        <div fxFlex="1 1 auto">
-                                <h6>Geräte insgesamt</h6>
-                                <h1>{{items.length}}</h1>
-                        </div>
-                        <div fxFlex="1 1 auto">
-                                <h6>User gesamt</h6>
-                                <h1>{{userCount}}</h1>
-                        </div>
-                </div>
+                <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="32px" fxLayout="row">
+                        <div  *ngIf="items && reservations && userCount">
+                                    <div fxFlex="1 1 auto">
+                                            <h6>Reservierungen insgesamt</h6>
+                                            <h1>{{reservations.length}}</h1>
+                                    </div>
+                                    <div fxFlex="1 1 auto">
+                                            <h6>Geräte insgesamt</h6>
+                                            <h1>{{items.length}}</h1>
+                                    </div>
+                                    <div fxFlex="1 1 auto">
+                                            <h6>User gesamt</h6>
+                                            <h1>{{userCount}}</h1>
+                                    </div>
+                            </div>
+                    </div>
         </div>
 </div>

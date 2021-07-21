@@ -4,19 +4,19 @@
         <div [formGroup]="deviceModalForm">
 
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'displayName'" matInput placeholder="Anzeigename">
+                <input [formControlName]="'displayName'" matInput placeholder="Anzeigename*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'description'" matInput placeholder="Beschreibung">
+                <input [formControlName]="'description'" matInput placeholder="Beschreibung*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
             </mat-form-field>
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'capabilities'" matInput placeholder="Funktionen">
+                <input [formControlName]="'capabilities'" matInput placeholder="Funktionen*">
                 <mat-error>
                     Erforderlich
                 </mat-error>

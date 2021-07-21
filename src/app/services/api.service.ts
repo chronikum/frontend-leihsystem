@@ -75,6 +75,11 @@ export class ApiService {
    */
   refreshSystemLogo = new EventEmitter<boolean>();
 
+  /**
+   * This can be used to control the side bar state
+   */
+  controlSideBar = new EventEmitter<boolean>();
+
 
   /**
    * Returns new instance of api service

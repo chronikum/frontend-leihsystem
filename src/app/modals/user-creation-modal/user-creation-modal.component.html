@@ -4,7 +4,7 @@
         <div [formGroup]="userCreationForm">
 
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'username'" matInput placeholder="Username">
+                <input [formControlName]="'username'" matInput placeholder="Username*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
@@ -19,14 +19,14 @@
             </mat-form-field>
 
             <mat-form-field  style="display: flex;">
-                <input [formControlName]="'email'" matInput placeholder="email">
+                <input [formControlName]="'email'" matInput placeholder="email*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field *ngIf="enablePassword" style="display: flex;" >
-                <input [formControlName]="'password'" matInput placeholder="password">
+                <input [formControlName]="'password'" matInput placeholder="password*">
                 <mat-error>
                     Erforderlich
                 </mat-error>
@@ -39,22 +39,10 @@
             <mat-form-field  style="display: flex;">
                 <input [formControlName]="'phone'" matInput placeholder="Telefon/Handy-Nummer">
             </mat-form-field>
-
-            <!-- <mat-form-field>
-                <mat-label>Zugewiesene Userrolle</mat-label>
-                <mat-select [formControlName]="'role'" [placeholder]="'Select role'">
-                    <mat-option *ngFor="let role of rolesAvailable" [value]="role">
-                        {{role}}
-                      </mat-option>
-                </mat-select>
-                <mat-error>
-                    Erforderlich
-                </mat-error>
-            </mat-form-field> -->
         </div>
     </ul>
 </div>
 <mat-dialog-actions style="float: right">
-    <button class="mat-button"(click)="cancelAction()">Cancel</button>
-    <button mat-raised-button (click)="createAction()">Create</button>
+    <button mat-button (click)="cancelAction()">Cancel</button>
+    <button mat-raised-button [disabled]="!userCreationForm.valid" (click)="createAction()">Create</button>
 </mat-dialog-actions>

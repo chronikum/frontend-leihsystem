@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/models/Item';
 import { Reservation } from 'src/app/models/Reservation';
+import { UserRoles } from 'src/app/models/UserRoles';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -20,6 +21,11 @@ export class DashboardPageComponent implements OnInit {
    * Determines if charts should be shown
    */
   showCharts: boolean = false;
+
+  /**
+   * Determines if site is loaded
+   */
+  pageReady: boolean = false;
 
   /**
    * Emitters for the charts in the dashboard
@@ -99,7 +105,7 @@ export class DashboardPageComponent implements OnInit {
         this.userReservationStats.next(chartData)
       })
 
-      this.showCharts = true
+      this.userShouldSeeDashboard();
     }, 100)
   }
 
@@ -141,6 +147,25 @@ export class DashboardPageComponent implements OnInit {
    */
   gotoReservationsRequest() {
     this.router.navigate(['requests'])
+  }
+
+  /**
+   * Determins if user can see dashboard
+   */
+  userShouldSeeDashboard() {
+    this.apiService.getCurrentUserRoles$().subscribe(roles => {
+      if (roles?.userRoles.includes(UserRoles.ADMIN)) {
+        this.showCharts = true;
+      }
+      this.pageReady = true;
+    });
+  }
+
+  /**
+   * This opens the menu
+   */
+  openMenu() {
+    this.apiService.controlSideBar.next(true);
   }
 
 }
