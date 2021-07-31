@@ -24,8 +24,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
                     }
                     else {
                         console.log(error?.status);
-                        if (error.status == 500)
-                            this.router.navigate(["error"])
                     }
                     console.log(errorMsg);
                     return throwError(errorMsg);
